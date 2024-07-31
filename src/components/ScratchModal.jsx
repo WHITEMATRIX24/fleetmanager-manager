@@ -94,9 +94,12 @@ const ScratchModal = ({ show, vehicleNumber, onClose }) => {
           {scratchImages.length > 0 ? (
             scratchImages.map((image, index) => (
               <div key={index} className="saved-image-container">
-                <p>{`View: ${image.view}`}</p>
-                <img src={`data:image/jpeg;base64,${image.base64}`} alt={`Saved ${index}`} className="saved-image" />
-                <button onClick={() => handleDeleteClick(image)} className="delete-button">X</button>
+                <p>{`View: ${image.view}`}  </p>
+                <div className="image-wrapper">
+                  <button onClick={() => handleDeleteClick(image)} className="delete-scratch-button">X</button>
+                  <img src={`data:image/jpeg;base64,${image.base64}`} alt={`Saved ${index}`} className="saved-image" />
+                </div>
+
               </div>
             ))
           ) : (
