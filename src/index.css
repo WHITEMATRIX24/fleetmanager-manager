@@ -1,0 +1,142 @@
+/* Define the light version of the font */
+@font-face {
+  font-family: 'Gotham';
+  src: url('/public/fonts/GothamLight.ttf') format('opentype');
+  font-weight: 300;
+  /* Light weight */
+  font-style: normal;
+}
+
+/* Define the bold version of the font */
+@font-face {
+  font-family: 'Gotham';
+  src: url('/public/fonts/Gotham-Bold.otf') format('opentype');
+  font-weight: 700;
+  /* Bold weight */
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Gotham', sans-serif;
+  background-color: white;
+
+
+  /* Adding a solid white border */
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 15px;
+  color: var(--header-color);
+  font-weight: lighter;
+}
+
+p {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+/* Green theme */
+:root {
+  --sq-1: #A9A9A9;
+  --sq-11: #A9A9A9;
+  --sq-2: #4b682a;
+  --sq-22: #34560c;
+  --sq-3: #79b242;
+  --sq-33: #5b9e1d;
+  --sq-4: #233a18;
+  --sq-44: #0d1807;
+  --sec-background-color: #d2e0bd;
+  --header-color: #708e46;
+  --primary-color: rgba(42, 57, 25, 255);
+  --secondary-color: #577337;
+  --button-font-color: #ffffff;
+  --card-bg: #ffffff;
+  --button-color: #8ab14d;
+  --input-field: rgba(145, 187, 82, 0.5)
+}
+
+/* Navy blue theme */
+
+
+/* Aqua theme */
+.aqua-theme {
+  --background-color: #d4f1f9;
+  --header-color: #4fc3f7;
+  --primary-color: #0288d1;
+  --secondary-color: #81d4fa;
+  --button-font-color: #ffffff;
+}
+
+/* Apply theme variables */
+.navy-blue-theme {
+  --sec-background-color: #7c8598;
+  --header-color: #3e4552;
+  --primary-color: #303642;
+  --secondary-color: #1d2128;
+  --button-font-color: #ffffff;
+  --card-bg: #ffffff;
+  --button-color: #4a4e55;
+  --input-field: rgba(48, 54, 66, 0.5);
+}
+
+/* Aqua theme */
+.aqua-theme {
+  --background-color: #587337;
+  --header-color: #4fc3f7;
+  --primary-color: #0288d1;
+  --secondary-color: #81d4fa;
+  --button-font-color: #ffffff;
+}
+
+/* @media (min-width:1560px)and (max-width:2352px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+} */
+
+@media (minwidth: 820px) and (max-width: 1024px) {
+  h1 {
+    font-size: 15px;
+  }
+
+  h2 {
+    font-size: 13px;
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 10px;
+    color: var(--header-color);
+    font-weight: lighter;
+  }
+
+  p {
+    font-size: 8px;
+    font-weight: lighter;
+  }
+}

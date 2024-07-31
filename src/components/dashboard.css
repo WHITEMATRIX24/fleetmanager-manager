@@ -1,0 +1,1995 @@
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows elements to wrap to the next line if dashboard width is reduced */
+    justify-content: flex-start;
+    /* Aligns items to the start of the flex container */
+    align-items: flex-start;
+    /* Adjust padding as needed */
+    background-color: var(--sec-background-color);
+    box-sizing: border-box;
+    /* border-right: 50px solid white; */
+    /* Adjust border styles */
+
+    /* Adjust border styles */
+}
+
+h2,
+h3 {
+    color: var(--header-color);
+}
+
+p {
+    color: var(--secondary-color);
+}
+
+.sidebar {
+    max-width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--secondary-color);
+    z-index: 100;
+}
+
+.main-content {
+    border-left: 300px solid var(--sec-background-color);
+    width: 100%;
+    flex-wrap: wrap;
+    top: 50px;
+    border-right: 50px solid white;
+    /* Optional: Add some padding for better spacing */
+
+    /* Ensure padding and border are included in the element's total width and height */
+}
+
+/* Example additional styles */
+
+
+.header-div {
+    z-index: 10000;
+    position: relative;
+}
+
+.content-with-header {
+    padding-top: 60px;
+    z-index: 1;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+
+.content {
+    padding: 80px 10px 10px 10px;
+    margin-top: 10px;
+    display: flex;
+    margin-right: 30px;
+    justify-content: space-between;
+}
+
+.contents {
+    margin-left: 20px;
+    margin-right: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-note {
+    margin-left: 20px;
+    margin-right: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-note .left {
+    width: 50%;
+}
+
+.left {
+    width: 90%;
+    margin-left: 10px;
+
+}
+
+.right {
+    flex: 1;
+    margin: 0 10px;
+    width: 40%;
+}
+
+.card {
+    background: var(--sec-background-color);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    height: 400px;
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+
+    cursor: pointer;
+    z-index: 10;
+    color: var(--secondary-color);
+}
+
+
+.car-cards {
+    background: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    margin-right: 5px;
+    height: 57%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.car-cards:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+
+.car-card {
+    position: absolute;
+    width: 35%;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-card.active {
+    width: 37%;
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 2;
+}
+
+.car-card.next,
+.car-card.prev {
+    width: 33%;
+    transform: scale(0.95);
+    z-index: 1;
+}
+
+.car-card.next {
+    transform: translateX(90%) scale(0.99);
+}
+
+.car-card.prev {
+    transform: translateX(-90%) scale(0.99);
+}
+
+.car-card img {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.car-cards .car-card.next .car-overlay,
+.car-cards .car-card.prev .car-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    opacity: 0.7;
+    ;
+    /* Adjust color and opacity as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.car-cards .car-card.active .car-overlay {
+    visibility: hidden;
+}
+
+.car-cards .car-status {
+    color: var(--card-bg);
+    font-size: 12px;
+    position: absolute;
+    top: 30px;
+    left: 30%;
+    font-weight: bold;
+    transform: translateX(-50%);
+    text-align: left;
+}
+
+.car-card :not(.active).car-overlay {
+    visibility: visible;
+}
+
+.assign-button {
+    position: absolute;
+    bottom: 25px;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+
+}
+
+.car-card:not(.active).assign-button {
+    color: var(--primary-color);
+}
+
+.car-card.active .assign-button {
+    display: block;
+}
+
+
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+
+    cursor: pointer;
+    z-index: 1;
+    color: var(--primary-color);
+}
+
+.carousel-button.left {
+    left: -20%;
+    z-index: 5;
+
+}
+
+.carousel-button.right {
+    right: 0;
+    z-index: 5;
+}
+
+.performance-metrics {
+    margin-top: 10px;
+    background: var(--card-bg);
+    padding: 20px 20px 30px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-in-out;
+    width: 95%;
+    display: flex;
+    /* Use flexbox for layout */
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line */
+    gap: 20px;
+    /* Adjust the gap between items */
+    justify-content: center;
+    /* Center items horizontally */
+    align-items: center;
+    /* Center items vertically */
+}
+
+.performance-metrics:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+.planner {
+    margin-top: 10px;
+    background: var(--card-bg);
+    padding-right: 20px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    width: 93%;
+    height: 200px;
+    margin-right: 0px;
+    transition: all 0.5s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.planner:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+
+.trips {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    padding-bottom: 70px;
+    padding-top: 40px;
+    padding-right: 25px;
+    width: 95%;
+    margin-bottom: 20px;
+    transition: all 0.5s ease-in-out;
+    height: 45%;
+}
+
+.trips:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+
+/* vehicle section */
+.vehicle {
+
+    z-index: 1;
+    margin-left: 20px;
+}
+
+
+.add-car {
+    background: var(--card-bg);
+    display: flex;
+    height: 400px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.add-car:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.c-form {
+    flex: 1;
+    /* Allow the form to grow and fill the available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ensure elements within the form are spaced evenly */
+    height: 90%;
+    margin: 20px;
+    width: 170%;
+}
+
+.c-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--header-color);
+}
+
+.c-form-field-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.c-form-field-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.c-form-field-column label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-input-field,
+.inputfile {
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: var(--input-field);
+    border-radius: 15px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+
+
+.c-input-field:hover {
+    background-color: var(--input-field);
+}
+
+.c-input-field:focus {
+    outline: none;
+    border-bottom-color: var(--secondary-color);
+}
+
+.c-file-input {
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    transition: border-color 0.3s ease;
+}
+
+.header-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.generate-id-button {
+    background-color: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    cursor: pointer;
+    align-self: right;
+    border-radius: 8px;
+}
+
+.generate-id-button:hover {
+    background-color: var(--sec-background-color);
+    color: var(--primary-color);
+}
+
+/* Hide the default file input */
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Style the label for the file input to look like a clickable text link */
+.inputfile+label {
+    display: inline-block;
+    font-size: 14px;
+    background-color: var(--input-field);
+    border-radius: 15px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.c-input-file-label-car {
+    font-size: 14px;
+}
+
+/* Optional: Add hover and focus effects */
+.inputfile+label:hover,
+.inputfile+label:focus {
+    text-decoration: underline;
+}
+
+.c-submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--button-color);
+    color: var(--button-font-color);
+    align-self: flex-start;
+    /* Align button to the left */
+}
+
+.c-submit-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.c-form-car {
+    flex: 0;
+    /* Allow the form to grow and fill the available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    /* Ensure elements within the form are spaced evenly */
+    height: 90%;
+    width: 110%;
+}
+
+.c-form-car-header {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--header-color);
+}
+
+.c-form-field-row-car {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.c-form-field-column-car {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-form-field-label-car {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-input-field-car,
+.inputfile-car {
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: var(--input-field);
+    border-radius: 15px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.c-input-field-car:hover {
+    background-color: var(--input-field);
+}
+
+.c-input-field-car:focus {
+    outline: none;
+    border-bottom-color: var(--secondary-color);
+}
+
+.c-file-input-car {
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Hide the default file input */
+.inputfile-car {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Style the label for the file input to look like a clickable text link */
+.inputfile-car+label {
+    display: inline-block;
+    background-color: var(--input-field);
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Optional: Add hover and focus effects */
+.inputfile-car+label:hover,
+.inputfile-car+label:focus {
+    text-decoration: underline;
+}
+
+.c-submit-button-car {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+
+    background-color: var(--button-color);
+    color: var(--button-font-color);
+    align-self: flex-start;
+    /* Align button to the left */
+}
+
+.c-submit-button-car:hover {
+    background-color: var(--secondary-color);
+}
+
+.c-form-trip {
+    margin: 20px;
+}
+
+.c-form-field-row-trip {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.c-form-field-column-trip {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.c-form-field-column-trip:last-child {
+    margin-right: 0;
+}
+
+.c-form-field-column-50-trip {
+    flex: 0 0 48%;
+    box-sizing: border-box;
+}
+
+.c-form-field-column-50-trip label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-form-field-column-25-trip {
+    flex: 0 0 33%;
+    box-sizing: border-box;
+}
+
+.c-form-field-column-25-trip label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-form-field-column-75-trip {
+    flex: 0 0 64%;
+    box-sizing: border-box;
+}
+
+.c-form-field-column-75-trip label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-input-field-trip {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+
+    background-color: var(--input-field);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.c-form-field-column-trip label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.c-submit-button-trip {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.c-submit-button-trip:hover {
+    background-color: #0056b3;
+}
+
+
+
+.cards {
+    background-color: var(--card-bg);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+
+.add-trip {
+
+    margin-left: 25px;
+    background: var(--card-bg);
+    display: flex;
+    height: 455px;
+    width: 100%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    padding: 20px;
+    box-sizing: border-box;
+
+
+}
+
+.add-trip:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 0;
+    width: 350px;
+    /* padding-bottom: 10px; */
+}
+
+.cardss {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 350px;
+
+    text-align: center;
+    height: 250px;
+}
+
+
+.trip-images {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    flex-grow: 1;
+}
+
+.trip-images.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(99, 127, 68, 0.5);
+    /* Semi-transparent green */
+    border-radius: 8px;
+    /* Match cardss border radius */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.image-button {
+    background-color: var(--button-font-color);
+    color: var(--secondary-color);
+
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 200px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+    /* Align button at the bottom */
+}
+
+
+.image-button:hover {
+    background-color: rgba(99, 127, 68, 0.5);
+}
+
+
+
+
+/* App.css */
+.ccard-button {
+    display: flex;
+    margin-left: 30px;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 10px;
+    width: 300px;
+    height: 100px;
+
+    margin-bottom: 10px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    border-left: 8px solid var(--secondary-color);
+}
+
+.ccard-button:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ccard-graph {
+    width: 360px;
+    /* Adjust width as needed */
+    height: 360px;
+    /* Adjust height as needed */
+    margin: 30px auto;
+    /* Center the card horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    /* Assuming the background color is white */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a slight shadow for better appearance */
+    border: 1px solid #e0e0e0;
+    /* Add a border similar to the original image */
+}
+
+
+.iicon-container {
+    margin-right: 5px;
+    fill: none;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--primary-color);
+}
+
+.count {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+
+.label {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-left: 10px;
+
+}
+
+
+/* App.css */
+.ccard {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-top: 36px;
+    padding-bottom: 37px;
+
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 200px;
+
+}
+
+.iicon-container {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    fill: var(--header-color);
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.count {
+
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+
+.tables {
+    background: var(--card-bg);
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 52px;
+    margin-right: 50px;
+
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+
+
+}
+
+.tables:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+.keytables {
+    background: var(--card-bg);
+    display: flex;
+
+    margin-left: 52px;
+    margin-right: 50px;
+    margin-top: 10px;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+
+
+}
+
+.keytables:hover {
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Optional: Adds a shadow effect */
+}
+
+
+.edit-cardd {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 5px;
+    background-color: var(--card-bg);
+    border: none;
+    /* Remove default button border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    /* Change cursor to pointer on hover */
+    width: 300px;
+    height: 125px;
+    border-left: 10px solid var(--secondary-color);
+    /* Ensure button width adjusts to content */
+}
+
+.edit-cardd:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.edit-cardd-trip {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 30px;
+    background-color: var(--card-bg);
+    border: none;
+    /* Remove default button border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    /* Change cursor to pointer on hover */
+    width: 300px;
+    height: 125px;
+    border-left: 10px solid var(--secondary-color);
+}
+
+.edit-cardd:focus {
+    outline: none;
+    /* Remove default focus outline */
+}
+
+.iicon-container {
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 40px;
+    height: 40px;
+}
+
+.iicon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.count {
+
+    font-weight: lighter;
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+.display-note {
+    background: var(--card-bg);
+    display: flex;
+    height: 360px;
+    width: 95%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+
+
+}
+
+.display-note:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.settings-div {
+    background: var(--card-bg);
+    display: flex;
+    height: 175px;
+    width: 92%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+section {}
+
+@media (min-width: 1800px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media(min-width: 1400px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media(min-width:1600px) {
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .main-content {
+        width: auto;
+    }
+}
+
+/* 
+@media (min-width:1560px)and (max-width:2352px) {
+    body {
+        width: 100%;
+        border-right: 100px solid white;
+
+    }
+
+    .dashboard {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 150%;
+    }
+
+    .main-content {
+        border-left: 400px solid var(--sec-background-color);
+    }
+
+    .car-cards {
+
+        margin-top: 10px;
+        margin-right: 0px;
+        height: 500px;
+        width: 80%;
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+
+    .car-card img {
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+    }
+
+    .performance-metrics {
+        margin-top: 10px;
+        align-self: flex-start;
+        width: 120%;
+        height: 40%;
+    }
+
+    .planner {
+        width: 78%;
+        margin-right: 0;
+    }
+
+    .trips {
+        padding-bottom: 30px;
+        padding-top: 10px;
+        margin-left: 10px;
+        padding: 30px;
+        width: 150%;
+
+        height: 100%;
+    }
+
+    .add-car {
+        height: 350px;
+        width: 130%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .c-form-car {
+        width: 90%;
+        margin-left: 0px;
+
+    }
+
+    .iicon {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+    }
+
+    .contents {
+        margin-left: 20px;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .edit-cardd {
+        margin-left: 100px;
+ 
+        background-color: var(--card-bg);
+        margin-right: 0;
+        width: 105%;
+
+        height: 110px;
+        border-left: 10px solid var(--secondary-color);
+    }
+
+    .c-form {
+        width: 95%;
+        margin-left: 0px;
+ 
+    }
+
+    .generate-id-button {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .c-submit-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .c-form-field-column-25-trip label {
+
+        font-size: 12px;
+
+    }
+
+    .c-form-field-column-50-trip label {
+
+        font-size: 12px;
+
+    }
+
+    .c-form-field-column-75-trip label {
+        font-size: 12px;
+    }
+
+    .c-form-field-column label {
+
+        font-size: 12px;
+    }
+
+    .c-form-field-label-car {
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: var(--secondary-color);
+    }
+
+    .inputfile-car+label {
+        display: inline-block;
+        background-color: var(--input-field);
+        border-radius: 15px;
+        font-size: 12px;
+        padding: 10px;
+        transition: border-color 0.3s ease;
+        cursor: pointer;
+    } 
+
+
+}*/
+
+@media (max-width: 1200px) {
+    body {
+        background-color: var(--sec-background-color);
+        width: 70%;
+        margin-right: 10px;
+    }
+
+    .dashboard {
+
+        width: 110%;
+        flex-wrap: wrap;
+        border-right: 0;
+
+
+    }
+
+    .header-div {
+        width: 100%;
+        position: fixed;
+    }
+
+    .sidebar {
+        width: 200px;
+        z-index: 1002;
+        position: fixed;
+    }
+
+    .main-content {
+        border-left: 200px solid var(--sec-background-color);
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .content-with-header {
+        padding-top: 10px;
+    }
+
+
+    .car-cards {
+
+        margin-top: 10px;
+        margin-right: 0px;
+        height: 300px;
+        width: 100%;
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+
+    .car-card img {
+        width: 100%;
+        height: 250px;
+        border-radius: 10px;
+    }
+
+    .car-cards .car-status {
+        text-align: left;
+        left: 35%;
+
+    }
+
+    .performance-metrics {
+        margin-top: 10px;
+        margin-left: 30px;
+        padding: 20px;
+        margin-right: 30px;
+        padding-top: 30px;
+        border-radius: 8px;
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+
+        width: 90%;
+    }
+
+    .planner {
+        margin-top: 10px;
+
+        width: 97%;
+        height: 175px;
+        margin-right: 0px;
+        transition: all 0.5s ease-in-out;
+        margin-bottom: 10px;
+    }
+
+    .trips {
+        margin-left: 30px;
+        padding-bottom: 40px;
+        padding-top: 30px;
+        width: 102%;
+        height: 35%;
+    }
+
+    .add-car {
+        height: 400px;
+        width: 113%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+
+    }
+
+    .c-form-car {
+
+        width: 85%;
+
+    }
+
+    .contents {
+        margin-left: 20px;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content {
+        margin-right: 0;
+    }
+
+    .content-note {
+        margin-right: 0;
+    }
+
+    .edit-cardd {
+
+        margin-left: 90px;
+        background-color: var(--card-bg);
+        margin-right: 0;
+        /* Change cursor to pointer on hover */
+        width: 300px;
+        height: 125px;
+        border-left: 10px solid var(--secondary-color);
+        /* Ensure button width adjusts to content */
+    }
+
+    .c-form {
+        width: 73%;
+    }
+
+    .add-trip {
+        width: 113%;
+    }
+
+    .edit-cardd-trip {
+        margin-left: 100px;
+        width: 300px;
+    }
+
+    .ccard-button {
+        margin-left: 100px;
+        width: 300px;
+    }
+
+    .tables {
+
+        margin-left: 52px;
+        margin-right: 0;
+        width: 97%;
+
+
+    }
+
+    .add-note {
+        width: 110%;
+    }
+
+    .display-note {
+        margin-left: 45px;
+        height: 375px;
+        width: 105%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    body {
+        overflow-x: hidden;
+        width: 110%;
+    }
+
+    .dashboard {
+        width: 200%;
+        border-radius: 0px;
+
+    }
+
+    .header-div {
+        width: 90%;
+        position: fixed;
+    }
+
+    .sidebar {
+        width: 180px;
+        /* Adjust sidebar width as needed */
+        z-index: 1002;
+        position: fixed;
+    }
+
+    .main-content {
+        border-left: 170px solid var(--sec-background-color);
+        width: 70%;
+        border-right: 0px;
+
+        /* Adjust the calculation based on sidebar width */
+    }
+
+    .content-with-header {
+        padding-top: 10px;
+    }
+
+    .car-cards {
+        margin-top: 10px;
+        height: 250px;
+        width: 100%;
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+        overflow: hidden;
+    }
+
+    .car-card img {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    .car-cards .car-status {
+        text-align: left;
+        left: 35%;
+    }
+
+    .performance-metrics {
+        margin-top: 10px;
+        padding: 20px;
+        border-radius: 8px;
+        width: 110%;
+        margin-left: 0px;
+    }
+
+    .planner {
+        margin-top: 10px;
+        width: 91%;
+        height: 260px;
+        transition: all 0.5s ease-in-out;
+        margin-bottom: 10px;
+    }
+
+    .trips {
+        margin-left: 0px;
+        padding-bottom: 40px;
+        padding-top: 30px;
+        width: 111%;
+        height: 30%;
+        margin-bottom: 10px;
+    }
+
+    .add-car {
+        height: 395px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .c-form-car {
+        width: 80%;
+    }
+
+    .contents {
+        margin-left: 20px;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .edit-cardd {
+        margin-left: 0px;
+        background-color: var(--card-bg);
+        width: 125%;
+        height: 125px;
+        border-left: 10px solid var(--secondary-color);
+    }
+
+    .c-form {
+        width: 100%;
+    }
+
+    .generate-id-button {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .add-trip {
+        width: 115%;
+    }
+
+    .edit-cardd-trip {
+        margin-left: 90px;
+        width: 87%;
+    }
+
+    .ccard-button {
+        margin-left: 90px;
+        width: 87%;
+    }
+
+    .tables {
+        margin-left: 52px;
+        margin-right: 0;
+        width: 98%;
+    }
+
+    .add-note {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .display-note {
+        margin-left: 5px;
+        height: 360px;
+        width: 105%;
+    }
+
+    .settings-div {
+        margin-top: 10px;
+        height: 185px;
+        width: 98%;
+        border-radius: 8px;
+
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 820px) {
+    body {
+        width: 100%;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .dashboard {
+        width: 80%;
+    }
+
+    .header-div {
+        width: 110%;
+        position: fixed;
+    }
+
+    .sidebar {
+        width: 70px;
+        position: fixed;
+        z-index: 10009;
+    }
+
+    .main-content {
+        border-left: 40px solid var(--sec-background-color);
+        margin-right: 0px;
+        border-right: 0px;
+    }
+
+    .content-with-header {
+        padding-top: 10px;
+    }
+
+    .car-cards {
+        margin-top: 10px;
+        margin-right: 5px;
+        height: 200px;
+        width: 114%;
+        /* Adjusted to fit container */
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+        overflow: hidden;
+    }
+
+    .car-card img {
+        width: 100%;
+        height: 170px;
+        border-radius: 10px;
+    }
+
+    .car-cards .car-status {
+        text-align: left;
+        left: 35%;
+        font-size: 10px;
+    }
+
+    .assign-button {
+        position: absolute;
+        bottom: 25px;
+        background-color: var(--button-color);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+
+    }
+
+    .performance-metrics {
+        margin-top: 10px;
+        margin-left: 40px;
+        padding: 20px;
+        padding-top: 30px;
+        border-radius: 8px;
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        width: 120%;
+        height: 150px;
+    }
+
+    .planner {
+        margin-top: 10px;
+        width: 103%;
+        /* Adjusted to fit container */
+        height: 195px;
+        margin-right: 0px;
+        transition: all 0.5s ease-in-out;
+        margin-bottom: 10px;
+    }
+
+    .trips {
+        margin-left: 40px;
+        padding-bottom: 30px;
+        padding-top: 10px;
+        width: 120%;
+        /* Adjusted to fit container */
+        height: 30%;
+    }
+
+    .add-car {
+        height: 350px;
+        width: 130%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .c-form-car {
+        width: 90%;
+        margin-left: 0px;
+        /* Adjusted to fit container */
+    }
+
+    .iicon {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+    }
+
+    .contents {
+        margin-left: 20px;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .edit-cardd {
+        margin-left: 100px;
+        /* Adjusted margin for smaller screen */
+        background-color: var(--card-bg);
+        margin-right: 0;
+        width: 105%;
+        /* Adjusted to fit container */
+        height: 110px;
+        border-left: 10px solid var(--secondary-color);
+    }
+
+    .c-form {
+        width: 95%;
+        margin-left: 0px;
+        /* Adjusted to fit container */
+    }
+
+    .generate-id-button {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .c-submit-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .c-form-field-column-25-trip label {
+
+        font-size: 12px;
+
+    }
+
+    .c-form-field-column-50-trip label {
+
+        font-size: 12px;
+
+    }
+
+    .c-form-field-column-75-trip label {
+        font-size: 12px;
+    }
+
+    .c-form-field-column label {
+
+        font-size: 12px;
+    }
+
+    .c-form-field-label-car {
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: var(--secondary-color);
+    }
+
+    .inputfile-car+label {
+        display: inline-block;
+        background-color: var(--input-field);
+        border-radius: 15px;
+        font-size: 12px;
+        padding: 10px;
+        transition: border-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .c-submit-button-car {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
+
+    .c-form-car-header,
+    .c-form h2,
+    .c-form-trip h2 {
+        font-size: 13px;
+    }
+
+
+    .add-trip {
+        width: 130%;
+        height: 93%;
+        /* Adjusted to fit container */
+    }
+
+    .edit-cardd-trip {
+        margin-left: 130px;
+        /* Adjusted margin for smaller screen */
+        width: 92%;
+        /* Adjusted to fit container */
+    }
+
+    .ccard-button {
+        margin-left: 130px;
+        /* Adjusted margin for smaller screen */
+        width: 92%;
+        height: 19%;
+        /* Adjusted to fit container */
+    }
+
+    .tables {
+        margin-left: 40px;
+        /* Adjusted margin for smaller screen */
+        margin-right: 0;
+        width: 110%;
+        /* Adjusted to fit container */
+    }
+
+    .add-note {
+        width: 130%;
+        padding-bottom: 0px;
+        /* Adjusted to fit container */
+    }
+
+    .display-note {
+        margin-left: 90px;
+        /* Adjusted margin for smaller screen */
+        height: 315px;
+        width: 102%;
+        /* Adjusted to fit container */
+    }
+
+    .settings-div {
+        margin-top: 10px;
+        height: 185px;
+        width: 108%;
+        border-radius: 8px;
+
+    }
+
+}
+
+@media (max-width: 820px) {}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .main-content {
+        width: 100%;
+        border-left: 100px solid var(--sec-background-color);
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .main-content {
+        width: calc(100% - 80px);
+        border-left: 80px solid var(--sec-background-color);
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .right {
+        width: 100%;
+        margin: 0;
+    }
+
+    .add-car {
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
+
+/* @media (max-width: 992px) {
+
+    .content,
+    .contents,
+    .content-note,
+    .carousel,
+    .performance-metrics,
+    .planner,
+    .trips,
+    .vehicle,
+    .cars {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .right,
+    .left,
+    .car-item,
+    .card,
+    .car-cards,
+    .add-car {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .car-item {
+        width: 100%;
+    }
+
+   
+    .content-with-header {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+.cropper-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+
+}
+
+.cropper-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+    
+}
+
+.cropper-controls button {
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cropper-controls button:hover {
+    background: #f0f0f0;
+}
+/* 
+.cropper-button {
+    background-color: #008CBA;
+   
+    color: white;
+ 
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+    
+} */
+
+/* .cropper-button:hover {
+    background-color: #005f73;
+
+} 
+ */

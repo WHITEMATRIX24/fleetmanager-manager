@@ -1,0 +1,87 @@
+.planner {
+
+    padding: 20px;
+    margin: 0;
+
+
+}
+
+.planner h2 {
+    text-align: left;
+    color: var(--header-color);
+    margin-bottom: 10px;
+
+}
+
+.trip-panner {
+    margin-bottom: 5px;
+}
+
+.trip-panner h3 {
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+.trip-panner p {
+    margin: 5px 0 0;
+}
+
+/* Responsive Media Queries for Planner Component */
+
+/* For tablets (portrait and landscape) */
+@media (max-width: 1024px) {
+    .planner {
+        padding: 15px;
+    }
+
+    .planner h2 {
+        font-size: 18px;
+    }
+
+    .trip-panner h3 {
+        font-size: 16px;
+    }
+
+    .trip-panner p {
+        font-size: 14px;
+    }
+}
+
+/* For smaller tablets and large smartphones */
+@media (max-width: 768px) {
+    .planner {
+        padding: 10px;
+    }
+
+    .planner h2 {
+        font-size: 16px;
+    }
+
+    .trip-panner h3 {
+        font-size: 14px;
+    }
+
+    .trip-panner p {
+        font-size: 12px;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .planner {
+        padding: 5px;
+    }
+
+    .planner h2 {
+        font-size: 14px;
+    }
+
+    .trip-panner h3 {
+        font-size: 12px;
+    }
+
+    .trip-panner p {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,44 @@
+.notes-main {
+
+    padding: 0px;
+    margin: 0px;
+
+
+
+}
+
+.notes-main h2 {
+    text-align: left;
+    color: var(--header-color);
+
+}
+
+.notes-cont {
+    margin-bottom: 10px;
+}
+
+.notes-cont h3 {
+    margin: 0;
+    font-weight: bold;
+    color: var(--secondary-color);
+
+}
+
+.notes-cont p {
+    margin: 5px 0 0;
+    font-size: 15px;
+}
+
+.bbutton {
+    margin-top: 20px;
+}
+
+@media (max-width:1024px) and (min-width:820px) {
+    .notes-main h2 {
+        font-size: 13px;
+    }
+
+    .notes-cont h3 {
+        font-size: 10px;
+    }
+}

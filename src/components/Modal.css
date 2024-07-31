@@ -1,0 +1,125 @@
+/* Modal.css */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000;
+  /* Ensure it sits on top of other content */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  /* Max width for larger screens */
+  position: relative;
+  max-height: 80vh;
+  /* Restrict the height */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center align items horizontally */
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal h2 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 20px;
+  /* Add space below heading */
+}
+
+.modal .input[type="file"] {
+  margin-bottom: 20px;
+  width: 100%;
+  /* Ensure input takes full width */
+}
+
+.modal input[type="text"] {
+  width: auto;
+  /* Full width */
+  border: none;
+  border-bottom: 2px solid #ddd;
+  /* Line style */
+  padding: 10px 5px;
+  font-size: 16px;
+  transition: border-bottom-color 0.3s;
+  margin-bottom: 20px;
+  /* Add space below input */
+}
+
+.modal input[type="text"]:hover,
+.modal input[type="text"]:focus {
+  border-bottom-color: var(--button-color);
+  ;
+  /* Turn green on hover */
+  outline: none;
+  /* Remove outline on focus */
+}
+
+.image-preview {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  /* Add space below image preview */
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.save-btn {
+  background-color: var(--button-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+  /* Center button horizontally */
+  margin-top: 20px;
+  /* Add space above button */
+  margin-bottom: 20px;
+  /* Add space below button */
+}
+
+.save-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.save-btn:disabled {
+  background-color: #ccc;
+  /* Disabled state color */
+  cursor: not-allowed;
+  /* Disabled state cursor */
+}
+
+.modal input[type="file"] {
+  width: auto;
+  padding: 30px;
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+@media (max-width:1024px) and (min-width:820px) {}

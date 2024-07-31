@@ -1,0 +1,124 @@
+/* src/LoginPage.css */
+.login-page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--sec-background-color);
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    padding: 90px;
+    padding-top: 250px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.c-input-field-l {
+    width: 70%;
+    margin-bottom: 20px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    align-self: left;
+    background-color: none;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.c-input-field-l :active {
+    border: none;
+    border-bottom: 2px solid var(--secondary-color);
+
+}
+
+.c-input-field-l:-webkit-autofill,
+.c-input-field-l:-webkit-autofill:hover,
+.c-input-field-l:-webkit-autofill:focus,
+.c-input-field-l:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: black !important;
+}
+
+.login-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--button-color);
+    color: #fff;
+    cursor: pointer;
+    width: 20%;
+}
+
+.sidecolor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    background-color: var(--secondary-color);
+    position: relative;
+}
+
+.side-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.side-logo img {
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width: 1200px) and (min-width: 1024px) {
+    .login-container {
+        width: 40%;
+        padding: 60px;
+        padding-top: 550px;
+    }
+
+    .sidecolor {
+        width: 60%;
+    }
+
+    .side-logo img {
+        width: 250px;
+        align-self: flex-start;
+        height: 250px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 820px) {
+    .login-page {
+        flex-direction: row;
+    }
+
+    .login-container {
+        width: 100%;
+        padding: 30px;
+        padding-top: 500px;
+    }
+
+    .sidecolor {
+        width: 150%;
+        padding: 30px 0;
+    }
+
+    .side-logo img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .side-logo {
+        position: static;
+        transform: none;
+    }
+}

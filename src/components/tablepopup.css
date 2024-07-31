@@ -1,0 +1,140 @@
+/* Styling for the popup form overlay */
+.popup-form-overlay-table {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    z-index: 1000;
+    /* Ensure the popup is on top of other content */
+}
+
+/* Styling for the popup form container */
+.popup-form-container-table {
+    background-color: #ffffff;
+    /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    /* Adjust width as needed */
+
+    /* Limit maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Shadow for depth */
+    position: fixed;
+}
+
+/* Close button for the popup form */
+.close-popup-table {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666666;
+    /* Light gray color */
+}
+
+/* Form styling */
+.popup-form-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    /* Ensure form takes full width of container */
+}
+
+.popup-form-table h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    /* Center align the form title */
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    margin: 20px;
+    /* Ensure form takes full width of container */
+}
+
+.popup-form h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    /* Center align the form title */
+}
+
+.popup-form-field-row {
+    display: flex;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    /* Allow fields to wrap on smaller screens */
+}
+
+.popup-form-field-column {
+    flex: 1 1 45%;
+    margin-right: 5px;
+    /* Adjust spacing between columns */
+    margin-bottom: 5px;
+    /* Adjust spacing between rows */
+}
+
+.popup-form-field-column:last-child {
+    margin-right: 0;
+    /* Remove margin from last column */
+}
+
+.popup-form-field-column label {
+    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.popup-input-field,
+.popup-file-input {
+    width: 70%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--input-field);
+    /* Light gray border */
+    border-radius: 15px;
+    border: none;
+
+}
+
+.popup-input-field:focus,
+.popup-file-input:focus {
+    outline: none;
+    background-color: var(--input-field);
+
+    /* Highlight color on focus */
+}
+
+.popup-submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--button-color);
+    /* Use button color variable */
+    color: var(--button-font-color);
+    /* Use button font color variable */
+    align-self: flex-start;
+    /* Align button to the left */
+    transition: background-color 0.3s ease;
+}
+
+.popup-submit-button:hover {
+    background-color: var(--secondary-color);
+    /* Darker shade of button color on hover */
+}

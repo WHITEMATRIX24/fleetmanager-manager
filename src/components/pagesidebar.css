@@ -1,0 +1,167 @@
+/* sidebar.css */
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+    color: var(--button-font-color);
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+    margin-top: 50px;
+    margin-left: 50px;
+    border-top-left-radius: 25px;
+    /* Apply rounded edge only to the top left corner */
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    text-align: center;
+    padding: 10px;
+}
+
+.logo img {
+    margin-top: 20px;
+    width: 150px;
+    /* Adjust the width as needed */
+    height: auto;
+}
+
+nav {
+    flex: 1;
+    /* Allow nav to take up available space */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+nav ul li {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+}
+
+nav ul li a {
+    color: var(--button-font-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    font-size: 14px;
+    z-index: 1;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+nav ul li.active a {
+    background: var(--sec-background-color);
+    color: var(--secondary-color);
+    border-radius: 25px 0 0 25px;
+}
+
+nav ul li:hover a {
+    background: var(--sec-background-color);
+    opacity: 0.5;
+    color: var(--secondary-color);
+    border-radius: 25px 0 0 25px;
+    transform: translateX(5px);
+}
+
+.leafimg {
+    text-align: center;
+    margin-top: auto;
+    /* Push leafimg to the bottom */
+    padding-bottom: 20px;
+    /* Ensure there's some space at the bottom */
+}
+
+.leafimg img {
+    max-width: 250px;
+    /* Adjust the width as needed */
+    opacity: 0.3;
+    margin-right: 10px;
+}
+
+/* Responsive Media Queries */
+
+/* For tablets (portrait and landscape) */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 200px;
+        margin-left: 0;
+        height: 60vh;
+        border-top-left-radius: 0;
+        margin-top: 0;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    nav ul li a i {
+        font-size: 14px;
+    }
+
+    .leafimg img {
+        max-width: 200px;
+        margin-top: 100px;
+        bottom: 0;
+    }
+}
+
+@media (max-width:1200px) and (min-width:1024px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .leafimg img {
+        max-width: 180px;
+    }
+}
+
+@media(max-width:1024px) and (min-width: 820px) {
+    .sidebar {
+        width: 50px;
+    }
+
+    .icon-text {
+        visibility: hidden;
+    }
+
+    .leafimg img {
+        visibility: hidden;
+    }
+}
+
+@media(max-width: 992px) {
+    .sidebar {
+        width: 50px;
+    }
+
+    .icon-text {
+        visibility: hidden;
+    }
+
+    .leafimg img {
+        visibility: hidden;
+    }
+
+    .logo img {
+        width: 70px;
+        margin-top: 10px;
+        padding-right: 25px;
+    }
+}

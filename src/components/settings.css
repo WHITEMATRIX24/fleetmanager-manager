@@ -1,0 +1,84 @@
+.settings-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+    margin: 10px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.theme-option span {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 8px;
+    border-radius: 15px;
+    margin-left: 10px;
+    position: relative;
+    width: 20px;
+}
+
+.toggle-switch.on {
+    background-color: var(--button-color);
+    color: white;
+}
+
+.toggle-switch.off {
+    background-color: #ccc;
+    color: #666;
+}
+
+.toggle-switch .switch {
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: left 0.3s;
+}
+
+.toggle-switch.on .switch {
+    left: calc(100% - 15px);
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+}
+
+.profile-button:hover {
+    background-color: #e0e0e0;
+}
+
+.profile-button svg {
+    margin-right: 10px;
+}

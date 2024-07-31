@@ -1,0 +1,168 @@
+.add-note-container {
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    height: 375px;
+    width: 99%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.add-note-container:hover {
+
+    background: var(--card-bg);
+    /* Replace with your desired background color if --card-bg is not defined */
+    transform: scale(1.01);
+    /* Optional: Adds a slight zoom effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.add-note-container h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.add-radio-buttons {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.add-radio-buttons label {
+    margin-right: 20px;
+    font-size: 18px;
+    /* font-weight: bold; */
+}
+
+.add-form-field-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.add-form-field-column {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.add-form-field-column:last-child {
+    margin-right: 0;
+}
+
+.add-form-field-column label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.add-input,
+.add-textarea {
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: var(--input-field);
+
+    border-radius: 15px;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.add-textarea {
+    margin-top: 10px;
+    height: 100px;
+    margin-bottom: 10px;
+    /* Adjust height as needed */
+}
+
+.add-form-field label {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+.add-radio-buttons input[type="radio"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--secondary-color);
+    /* Border color for unselected state */
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.add-radio-buttons input[type="radio"]:checked::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--button-color);
+    /* Color of the selected radio button circle */
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.add-radio-buttons input[type="radio"]:hover {
+    border-color: var(--primary-color);
+    /* Border color on hover */
+}
+
+@media (max-width:1024px) and (min-width:820px) {
+    .add-note-container h2 {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .add-radio-buttons {
+        display: flex;
+        justify-content: left;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .add-radio-buttons label {
+        margin-right: 20px;
+        font-size: 12px;
+        /* font-weight: bold; */
+    }
+
+    .add-form-field-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .add-form-field-column {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .add-form-field-column:last-child {
+        margin-right: 0;
+    }
+
+    .add-form-field-column label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .add-note-container {
+
+        height: 335px;
+        width: 99%;
+
+
+
+    }
+}

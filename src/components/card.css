@@ -1,0 +1,19 @@
+.card {
+
+    padding: 20px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.card button {
+    background-color: var(--secondary-color);
+    color: var(--button-font-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}

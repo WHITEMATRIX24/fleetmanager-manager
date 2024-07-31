@@ -1,0 +1,765 @@
+.bod {
+  margin-left: 50px;
+  margin-right: 45px;
+  margin-bottom: 30px;
+}
+
+
+.add-scratch {
+  background: var(--card-bg);
+  display: flex;
+  height: 800px;
+  width: auto;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+
+.add-scratch:hover {
+  background: var(--card-bg);
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.conta {
+  justify-content: center;
+  color: white;
+  display: block;
+  width: 100%;
+  gap: 30px;
+}
+
+.cont {
+  width: 100%;
+  height: auto;
+}
+
+.sc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.sc h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.sc .add-sc-top {
+  display: flex;
+  align-items: center;
+  gap: 370px;
+  justify-content: space-between;
+
+}
+
+.sc .search-box {
+  display: flex;
+}
+
+.sc .search-bar {
+  border-radius: 20px 0 0 20px;
+  transition: border-color 0.3s;
+
+}
+
+.sc .search-bar:focus {
+  border-color: var(--secondary-color);
+}
+
+.fas.fa-search {
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.fas.fa-search:hover {
+  color: #000;
+}
+
+.draw {
+  display: flex;
+  height: auto;
+}
+
+.draw-board {
+  height: 500px;
+  width: 900px;
+  border-radius: 8px;
+  flex: 1;
+  overflow: hidden;
+  position: sticky;
+  border: 2px solid #0000007c;
+  background-color: #fff;
+
+}
+
+.draw-board:hover {
+  overflow: scroll;
+}
+
+.draw-board .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 600px;
+  background-color: black,
+}
+
+.drawing-board {
+  border-radius: 8px;
+  position: relative;
+  border: 2px solid #000;
+}
+
+/* Section for the image gallery */
+.image-gallery {
+  margin-top: 30px;
+  margin-left: 10px;
+
+}
+
+.cars-image {
+  height: auto;
+  width: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  padding: -50px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-sizing: inherit;
+}
+
+.image-filename {
+  margin-top: -5px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+}
+
+.cars-image:hover {
+  border: 2px solid #000;
+  transform: scale(1.1);
+}
+
+.tools-board {
+  position: relative;
+  background: linear-gradient(180deg, var(--secondary-color), var(--secondary-color));
+  height: 100px;
+  width: 900px;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.tools-board .row {
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.brushh {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.row .options .option {
+  cursor: pointer;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.option span {
+  color: #ffffff;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.option:hover span,
+.option.active span {
+  color: #ffffff;
+}
+
+.option #size-slider {
+  width: 100%;
+  margin-top: 15px;
+  height: 5px;
+}
+
+.colors {
+  margin-top: 10px;
+  color: #fff;
+}
+
+.colors span {
+  margin-left: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.colors .options {
+  display: flex;
+  margin-top: -7px;
+}
+
+.colors .option {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.colors .option:nth-child(1) {
+  background-color: #fff;
+  border: 1px solid #ffffff;
+}
+
+.colors .option:nth-child(2) {
+  background-color: #000;
+}
+
+.colors .option:nth-child(3) {
+  background-color: #E02020;
+}
+
+.colors .option:nth-child(4) {
+  background-color: #6DD400;
+}
+
+.colors .option:nth-child(5) {
+  background-color: #4A98F7;
+}
+
+.colors .option.selected::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-radius: inherit;
+  border: 2px solid #fff;
+}
+
+.option #color-picker {
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Adjust other styles as necessary */
+.row span {
+  color: #ddd;
+  margin-left: 10px;
+}
+
+.row .dropdown {
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  width: 130px;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: var(--button-color);
+  color: #fff;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.buttons .clear-canvas {
+  color: #fff;
+  transition: all 0.3s ease;
+  height: 40px;
+  width: 100px;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.buttons .clear-canvas:hover {
+  color: #4d6234;
+  background: #d8e4bcad;
+}
+
+.buttons .save-img,
+.buttons .scratch-gallery {
+  background: var(--button-color);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.save-img:hover,
+.scratch-gallery:hover {
+  background-color: var(--secondary-color);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.buttons button {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background: var(--button-color);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+}
+
+.undo-btn {
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+  border-radius: 8px 0 0 8px;
+  transition: background-color 0.3s;
+  background-color: var(--button-color);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 10px 10px;
+  height: 40px;
+}
+
+.redo-btn {
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+  border-radius: 0 8px 8px 0;
+  background-color: var(--button-color);
+  color: #fff;
+  transition: all 0.3s ease;
+  padding: 10px 10px;
+  height: 40px;
+}
+
+.undo-btn:hover,
+.redo-btn:hover {
+  color: #4d6234;
+  background: #d8e4bcad;
+}
+
+.zoom-controls {
+  display: inline-flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.zoom-in {
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+  border-radius: 8px 0 0 8px;
+  transition: background-color 0.3s;
+  background-color: var(--button-color);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  height: 40px;
+}
+
+.zoom-out {
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+  border-radius: 0 8px 8px 0;
+  background-color: var(--button-color);
+  color: #fff;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  height: 40px;
+}
+
+.zoom-in:hover,
+.zoom-out:hover {
+  color: #4d6234;
+  background: #d8e4bcad;
+}
+
+.scratch {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 150px;
+}
+
+.scratch button {
+  background-color: var(--button-color);
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  align-self: center;
+}
+
+.scratch button:hover {
+  background-color: var(--secondary-color);
+}
+
+.draw-board h3 {
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.dia .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black overlay */
+  display: flex;
+  z-index: 100000;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.confirmation-modal p {
+  margin-bottom: 10px;
+}
+
+.confirmation-modal button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmation-modal button:first-of-type {
+  background-color: var(--button-color);
+  /* Blue color for Confirm button */
+  color: white;
+}
+
+.confirmation-modal button:last-of-type {
+  background-color: #dc3545;
+  /* Red color for Cancel button */
+  color: white;
+}
+
+.confirmation-modal button:hover {
+  opacity: 0.8;
+}
+
+.dropdown-menu {
+  margin-left: -20px;
+}
+
+.cont .popup {
+  position: fixed;
+  top: 50%;
+  /* Adjust to center vertically */
+  left: 50%;
+  /* Adjust to center horizontally */
+  transform: translate(-50%, -50%);
+  background-color: #0b0100a9;
+  /* Red background color */
+  color: white;
+  /* White text color */
+  padding: 15px;
+  /* Padding */
+  border-radius: 5px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Box shadow */
+  z-index: 9999;
+  /* Ensure it's above other elements */
+}
+
+.cont .popup p {
+  color: #ddd;
+  font-weight: bold;
+  margin: 0;
+  /* Remove default margin */
+}
+
+@media (max-width: 1200px) {
+
+  .add-scratch {
+    display: flex;
+    max-height: 800px;
+    width: 110%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .conta {
+    justify-content: center;
+
+    width: 80%;
+    gap: 20px;
+  }
+
+  .sc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sc .add-sc-top {
+    display: flex;
+    gap: 300px;
+  }
+
+  .draw-board {
+    height: 500px;
+    width: 700px;
+  }
+
+  .image-gallery {
+    margin-left: 40px;
+  }
+
+  .tools-board {
+
+    height: 100px;
+    width: 850px;
+
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+
+  .add-scratch {
+    display: flex;
+    max-height: 800px;
+    width: 112%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .conta {
+    justify-content: center;
+
+    width: 60%;
+    gap: 20px;
+  }
+
+  .sc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sc .add-sc-top {
+    display: flex;
+    gap: 200px;
+  }
+
+  .draw-board {
+    height: 500px;
+    width: 600px;
+  }
+
+  .scratch {
+    margin-left: 50px;
+  }
+
+  .image-gallery {
+    margin-left: 120px;
+  }
+
+  .tools-board {
+
+    height: 100px;
+    width: 700px;
+
+  }
+
+  .scratch button {
+    background-color: var(--button-color);
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+    align-self: center;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1024px) {
+
+  .add-scratch {
+    display: flex;
+    max-height: 700px;
+    width: 127%;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .conta {
+    justify-content: center;
+
+    width: 50%;
+    gap: 20px;
+  }
+
+
+  .sc {
+
+    width: 50%;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sc .add-sc-top {
+    display: flex;
+    gap: 100px;
+  }
+
+  .scratch {
+
+    margin-left: 100px;
+  }
+
+  .draw-board {
+    height: 400px;
+    width: 560px;
+  }
+
+  .image-gallery {
+    margin-left: 158px;
+  }
+
+  .tools-board {
+
+    height: 100px;
+    width: 665px;
+
+  }
+
+  .clear-canvas {
+    margin-right: -10px;
+  }
+
+
+
+  .option #color-picker {
+    width: 20px;
+  }
+
+  .undo-btn {
+    margin-left: 5px;
+    padding: 8px 10px;
+  }
+
+  .redo-btn {
+    padding: 8px 10px;
+  }
+
+  .zoom-in {
+    padding: 8px 10px;
+  }
+
+  .zoom-out {
+    padding: 8px 10px;
+  }
+
+  .row .dropdown {
+    width: 140px;
+  }
+
+
+  .buttons-below {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    /* Adjust the gap between buttons as needed */
+  }
+
+  .save-img,
+  .scratch-gallery {
+    flex: 1 1 35%;
+    box-sizing: border-box;
+
+  }
+
+  .sc h2 {
+    font-size: 13px;
+  }
+
+  .scratch button {
+    font-size: 10px;
+    padding: 5px 5px;
+  }
+
+  .draw-board h3 {
+
+    font-size: 10px;
+
+  }
+}

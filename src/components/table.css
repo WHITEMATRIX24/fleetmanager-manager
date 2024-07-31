@@ -1,0 +1,125 @@
+/* Container styles */
+.table-container {
+    height: auto;
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Heading and search bar */
+.headinsearch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.search-bar {
+    width: 300px;
+    padding: 10px 15px;
+    border: 1px solid var(--background-color);
+    border-radius: 20px;
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-bar:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Table styles */
+.vehicle-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.vehicle-table th,
+.vehicle-table td {
+    padding: 15px 20px;
+    /* Adjusted padding for more space */
+
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.vehicle-table th {
+    background-color: var(--button-color);
+    color: var(--button-font-color);
+    font-size: 13px;
+}
+
+.vehicle-table td {
+    background-color: var(--card-bg);
+    font-size: 14px;
+}
+
+.vehicle-table tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific cell styles */
+.vehicle-table td:first-child,
+.vehicle-table th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.vehicle-table td:last-child,
+.vehicle-table th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Add margin to each cell for spacing between columns */
+.vehicle-table td:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* Photo cell */
+.photo-cell .round-photo {
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+/* Action buttons */
+.action-button {
+    background-color: var(--button-color);
+    color: var(--button-font-color);
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.action-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* More button */
+.table-more-button {
+    background-color: var(--button-font-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    float: right;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.table-more-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--button-font-color);
+    transform: scale(1.1);
+}
