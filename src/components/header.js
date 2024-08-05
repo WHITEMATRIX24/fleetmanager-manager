@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './header.css';
 import profilePhoto from '../assets/images/image.jpeg';
 import { ReactComponent as CarSideIcon } from '../assets/images/car-side-svgrepo-com.svg';
@@ -23,6 +23,9 @@ function Header() {
     const [showCommentPopup, setShowCommentPopup] = useState(false);
     const [hasSosNotifications, setHasSosNotifications] = useState(false);
     const [hasCommentNotifications, setHasCommentNotifications] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTripStatistics = async () => {
@@ -157,12 +160,36 @@ function Header() {
         setShowCommentPopup(true);
     };
 
+    const handleSearch = async (e) => {
+        if (e.key === 'Enter') {
+            const query = searchQuery.toLowerCase();
+            const sections = ['dashboard', 'vehicle', 'driver', 'scratches', 'trip', 'notes', 'key', 'workshop', 'settings'];
+
+            if (sections.includes(query)) {
+                await navigate('/dashboard');
+                setTimeout(() => {
+                    document.getElementById(query)?.scrollIntoView({ behavior: 'smooth' });
+                }, 300); // Delay to ensure navigation is complete
+            } else {
+                alert('Section not found');
+            }
+        }
+    };
+
+
     return (
         <header className="headero">
             <div className="header-org">
                 <h1>WELCOME TO <span>247 FLEET MANAGER</span></h1>
                 <div className="search-container">
-                    <input className="search-header" type="text" placeholder="Search" />
+                    <input
+                        className="search-header"
+                        type="text"
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleSearch}
+                    />
                 </div>
                 <div className="icons-container">
                     <div className="notification-icon" onClick={handleSosClick}>

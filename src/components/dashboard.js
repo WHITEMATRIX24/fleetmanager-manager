@@ -35,6 +35,7 @@ import StatusPopup from './StatusPopup';
 import cardefault from '../assets/images/s.jpeg'
 import NotesDisplayPlanner from './plannernote';
 import imageCompression from 'browser-image-compression';
+import LocationInput from './LocationInput';
 
 const carImages = {
 
@@ -323,6 +324,7 @@ function Dashboard() {
         };
         fetchDriverCount();
     }, []);
+
     const [tripData, setTripData] = useState({
         tripStartLocation: '',
         tripDestination: '',
@@ -455,7 +457,13 @@ function Dashboard() {
             return { onTrip: 0, inYard: 0, inWorkshop: 0 };
         }
     };
-
+    const handleLocationSelect = (name, address, latLng) => {
+        setTripData({
+            ...tripData,
+            [name]: address,
+            [`${name}LatLng`]: latLng,
+        });
+    };
     const totalCars = carCounts.onTrip + carCounts.inYard + carCounts.inWorkshop;
     const percentageOnTrip = (carCounts.onTrip / totalCars) * 100;
     const percentageInYard = (carCounts.inYard / totalCars) * 100;

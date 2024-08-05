@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Trips.css';
-import carImage from '../assets/images/car2 (1).jpeg'; // Import the static image
+import carImage from '../assets/images/car2.jpeg';
 
 function Trips() {
-    const [pastTrip, setPastTrip] = useState(null);
-    const [currentTrip, setCurrentTrip] = useState(null);
-    const [futureTrip, setFutureTrip] = useState(null);
+    const [trips, setTrips] = useState([]);
+    const [currentTripIndex, setCurrentTripIndex] = useState(0);
 
     useEffect(() => {
         fetchTrips();
@@ -14,34 +13,22 @@ function Trips() {
     const fetchTrips = async () => {
         try {
             const response = await fetch('http://localhost:5000/api/trips');
-            const trips = await response.json();
-            const now = new Date();
-
-            const past = [];
-            const current = [];
-            const future = [];
-
-            trips.forEach(trip => {
-                const tripStartDate = new Date(trip.tripDate);
-                const tripEndDate = new Date(trip.tripEndDate);
-                if (tripEndDate < now) {
-                    past.push(trip);
-                } else if (tripStartDate <= now && (!tripEndDate || tripEndDate >= now)) {
-                    current.push(trip);
-                } else if (tripStartDate > now) {
-                    future.push(trip);
-                }
-            });
-
-            if (past.length > 0) setPastTrip(past[0]);
-            if (current.length > 0) setCurrentTrip(current[0]);
-            if (future.length > 0) setFutureTrip(future[0]);
+            const tripsData = await response.json();
+            setTrips(tripsData);
         } catch (error) {
             console.error('Failed to fetch trips:', error);
         }
     };
 
-    const TripCard = ({ trip, category }) => {
+    const handleNextTrip = () => {
+        setCurrentTripIndex((prevIndex) => (prevIndex + 1) % trips.length);
+    };
+
+    const handlePreviousTrip = () => {
+        setCurrentTripIndex((prevIndex) => (prevIndex - 1 + trips.length) % trips.length);
+    };
+
+    const TripDetails = ({ trip }) => {
         const [carName, setCarName] = useState('');
 
         useEffect(() => {
@@ -59,33 +46,44 @@ function Trips() {
             fetchVehicleData();
         }, [trip.vehicleNumber]);
 
+        const determineTripCategory = (tripEndDate) => {
+            const currentDate = new Date();
+            const tripDateObj = new Date(tripEndDate);
+
+            if (tripDateObj < currentDate) {
+                return 'PAST';
+            } else if (tripDateObj.toDateString() === currentDate.toDateString()) {
+                return 'PRESENT';
+            } else {
+                return 'FUTURE';
+            }
+        };
+
+        const tripCategory = determineTripCategory(trip.tripDate);
+
         return (
-            <div className="trip">
-                <div className="trip-image" style={{ backgroundImage: `url(${carImage})` }}>
-                    <div className="add-button">+</div>
-                    <p className='trip-type'>{category.toUpperCase()} TRIP</p>
-                    <h3 className='destination'>{carName}</h3>
-                    <p className='time'>{new Date(trip.tripDate).toLocaleDateString()}</p>
-                    <p className='date'>{trip.tripStartTime} - {trip.tripEndTime}</p>
-                </div>
+            <div className="trip-details">
+                <p className='trip-type'>{tripCategory} TRIP</p>
+                <h3 className='destination'>{carName}</h3>
+                <p className='time'>{new Date(trip.tripDate).toLocaleDateString()}</p>
+                <p className='date'>{trip.tripStartTime} - {trip.tripEndTime}</p>
             </div>
         );
     };
 
     return (
-        <div className='legend'>
-            <div className="trips">
-                <div className="trip-navigation">
-                    <h2>TRIPS</h2>
-                    <span className="future-trips">FUTURE TRIPS</span>
-                    <span className="past-trips">PAST TRIPS</span>
-                </div>
-                <div className="trip-container">
-                    {pastTrip && <TripCard trip={pastTrip} category="Past" />}
-                    {currentTrip && <TripCard trip={currentTrip} category="Current" />}
-                    {futureTrip && <TripCard trip={futureTrip} category="Future" />}
-                </div>
-                <div className="trip-description">
+        <div className='trips-container'>
+            <div className="trips-info">
+                <h2>TRIPS</h2>
+                <p> </p>
+                <p> </p>
+            </div>
+            <div className="trip-display">
+                <div className="car-image">
+                    <div className="arrow left-arrow" onClick={handlePreviousTrip}>&lt;</div>
+                    <img src={carImage} alt="Car" />
+                    {trips.length > 0 && <TripDetails trip={trips[currentTripIndex]} />}
+                    <div className="arrow right-arrow" onClick={handleNextTrip}>&gt;</div>
                 </div>
             </div>
         </div>

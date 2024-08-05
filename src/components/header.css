@@ -219,7 +219,7 @@
 /* Responsive Media Queries */
 @media (min-width: 1800px) {
     .header-org {
-        width: 60%;
+        width: 58%;
     }
 
     .stats {

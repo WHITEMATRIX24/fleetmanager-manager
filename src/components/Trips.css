@@ -1,282 +1,118 @@
-.trips .trip.past-trip .trip-image,
-.trips .trip.current-trip .trip-image,
-.trips .trip.future-trip .trip-image {
-    background: url('/src/assets/images/car.jpg') no-repeat center center;
-    background-size: cover;
+.trips-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px;
+    width: 92%;
+    padding-right: 20px;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+}
+
+.trips-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align items to the top */
+}
+
+
+.trips-info h2 {
+    margin-right: 30px;
+    top: 20px;
+    margin-bottom: 10px;
+}
+
+.trips-info p {
+    font-size: 12px;
+}
+
+.trip-display {
+
+    display: flex;
+    align-items: center;
+}
+
+.car-image {
     position: relative;
+    left: -30px;
+    width: 300px;
+    height: 200px;
 }
 
-.trips .trip-image {
-    width: 120px;
-    height: 175px;
+.car-image img {
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
     border-radius: 10px;
-    margin-right: 20px;
 }
 
-.trips .trip-image::after {
+.car-image::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 0;
     left: 0;
-    width: 120px;
-    height: 170px;
-    background-color: rgba(25, 37, 11, 0.5);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     z-index: 1;
 }
 
-.add-button {
+.arrow {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 24px;
-    z-index: 2;
+    color: var(--primary-color);
+    border: none;
+    padding: 10px;
     cursor: pointer;
+    z-index: 2;
+}
+
+.left-arrow {
+    left: -45px;
+}
+
+.right-arrow {
+    right: -30px;
+}
+
+.trip-details {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    color: #fff;
+    text-align: left;
+    z-index: 2;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .trip-type {
-    background-color: white;
-    padding: 2px;
-    color: var(--secondary-color);
-    top: 20px;
-    left: 10px;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: bold;
-    width: fit-content;
-    z-index: 2;
-    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .destination {
-    color: #fff;
     font-size: 20px;
-    margin: 0;
-    z-index: 5;
-    top: 45px;
-    position: relative;
-    padding: 10px;
-
-}
-
-.trips .trip .time,
-.trips .trip .date {
-    background-color: var(--secondary-color);
     color: #fff;
-    padding: 2px;
-
-    font-size: 10px;
-    top: 50px;
-    width: fit-content;
-    z-index: 2;
-    position: relative;
-    margin: 5px 10px;
-}
-
-.trips {
-    background-color: var(--button-font-color);
-    margin-right: 5px;
-    padding: 20px;
-}
-
-.trips h2 {
-    text-align: start;
-    margin-bottom: 30px;
-
-}
-
-.trips h3 {
     font-weight: bold;
-    font-size: 15px;
+    margin-bottom: 5px;
 }
 
-
-.trip-navigation {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-size: 10px;
-
-}
-
-.future-trips {
-    margin-left: 200px;
-}
-
-
-
-.trip-navigation .future-trips,
-.trip-navigation .past-trips {
-    cursor: pointer;
-    color: var(--secondary-color);
-}
-
-.trip-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.trips {
-    padding-right: 20px;
-    margin-right: 5px;
-}
-
-.trips .trip {
-    border-radius: 10px;
-    width: 30%;
-    position: relative;
-}
-
-.trip-description p {
-
-
+.time,
+.date {
     font-size: 16px;
-}
-
-/* @media (min-width: 1560px) and (max-width:2132px) {
-    .trips .trip-image {
-        min-width: 130px;
-        height: 170px;
-    }
-} */
-
-@media (min-width: 1200px) {
-
-    .trips .trip-image {
-        width: 100px;
-        height: 157px;
-        top: 10px;
-        border-radius: 10px;
-        margin-right: 20px;
-    }
-
-    .trips .trip-image::after {
-        content: '';
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100px;
-        height: 150px;
-        background-color: rgba(25, 37, 11, 0.5);
-        border-radius: 10px;
-        z-index: 1;
-    }
-
-    .trip-type {
-
-        font-size: 6px;
-
-    }
-
-}
-
-@media (min-width: 1024px) {
-
-    .trips .trip-image {
-        width: 100px;
-        height: 157px;
-        top: 10px;
-        border-radius: 10px;
-        margin-right: 20px;
-    }
-
-    .trips .trip-image::after {
-        content: '';
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100px;
-        height: 150px;
-        background-color: rgba(25, 37, 11, 0.5);
-        border-radius: 10px;
-        z-index: 1;
-    }
-
-    .trip-type {
-
-        font-size: 6px;
-
-    }
-
-    .trip-navigation {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        font-size: 8px;
-
-    }
-
-}
-
-@media (max-width: 1024px) and (min-width:820px) {
-    .trips h2 {
-
-        margin-bottom: 15px;
-
-    }
-
-    .trip-navigation .future-trips,
-    .trip-navigation .past-trips {
-        cursor: pointer;
-        color: var(--secondary-color);
-        font-size: 8px;
-    }
-
-    .trip-type {
-
-        font-size: 6px;
-
-    }
-
-    .future-trips {
-        margin-left: 100px;
-    }
-
-    .trips .trip-image {
-        width: 90px;
-        height: 127px;
-        top: 10px;
-        border-radius: 10px;
-        margin-right: 20px;
-    }
-
-    .trips .trip-image::after {
-        content: '';
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 90px;
-        height: 127px;
-        background-color: rgba(25, 37, 11, 0.5);
-        border-radius: 10px;
-        z-index: 1;
-    }
-
-    .trip-type {
-
-        font-size: 6px;
-
-    }
-
-    .trips .trip .time,
-    .trips .trip .date {
-
-
-        font-size: 8px;
-        top: 30px;
-
-        margin: 5px 10px;
-    }
-
-    .destination {
-        font-size: 15px;
-        top: 35px;
-    }
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
