@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/fleetmanager-manager/static/css/main.bcc42a1c.css",
+    "main.js": "/fleetmanager-manager/static/js/main.1efff880.js",
+    "static/js/453.59b8a61b.chunk.js": "/fleetmanager-manager/static/js/453.59b8a61b.chunk.js",
+    "static/media/leaf.png": "/fleetmanager-manager/static/media/leaf.f1977438e28a67bc9bb7.png",
+    "static/media/image.jpeg": "/fleetmanager-manager/static/media/image.a42c46a220cd9e02e14a.jpeg",
+    "static/media/car2.jpeg": "/fleetmanager-manager/static/media/car2.685fa1cc63cbc1e1e90a.jpeg",
+    "static/media/s.jpeg": "/fleetmanager-manager/static/media/s.25bfb046b88f1887203a.jpeg",
+    "static/media/logo.png": "/fleetmanager-manager/static/media/logo.e5358289b41b5248b164.png",
+    "static/media/GothamLight.ttf": "/fleetmanager-manager/static/media/GothamLight.03e7ff609ba3bf798fa4.ttf",
+    "static/media/Gotham-Bold.otf": "/fleetmanager-manager/static/media/Gotham-Bold.f9a5c9247af2c80333f4.otf",
+    "static/media/car-repair-svgrepo-com (1).svg": "/fleetmanager-manager/static/media/car-repair-svgrepo-com (1).7e8673428fac4f63e91c0c42120bf4e4.svg",
+    "static/media/car-svgrepo-com.svg": "/fleetmanager-manager/static/media/car-svgrepo-com.af5c39c91a669ed33c42eca33f449def.svg",
+    "static/media/truck-driver-svgrepo-com.svg": "/fleetmanager-manager/static/media/truck-driver-svgrepo-com.ba2b79419864bd144d5c11a2a9e1fb2a.svg",
+    "static/media/car-repairing-svgrepo-com.svg": "/fleetmanager-manager/static/media/car-repairing-svgrepo-com.3df112f7f6010a79f83deca117b1c9f5.svg",
+    "static/media/car-side-svgrepo-com.svg": "/fleetmanager-manager/static/media/car-side-svgrepo-com.d15574f83f6380820b4fb931c5365493.svg",
+    "static/media/car-garage-vehicle-svgrepo-com.svg": "/fleetmanager-manager/static/media/car-garage-vehicle-svgrepo-com.f10c5618eb35b21604237092be8d34f7.svg",
+    "static/media/notes-svgrepo-com.svg": "/fleetmanager-manager/static/media/notes-svgrepo-com.a042772e0eb7b181f3f505a708bd62f1.svg",
+    "static/media/car-service-icon.svg": "/fleetmanager-manager/static/media/car-service-icon.7e3b69d4a6e43e2c0f8f50f20dd6bb0e.svg",
+    "static/media/garage-icon.svg": "/fleetmanager-manager/static/media/garage-icon.4181764c620ae91b0c56c346197ae058.svg",
+    "static/media/id-card-svgrepo-com.svg": "/fleetmanager-manager/static/media/id-card-svgrepo-com.414a436ff0db96671d61d980a23d3bca.svg",
+    "static/media/edit-3-svgrepo-com.svg": "/fleetmanager-manager/static/media/edit-3-svgrepo-com.69c6da766125617d32d52eddd868dfb1.svg",
+    "static/media/car-location-svgrepo-com.svg": "/fleetmanager-manager/static/media/car-location-svgrepo-com.7794e446034d9a4d562682dd062f5870.svg",
+    "index.html": "/fleetmanager-manager/index.html",
+    "main.bcc42a1c.css.map": "/fleetmanager-manager/static/css/main.bcc42a1c.css.map",
+    "main.1efff880.js.map": "/fleetmanager-manager/static/js/main.1efff880.js.map",
+    "453.59b8a61b.chunk.js.map": "/fleetmanager-manager/static/js/453.59b8a61b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bcc42a1c.css",
+    "static/js/main.1efff880.js"
+  ]
+}
