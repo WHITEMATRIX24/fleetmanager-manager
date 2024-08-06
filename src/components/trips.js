@@ -12,7 +12,7 @@ function Trips() {
 
     const fetchTrips = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/trips');
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/trips');
             const tripsData = await response.json();
             setTrips(tripsData);
         } catch (error) {
@@ -34,7 +34,7 @@ function Trips() {
         useEffect(() => {
             const fetchVehicleData = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/vehicles?vehicleNumber=${trip.vehicleNumber}`);
+                    const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles?vehicleNumber=${trip.vehicleNumber}`);
                     const [vehicle] = await response.json();
                     if (vehicle) {
                         setCarName(vehicle.vehicleName);

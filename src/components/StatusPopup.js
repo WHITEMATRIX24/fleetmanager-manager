@@ -7,7 +7,7 @@ const StatusPopup = ({ onClose }) => {
 
     const checkStatus = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/vehicles?vehicleNumber=${vehicleNumber}`);
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles?vehicleNumber=${vehicleNumber}`);
             const data = await response.json();
 
             if (data.length > 0) {

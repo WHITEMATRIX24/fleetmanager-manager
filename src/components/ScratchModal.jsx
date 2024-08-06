@@ -10,7 +10,7 @@ const ScratchModal = ({ show, vehicleNumber, onClose }) => {
   useEffect(() => {
     const fetchScratchImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/fetch-scratch', {
+        const response = await fetch('https://fleetmanager-manager.onrender.com/api/fetch-scratch', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const ScratchModal = ({ show, vehicleNumber, onClose }) => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/delete-scratch', {
+      const response = await fetch('https://fleetmanager-manager.onrender.com/api/delete-scratch', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

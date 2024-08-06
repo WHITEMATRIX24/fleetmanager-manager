@@ -7,7 +7,7 @@ function SosNotification({ type, onClose }) {
     useEffect(() => {
         const fetchIssues = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/issues?type=${type}`);
+                const response = await fetch(`https://fleetmanager-manager.onrender.com/api/issues?type=${type}`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -26,7 +26,7 @@ function SosNotification({ type, onClose }) {
 
     const handleDelete = async (issueId) => {
         try {
-            await fetch(`http://localhost:5000/api/issues/${issueId}`, { method: 'DELETE' });
+            await fetch(`https://fleetmanager-manager.onrender.com/api/issues/${issueId}`, { method: 'DELETE' });
             setIssues(issues.filter(issue => issue._id !== issueId));
         } catch (error) {
             console.error('Error deleting issue:', error);

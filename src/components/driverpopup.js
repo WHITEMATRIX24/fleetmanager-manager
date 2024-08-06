@@ -37,7 +37,7 @@ const DriverPopupForm = ({ driver, onSubmit, onClose }) => {
             driverLicenceExpiryDate,
         };
         try {
-            const response = await fetch(`http://localhost:5000/updatedriver`, {
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/updatedriver`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -36,7 +36,7 @@ const DriverNote = () => {
 
     const saveNote = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/notes/drivers', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/notes/drivers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

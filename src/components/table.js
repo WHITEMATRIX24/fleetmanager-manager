@@ -14,7 +14,7 @@ const Table = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/workshop-movements');
+                const response = await fetch('https://fleetmanager-manager.onrender.com/api/workshop-movements');
                 const result = await response.json();
 
                 // Aggregate data by vehicle number and find the latest tyre change date
@@ -55,7 +55,7 @@ const Table = () => {
     const handleShowDetails = async (vehicleNumber) => {
         console.log(`Fetching details for vehicle: ${vehicleNumber}`);
         try {
-            const response = await fetch(`http://localhost:5000/api/workshop-movements/${vehicleNumber}`);
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/workshop-movements/${vehicleNumber}`);
             const result = await response.json();
             console.log('Workshop details fetched:', result);
 
@@ -75,7 +75,7 @@ const Table = () => {
     const handleAddWorkshopVisit = async (formData) => {
         try {
             console.log('Submitting form data:', formData); // Log form data
-            const response = await fetch('http://localhost:5000/api/workshop-movements', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/workshop-movements', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

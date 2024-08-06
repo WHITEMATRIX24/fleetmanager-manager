@@ -52,8 +52,8 @@ function PerformanceMetrics() {
     const fetchData = async () => {
         try {
             // Fetch trips and vehicles data
-            const tripsResponse = await fetch('http://localhost:5000/api/trips');
-            const vehiclesResponse = await fetch('http://localhost:5000/api/vehicles');
+            const tripsResponse = await fetch('https://fleetmanager-manager.onrender.com/api/trips');
+            const vehiclesResponse = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
 
             const trips = await tripsResponse.json();
             const vehicles = await vehiclesResponse.json();

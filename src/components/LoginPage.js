@@ -13,7 +13,7 @@ const LoginPage = () => {
             console.log('Attempting login with username:', username); // Log the username being attempted
             console.log('Attempting login with password:', password); // Log the password being attempted
 
-            const response = await fetch('http://localhost:5000/api/login', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -207,7 +207,7 @@ function Dashboard() {
             }
 
             console.log('Sending request...');
-            const response = await fetch('http://localhost:5000/api/vehicles', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -281,7 +281,7 @@ function Dashboard() {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/drivers', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/drivers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -314,7 +314,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchDriverCount = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/driverCount');
+                const response = await fetch('https://fleetmanager-manager.onrender.com/api/driverCount');
                 const data = await response.json();
                 setDriverCount(data.count);
                 console.log(driverCount);
@@ -342,7 +342,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchTripCount = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/tripCount');
+                const response = await fetch('https://fleetmanager-manager.onrender.com/api/tripCount');
                 const data = await response.json();
                 setTripCount(data.count);
             } catch (error) {
@@ -364,7 +364,7 @@ function Dashboard() {
         const tripDataWithNumber = { ...tripData, tripNumber: newTripNumber };
 
         try {
-            const response = await fetch('http://localhost:5000/api/trips', {
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/trips', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -414,7 +414,7 @@ function Dashboard() {
 
     const fetchCarCounts = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/vehicles');
+            const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
             console.log('Response Status:', response.status);
             console.log('Response Headers:', response.headers);
 
@@ -494,7 +494,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/vehicles');
+                const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
                 const result = await response.json();
                 console.log('Fetched vehicles from API:', result);
 
@@ -530,7 +530,7 @@ function Dashboard() {
     const getImageUrl = (imagePath) => {
         if (!imagePath) return '';
         if (imagePath.startsWith('uploads\\') || imagePath.startsWith('uploads/')) {
-            return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`;
+            return `https://fleetmanager-manager.onrender.com/${imagePath.replace(/\\/g, '/')}`;
         } else {
             return `data:image/png;base64,${imagePath}`;
         }
@@ -771,7 +771,7 @@ function Dashboard() {
         };
 
         try {
-            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/scratch`, {
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/scratch`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -931,7 +931,7 @@ function Dashboard() {
     const handleConfirmRevert = async () => {
         setShowConfirmation(false); // Close the confirmation overlay
         try {
-            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/clear${revertType === 'previous' ? 'prev' : ''}`, {
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/clear${revertType === 'previous' ? 'prev' : ''}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -970,7 +970,7 @@ function Dashboard() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/vehicles?vehicleNumber=${vehicleNumber}`);
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles?vehicleNumber=${vehicleNumber}`);
             const data = await response.json();
 
             if (response.ok) {
@@ -1002,7 +1002,7 @@ function Dashboard() {
     const formatImagePath = (path) => {
         if (!path) return '';
         if (path.startsWith('uploads\\')) {
-            return `http://localhost:5000/${path.replace(/\\/g, '/')}`;
+            return `https://fleetmanager-manager.onrender.com/${path.replace(/\\/g, '/')}`;
         }
 
         else {
@@ -1014,7 +1014,7 @@ function Dashboard() {
 
     const fetchImages = async (vehicleNumber) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/images`);
+            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/images`);
             const data = await response.json();
 
             setvehiImages([
@@ -1044,7 +1044,7 @@ function Dashboard() {
     const getImageSrc = (image) => {
         if (!image) return '';
         if (image.startsWith('uploads\\') || image.startsWith('uploads/')) {
-            return `http://localhost:5000/${image.replace(/\\/g, '/')}`;
+            return `https://fleetmanager-manager.onrender.com/${image.replace(/\\/g, '/')}`;
         } else {
             return `data:image/png;base64,${image}`;
         }
