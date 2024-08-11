@@ -7,13 +7,18 @@ function Sidebar() {
     const [activeItem, setActiveItem] = useState('dashboard');
     const sectionRefs = useRef({});
 
-    const handleItemClick = (item) => {
+    const sections = ['dashboard', 'vehicle', 'scratches', 'driver', 'tripss', 'worksho', 'notess', 'settingss'];
+
+    const handleItemClick = (event, item) => {
+        event.preventDefault();
         setActiveItem(item);
-        document.getElementById(item).scrollIntoView({ behavior: 'smooth' });
+        const section = document.getElementById(item);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     useEffect(() => {
-        const sections = ['dashboard', 'vehicle', 'driver', 'scratches', 'trip', 'notes', 'key', 'workshop', 'settings'];
         sections.forEach(section => {
             sectionRefs.current[section] = document.getElementById(section);
         });
@@ -21,24 +26,36 @@ function Sidebar() {
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.6, // Adjust the threshold as needed
+            threshold: [1.0, 1.0],
         };
 
         const observerCallback = (entries) => {
+            let closestSection = null;
+            let closestDistance = Number.POSITIVE_INFINITY;
+
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    console.log(`Section ${entry.target.id} is intersecting`); // Debug log
-                    setActiveItem(entry.target.id);
+                    const rect = entry.boundingClientRect;
+                    const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestSection = entry.target.id;
+                    }
                 }
             });
+
+            if (closestSection) {
+                setActiveItem(closestSection);
+            }
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
+
         sections.forEach(section => {
             const ref = sectionRefs.current[section];
             if (ref) {
                 observer.observe(ref);
-                console.log(`Observing section: ${section}`); // Debug log
             }
         });
 
@@ -47,7 +64,6 @@ function Sidebar() {
         };
     }, []);
 
-
     return (
         <div className="sidebar">
             <div className="logo">
@@ -55,61 +71,49 @@ function Sidebar() {
             </div>
             <nav>
                 <ul>
-                    <li className={activeItem === 'dashboard' ? 'active' : ''} onClick={() => handleItemClick('dashboard')}>
-                        <a href="#dashboard">
-                            <i className="fas fa-home"></i>
-                            <span className="icon-text">Home</span> {/* Added span for icon text */}
-                        </a>
-                    </li>
-                    <li className={activeItem === 'vehicle' ? 'active' : ''} onClick={() => handleItemClick('vehicle')}>
-                        <a href="#vehicle">
-                            <i className="fa fa-car"></i>
-                            <span className="icon-text">Vehicle</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'scratches' ? 'active' : ''} onClick={() => handleItemClick('scratches')}>
-                        <a href="#scratches">
-                            <i className="fa fa-pen"></i>
-                            <span className="icon-text">Add Scratch</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'driver' ? 'active' : ''} onClick={() => handleItemClick('driver')}>
-                        <a href="#driver">
-                            <i className="fas fa-user"></i>
-                            <span className="icon-text">Driver</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'trip' ? 'active' : ''} onClick={() => handleItemClick('trip')}>
-                        <a href="#trip">
-                            <i className="fa fa-map-marker"></i>
-                            <span className="icon-text">Trips</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'workshop' ? 'active' : ''} onClick={() => handleItemClick('workshop')}>
-                        <a href="#workshop">
-                            <i className="fa fa-wrench"></i>
-                            <span className="icon-text">Workshop Movement</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'notes' ? 'active' : ''} onClick={() => handleItemClick('notes')}>
-                        <a href="#notes">
-                            <i className="fa fa-sticky-note"></i>
-                            <span className="icon-text">Notes</span>
-                        </a>
-                    </li>
-                    <li className={activeItem === 'settings' ? 'active' : ''} onClick={() => handleItemClick('settings')}>
-                        <a href="#settings">
-                            <i className="fas fa-cog"></i>
-                            <span className="icon-text">Settings</span>
-                        </a>
-                    </li>
+                    {sections.map(section => (
+                        <li key={section} className={activeItem === section ? 'active' : ''}>
+                            <a href={`#${section}`} onClick={(e) => handleItemClick(e, section)}>
+                                <i className={`fa fa-${getIcon(section)}`}></i>
+                                <span className="icon-text">{getText(section)}</span>
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </nav>
-            <div className='leafimg'>
+            <div className="leafimg">
                 <img src={leaf} alt="Leaf" />
             </div>
         </div>
     );
 }
+
+const getIcon = (section) => {
+    switch (section) {
+        case 'dashboard': return 'home';
+        case 'vehicle': return 'car';
+        case 'scratches': return 'pen';
+        case 'driver': return 'user';
+        case 'tripss': return 'map-marker';
+        case 'worksho': return 'wrench';
+        case 'notess': return 'sticky-note';
+        case 'settingss': return 'cog';
+        default: return 'circle';
+    }
+};
+
+const getText = (section) => {
+    switch (section) {
+        case 'dashboard': return 'Home';
+        case 'vehicle': return 'Vehicle';
+        case 'scratches': return 'Add Scratch';
+        case 'driver': return 'Driver';
+        case 'tripss': return 'Trips';
+        case 'worksho': return 'Workshop Movement';
+        case 'notess': return 'Notes';
+        case 'settingss': return 'Settings';
+        default: return '';
+    }
+};
 
 export default Sidebar;

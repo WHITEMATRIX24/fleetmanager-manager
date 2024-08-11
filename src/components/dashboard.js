@@ -1243,7 +1243,7 @@ function Dashboard() {
                                     </div>
                                 </button>
                                 <div>
-                                    <button id='scratches' className="edit-cardd" onClick={() => setShowPopup(true)}>
+                                    <button id='scratch' className="edit-cardd" onClick={() => setShowPopup(true)}>
                                         <div className="iicon-container">
                                             <CarLocation />
                                         </div>
@@ -1570,7 +1570,7 @@ function Dashboard() {
 
                     </div>
                 </section>
-                <section id="trip">
+                <section id="tripss">
 
 
                     <div className="contents">
@@ -1770,7 +1770,7 @@ function Dashboard() {
 
 
                 </section>
-                <section id="workshop">
+                <section id="worksho">
 
                     <div classname="contents">
                         <div class='tables'>
@@ -1779,7 +1779,7 @@ function Dashboard() {
 
                     </div>
                 </section>
-                <section id="notes">
+                <section id="notess">
                     <div className="vehicle">
 
                         <div className="content-note">
@@ -1798,7 +1798,7 @@ function Dashboard() {
                     </div>
                 </section>
 
-                <section id="settings">
+                <section id="settingss">
                     <div className='settings-div'>
                         <Settings />
                     </div>
