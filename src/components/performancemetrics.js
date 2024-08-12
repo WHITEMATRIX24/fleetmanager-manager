@@ -39,11 +39,11 @@ ChartJS.register(dualColorBarsPlugin);
 function PerformanceMetrics() {
     const chartRef = useRef(null);
     const [chartData, setChartData] = useState({
-        labels: ['SUV', 'MPV', 'Sedan', 'Limousine'],
+        labels: ['SUV', 'MPV', 'Sedan', 'Limousine', 'Bus'],
         datasets: [
             {
                 label: 'Revenue',
-                data: [0, 0, 0, 0],
+                data: [0, 0, 0, 0,0],
                 barThickness: 20,
             },
         ],
@@ -64,6 +64,7 @@ function PerformanceMetrics() {
                 MPV: 0,
                 Sedan: 0,
                 Limousine: 0,
+                Bus:0,
             };
 
             trips.forEach((trip) => {
@@ -74,11 +75,11 @@ function PerformanceMetrics() {
             });
 
             setChartData({
-                labels: ['SUV', 'MPV', 'Sedan', 'Limousine'],
+                labels: ['SUV', 'MPV', 'Sedan', 'Limousine', 'Bus'],
                 datasets: [
                     {
                         label: 'Revenue',
-                        data: [revenueByType.SUV, revenueByType.MPV, revenueByType.Sedan, revenueByType.Limousine],
+                        data: [revenueByType.SUV, revenueByType.MPV, revenueByType.Sedan, revenueByType.Limousine, revenueByType.Bus],
                         barThickness: 20,
                     },
                 ],
@@ -118,8 +119,8 @@ function PerformanceMetrics() {
             legend: { display: false },
             dualColorBars: {
                 colors: {
-                    left: ['#A9A9A9', '#8E7C61', '#B7A488', '#7E6B4F'],
-                    right: ['#A9A9A9', '#82704F', '#AB976E', '#766542']
+                    left: ['#A9A9A9', '#8E7C61', '#B7A488', '#7E6B4F', '#6F5940'],
+                    right: ['#A9A9A9', '#82704F', '#AB976E', '#766542', '#6A543A']
                 }
                 ,
             },
@@ -135,6 +136,7 @@ function PerformanceMetrics() {
                     <li><span className="color-box" style={{ backgroundColor: '#8E7C61' }}></span> MPV</li>
                     <li><span className="color-box" style={{ backgroundColor: '#B7A488' }}></span> Sedan</li>
                     <li><span className="color-box" style={{ backgroundColor: '#7E6B4F' }}></span> Limousine</li>
+                    <li><span className="color-box" style={{ backgroundColor: '#6F5940' }}></span> Bus</li>
                 </ul>
             </div>
             <div className="chart-container">

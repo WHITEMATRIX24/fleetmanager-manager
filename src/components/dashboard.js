@@ -67,6 +67,14 @@ const carImages = {
         'assets/LIMO/BV.png',
         'assets/LIMO/TV.png',
     ],
+    bus:[
+        'assets/BUS/LSV.png',
+        'assets/BUS/RSV.png',
+        'assets/BUS/FV.png',
+        'assets/BUS/BV.png',
+        'assets/BUS/TV.png',
+
+    ]
 };
 const defaultCarModel = Object.keys(carImages)[0];
 function Dashboard() {
@@ -1140,6 +1148,7 @@ function Dashboard() {
                                                         <option value="MPV">MPV</option>
                                                         <option value="Sedan">Sedan</option>
                                                         <option value="Limousine">Limousine</option>
+                                                        <option value="Bus">Bus</option>
                                                     </select>
                                                 </div>
                                             </div>
