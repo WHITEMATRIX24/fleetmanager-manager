@@ -1586,13 +1586,13 @@ function Dashboard() {
                         <div className="left">
                             <div class="add-trip">
                                 <div class="form-container">
-                                    <form className="c-form-trip" onSubmit={handleTripSubmit}>
+                                <form className="c-form-trip" onSubmit={handleTripSubmit}>
                                         <div className="header-form">
                                             <h2>ASSIGN TRIP</h2>
                                         </div>
                                         <div className="c-form-field-row-trip">
 
-                                            <div className="c-form-field-column-trip">
+                                            <div className="c-form-field-column-75-trip">
                                                 <label htmlFor="vehicleNumber">Car Number</label>
                                                 <input
                                                     type="text"
@@ -1604,7 +1604,7 @@ function Dashboard() {
                                                     onChange={handleTripChange}
                                                 />
                                             </div>
-                                            <div className="c-form-field-column-trip">
+                                            <div className="c-form-field-column-25-trip">
                                                 <label htmlFor="driverId">Driver ID</label>
                                                 <input
                                                     type="text"
@@ -1616,45 +1616,45 @@ function Dashboard() {
                                                     onChange={handleTripChange}
                                                 />
                                             </div>
-                                            <div className="c-form-field-column-trip">
-                                                <label htmlFor="tripDestination">Trip Destination</label>
-                                                <input
-                                                    type="text"
-                                                    name="tripDestination"
-                                                    id="tripDestination"
-                                                    placeholder="Trip Destination"
-                                                    className="c-input-field-trip"
-                                                    value={tripData.tripDestination}
-                                                    onChange={handleTripChange}
-                                                />
-                                            </div>
                                         </div>
                                         <div className="c-form-field-row-trip">
-                                            <div className="c-form-field-column-trip">
-                                                <label htmlFor="tripStartLocation">Trip Start Location</label>
-                                                <input
-                                                    type="text"
-                                                    name="tripStartLocation"
+                                            <div className="c-form-field-column-25-trip">
+                                            <label htmlFor="tripStartLocation">Trip Start Location</label>
+                                                <LocationInput
                                                     id="tripStartLocation"
-                                                    placeholder="Trip Start Location"
-                                                    className="c-input-field-trip"
-                                                    value={tripData.tripStartLocation}
-                                                    onChange={handleTripChange}
+                                                    onSelectAddress={(address, latLng) => {
+                                                        handleTripChange({ target: { name: 'tripStartLocation', value: address } });
+                                                        // You can also store latLng if needed
+                                                    }}
+                                                />
+                                                
+                                            </div>
+                                            <div className="c-form-field-column-75-trip">
+                                            <label htmlFor="tripDestination">Trip Destination</label>
+                                                <LocationInput
+                                                    id="tripDestination"
+                                                    onSelectAddress={(address, latLng) => {
+                                                        handleTripChange({ target: { name: 'tripDestination', value: address } });
+                                                        // You can also store latLng if needed
+                                                    }}
                                                 />
                                             </div>
+                                            
+                                            </div>
+                                            <div className="c-form-field-row-trip">
                                             <div className="c-form-field-column-trip">
-                                                <label htmlFor="tripDate">Trip Date</label>
+                                            <label htmlFor="tripDate">Trip Start Date</label>
                                                 <input
-                                                    type="date"
+                                                    type="datetime-local"
                                                     name="tripDate"
                                                     id="tripDate"
                                                     className="c-input-field-trip"
                                                     value={tripData.tripDate}
                                                     onChange={handleTripChange}
-                                                />
+                                                /> 
                                             </div>
                                             <div className="c-form-field-column-trip">
-                                                <label htmlFor="tripEndDate">Trip End Date</label>
+                                            <label htmlFor="tripEndDate">Trip End Date</label>
                                                 <input
                                                     type="date"
                                                     name="tripEndDate"
@@ -1665,21 +1665,7 @@ function Dashboard() {
                                                     onChange={handleTripChange}
                                                 />
                                             </div>
-                                        </div>
-                                        <div className="c-form-field-row-trip">
-                                            <div className="c-form-field-column-25-trip">
-                                                <label htmlFor="odometerReading">Odometer Reading</label>
-                                                <input
-                                                    type="text"
-                                                    name="odometerReading"
-                                                    id="odometerReading"
-                                                    placeholder="Odometer Reading"
-                                                    className="c-input-field-trip"
-                                                    value={tripData.odometerReading}
-                                                    onChange={handleTripChange}
-                                                />
-                                            </div>
-                                            <div className="c-form-field-column-75-trip">
+                                            <div className="c-form-field-column-trip">
                                                 <label htmlFor="tripType">Trip Type</label>
                                                 <select
                                                     name="tripType"
