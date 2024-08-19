@@ -1,74 +1,72 @@
 import React from 'react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import axios from 'axios';
 
 class LocationInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { address: '' };
+        this.state = { address: '', suggestions: [], loading: false };
     }
 
-    handleChange = address => {
-        this.setState({ address });
+    handleChange = async (address) => {
+        this.setState({ address, loading: true });
+
+        if (address.length > 2) {
+            const response = await axios.get(`https://nominatim.openstreetmap.org/search?q=${address}&format=json&addressdetails=1&limit=5`, {
+                headers: {
+                    'Accept-Language': 'en'
+                }
+            });
+
+            const suggestions = response.data.filter(suggestion => this.isEnglish(suggestion.display_name));
+            this.setState({ suggestions, loading: false });
+        } else {
+            this.setState({ suggestions: [], loading: false });
+        }
     };
 
-    handleSelect = address => {
-        geocodeByAddress(address)
-            .then(results => getLatLng(results[0]))
-            .then(latLng => {
-                console.log('Success', latLng);
-                this.props.onSelectAddress(address, latLng);
-            })
-            .catch(error => console.error('Error', error));
+    isEnglish = (text) => {
+        return /^[\x00-\x7F]*$/.test(text);
     };
 
-    handleError = (status, clearSuggestions) => {
-        console.error(`Error from Google Maps API: ${status}`);
-        clearSuggestions();
+    handleSelect = (suggestion) => {
+        this.setState({ address: suggestion.display_name, suggestions: [] });
+
+        const { lat, lon } = suggestion;
+        const latLng = { lat: parseFloat(lat), lng: parseFloat(lon) };
+
+        console.log('Success', latLng);
+        this.props.onSelectAddress(suggestion.display_name, latLng);
     };
 
     render() {
         return (
-            <PlacesAutocomplete
-                value={this.state.address}
-                onChange={this.handleChange}
-                onSelect={this.handleSelect}
-                onError={this.handleError}
-                debounce={500} // Add debounce to reduce API calls
-                highlightFirstSuggestion={true} // Highlight the first suggestion
-            >
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
-                        <input
-                            {...getInputProps({
-                                placeholder: 'Search Places ...',
-                                className: 'location-search-input',
-                            })}
-                            className='c-input-field'
-                        />
-                        <div className="autocomplete-dropdown-container">
-                            {loading && <div>Loading...</div>}
-                            {suggestions.map(suggestion => {
-                                const className = suggestion.active
-                                    ? 'suggestion-item--active'
-                                    : 'suggestion-item';
-                                const style = suggestion.active
-                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                return (
-                                    <div
-                                        {...getSuggestionItemProps(suggestion, {
-                                            className,
-                                            style,
-                                        })}
-                                    >
-                                        <span>{suggestion.description}</span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
-            </PlacesAutocomplete>
+            <div>
+                <input
+                    type="text"
+                    value={this.state.address}
+                    onChange={(e) => this.handleChange(e.target.value)}
+                    placeholder="Search Places ..."
+                    className="c-input-field"
+                />
+                <div className="autocomplete-dropdown-container">
+                    {this.state.loading && <div>Loading...</div>}
+                    {this.state.suggestions.map((suggestion, index) => {
+                        const className = 'suggestion-item';
+                        const style = { backgroundColor: '#ffffff', cursor: 'pointer' };
+
+                        return (
+                            <div
+                                key={index}
+                                className={className}
+                                style={style}
+                                onClick={() => this.handleSelect(suggestion)}
+                            >
+                                <span>{suggestion.display_name}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         );
     }
 }
