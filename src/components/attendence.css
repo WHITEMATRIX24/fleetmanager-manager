@@ -1,0 +1,120 @@
+/* attendencelog */
+.attendance-log-container {
+  padding: 10px;
+  flex: 1;
+}
+
+.attendance-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150%; /* Adjust width if necessary */
+  padding: 10px 20px; /* Add padding for aesthetics */
+  box-sizing: border-box; /* Ensure padding is included in total width */
+  margin: -35% 0 10px -10%; /* Remove top margin and keep bottom margin */
+}
+
+
+.attendance-log-header h2{
+  margin-left: 10%;
+}
+
+.attendance-log-filters select {
+  margin-left: 10px;
+}
+
+.attendance-log-table {
+  width: 240%; /* Increased width to 300% for more space */
+  margin: 15px 0 15px -40px; /* Moved to the right with left margin */
+  border-collapse: collapse;
+}
+
+.attendance-log-table th,
+.attendance-log-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.attendance-log-table th {
+  background-color: #c1d8a5;
+}
+
+.attendance-log-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attendance-log-filters button {
+  padding: 5px 10px;
+  background-color: #5F7A41;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.attendance-log-filters button:hover {
+  background-color: #708E46;
+}
+
+/* Container for loading and error messages */
+.loading-error-container {
+  position: fixed; /* Keep the message in a fixed position on the screen */
+  top: 20px; /* Distance from the top of the page */
+  right: 20px; /* Distance from the right edge of the page */
+  z-index: 1000; /* Ensure it stays above other content */
+  width: 250px; /* Set a width to control the size of the container */
+}
+
+/* Styles for the loading message */
+.loading-message {
+  color: black; /* Blue color for the loading text */
+  font-size: 1.2rem; /* Slightly larger font size */
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out infinite alternate;
+}
+
+/* Styles for the error message */
+.error-message {
+  color: #ff4d4f; /* Red color for the error text */
+  font-size: 1.2rem; /* Slightly larger font size */
+  font-weight: bold;
+  background-color: #ffe6e6; /* Light red background for better visibility */
+  border: 1px solid #ff4d4f;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px; /* Add some spacing between loading and error messages */
+}
+
+/* Keyframes for a subtle fade animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* attendencepage */
+.attendance-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page-body {
+  display: flex;
+  flex: 1;
+}
+
+.attendence_table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120%;
+  margin: 10% 50%;
+}

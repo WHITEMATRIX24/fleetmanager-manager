@@ -18,3 +18,22 @@ module.exports = mongoose.model('Driver', driverSchema);
 
 // anulisba
 // aCZHjI8NyQLOHV2d
+
+
+// correct use effect
+  // useEffect(() => {
+  //   // Fetch attendance data from backend
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:5000/api/attendance'); // Replace with your API endpoint
+  //       setAttendanceData(response.data);
+  //       setFilteredData(response.data); // Initialize filteredData with all data initially
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);

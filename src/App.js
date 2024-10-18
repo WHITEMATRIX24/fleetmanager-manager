@@ -8,6 +8,7 @@ import EditDriver from './components/editdriver';
 import SplashScreen from './components/SplashScreen';
 import LoginPage from './components/LoginPage';
 import ThemeProvider from './components/themecontext';
+import Attendence from './components/Attendence';
 import { useJsApiLoader } from '@react-google-maps/api';
 import './index.css';  // Import the theme CSS
 import './App.css';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/editcar" element={<EditCar />} />
                 <Route path="/editdriver" element={<EditDriver />} />
+                <Route path="/attendence" element={<Attendence />} />
               </Routes>
             )}
           </AnimatePresence>

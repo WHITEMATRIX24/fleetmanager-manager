@@ -33,13 +33,14 @@ const driverRoutes = require('./routes/drivers');
 const workshopMovementRoutes = require('./routes/workshopMovements');
 const managerRoutes = require('./routes/managers');
 const issueRoutes = require('./routes/issues');
+const attendanceRoutes = require('./routes/attendenceRoutes');  // Corrected import
 
 // Use routes
 app.use('/api', vehicleRoutes);
 app.use('/api', driverRoutes);
 app.use('/api', workshopMovementRoutes);
 app.use('/api', managerRoutes);
-
+app.use('/api', attendanceRoutes);
 app.use('/api', issueRoutes);
 
 
@@ -51,6 +52,7 @@ const Trip = require('./models/trip');
 const WorkshopMovement = require('./models/workshopMovement')
 const Scratch = require('./models/scratch');
 const Manager = require('./models/manager');
+
 
 
 // Configure multer for file uploads

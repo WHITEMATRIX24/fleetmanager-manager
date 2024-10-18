@@ -13,6 +13,17 @@ router.get('/drivers', async (req, res) => {
     }
 });
 
+router.get('/drivers/names', async (req, res) => {
+    try {
+        // Fetch both driverId and driverName
+        const drivers = await Driver.find({}, 'driverId driverName');
+        res.json(drivers);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
 router.delete('/drivers/:id', async (req, res) => {
     try {
         const { id } = req.params;

@@ -36,6 +36,8 @@ import cardefault from '../assets/images/s.jpeg'
 import NotesDisplayPlanner from './plannernote';
 import imageCompression from 'browser-image-compression';
 import LocationInput from './LocationInput';
+import Attendance from './Attendence';
+
 
 const carImages = {
 
@@ -128,7 +130,12 @@ function Dashboard() {
 
     // Combined handler for the onChange event
 
+   
+    
 
+    const handleViewAttendance = () => {
+        navigate('/attendence'); // Navigate to the attendance page
+    };
     const handleDriverChange = (e) => {
         const { name, value, files } = e.target;
         setDriverData({
@@ -318,6 +325,39 @@ function Dashboard() {
         }
     };
 
+    const Dashboard = () => {
+        const [showAttendance, setShowAttendance] = useState(false); // State to manage attendance view
+    
+        const handleViewAttendance = () => {
+            setShowAttendance(true); // Set state to show attendance
+        };
+    
+        const handleBackToDashboard = () => {
+            setShowAttendance(false); // Set state to go back to dashboard
+        };
+    
+        return (
+            <div>
+                {showAttendance ? (
+                    <Attendance onBack={handleBackToDashboard} /> // Render Attendance component
+                ) : (
+                    <div id="trip">
+                        <DriverNote />
+                        <button className="edit-cardd" onClick={handleViewAttendance}>
+                            <div className="iicon-container">
+                                <Driver className="iicon" />
+                            </div>
+                            <div className="text-container">
+                                <span className="count">{driverCount}</span>
+                                <span className="label">View Attendance</span>
+                            </div>
+                        </button>
+                    </div>
+                )}
+            </div>
+        );
+    };
+    
     const [driverCount, setDriverCount] = useState(0);
     useEffect(() => {
         const fetchDriverCount = async () => {
@@ -1561,13 +1601,13 @@ function Dashboard() {
 
                                 <div id="trip"></div>
                                 <DriverNote />
-                                <button className="edit-cardd">
+                                <button className="edit-cardd" onClick={handleViewAttendance}>
                                     <div className="iicon-container">
                                         < Driver className="iicon" />
                                     </div>
                                     <div className="text-container">
                                         <span className="count">{driverCount}</span>
-                                        <span className="label">Drivers OnBoard</span>
+                                        <span className="label">View Attendance</span>
                                     </div>
                                 </button>
 
