@@ -69,8 +69,8 @@ const AttendanceLog = () => {
     const fetchData = async () => {
       try {
         const [attendanceResponse, driversResponse] = await Promise.all([
-          axios.get('https://fleetmanager-manager.onrender.com/api/attendance'),
-          axios.get('https://fleetmanager-manager.onrender.com/api/drivers/names'),
+          axios.get('http://localhost:5000/api/attendance'),
+          axios.get('http://localhost:5000/api/drivers/names'),
         ]);
 
         const drivers = {};

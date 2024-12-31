@@ -69,7 +69,7 @@ const carImages = {
         'assets/LIMO/BV.png',
         'assets/LIMO/TV.png',
     ],
-    bus:[
+    bus: [
         'assets/BUS/LSV.png',
         'assets/BUS/RSV.png',
         'assets/BUS/FV.png',
@@ -130,8 +130,8 @@ function Dashboard() {
 
     // Combined handler for the onChange event
 
-   
-    
+
+
 
     const handleViewAttendance = () => {
         navigate('/attendence'); // Navigate to the attendance page
@@ -222,7 +222,7 @@ function Dashboard() {
             }
 
             console.log('Sending request...');
-            const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles', {
+            const response = await fetch('http://localhost:5000/api/vehicles', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ function Dashboard() {
         };
 
         try {
-            const response = await fetch('https://fleetmanager-manager.onrender.com/api/drivers', {
+            const response = await fetch('http://localhost:5000/api/drivers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -327,15 +327,15 @@ function Dashboard() {
 
     const Dashboard = () => {
         const [showAttendance, setShowAttendance] = useState(false); // State to manage attendance view
-    
+
         const handleViewAttendance = () => {
             setShowAttendance(true); // Set state to show attendance
         };
-    
+
         const handleBackToDashboard = () => {
             setShowAttendance(false); // Set state to go back to dashboard
         };
-    
+
         return (
             <div>
                 {showAttendance ? (
@@ -357,12 +357,12 @@ function Dashboard() {
             </div>
         );
     };
-    
+
     const [driverCount, setDriverCount] = useState(0);
     useEffect(() => {
         const fetchDriverCount = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/driverCount');
+                const response = await fetch('http://localhost:5000/api/driverCount');
                 const data = await response.json();
                 setDriverCount(data.count);
                 console.log(driverCount);
@@ -390,7 +390,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchTripCount = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/tripCount');
+                const response = await fetch('http://localhost:5000/api/tripCount');
                 const data = await response.json();
                 setTripCount(data.count);
             } catch (error) {
@@ -406,18 +406,73 @@ function Dashboard() {
         setTripCount(tripCount + 1);
     };
 
+    // const handleTripSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const newTripNumber = generateTripNumber(tripCount);
+    //     const tripDataWithNumber = { ...tripData, tripNumber: newTripNumber };
+
+    //     try {
+    //         const response = await fetch('http://localhost:5000/api/trips', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(tripDataWithNumber),
+    //         });
+
+    //         if (response.ok) {
+    //             setPopupMessage('Trip added successfully!');
+    //             setShowSucessTripPopup(true);
+    //             const result = await response.json();
+    //             console.log('Trip assigned successfully:', result);
+    //             // Reset form after successful submission
+    //             setTripData({
+    //                 tripStartLocation: '',
+    //                 tripDestination: '',
+    //                 vehicleNumber: '',
+    //                 driverId: '',
+    //                 tripDate: '',
+    //                 tripEndDate: '',
+    //                 tripType: '',
+    //                 odometerReading: '',
+    //                 remunarationType: '',
+    //                 tripRemunaration: '',
+    //             });
+    //             setTripCount(tripCount + 1); // Increment trip count
+    //         } else {
+    //             console.error('Failed to assign trip');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error assigning trip:', error);
+    //     }
+    // };
     const handleTripSubmit = async (e) => {
         e.preventDefault();
+
+        // Generate trip number
         const newTripNumber = generateTripNumber(tripCount);
-        const tripDataWithNumber = { ...tripData, tripNumber: newTripNumber };
+
+        // Include latitude and longitude for start location and destination
+        const tripDataWithLatLng = {
+            ...tripData,
+            tripNumber: newTripNumber,
+            tripStartLatLng: {
+                lat: tripData.tripStartLatLng?.lat || null,
+                lng: tripData.tripStartLatLng?.lng || null,
+            },
+            tripDestinationLatLng: {
+                lat: tripData.tripDestinationLatLng?.lat || null,
+                lng: tripData.tripDestinationLatLng?.lng || null,
+            },
+        };
 
         try {
-            const response = await fetch('https://fleetmanager-manager.onrender.com/api/trips', {
+            const response = await fetch('http://localhost:5000/api/trips', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(tripDataWithNumber),
+                body: JSON.stringify(tripDataWithLatLng),
             });
 
             if (response.ok) {
@@ -425,10 +480,13 @@ function Dashboard() {
                 setShowSucessTripPopup(true);
                 const result = await response.json();
                 console.log('Trip assigned successfully:', result);
+
                 // Reset form after successful submission
                 setTripData({
                     tripStartLocation: '',
+                    tripStartLatLng: null,
                     tripDestination: '',
+                    tripDestinationLatLng: null,
                     vehicleNumber: '',
                     driverId: '',
                     tripDate: '',
@@ -438,14 +496,22 @@ function Dashboard() {
                     remunarationType: '',
                     tripRemunaration: '',
                 });
+
                 setTripCount(tripCount + 1); // Increment trip count
             } else {
-                console.error('Failed to assign trip');
+                const errorResponse = await response.json();
+                if (errorResponse.error) {
+                    alert(errorResponse.error); // Show an alert box with the error message
+                } else {
+                    alert('Failed to assign trip. Please try again.');
+                }
             }
         } catch (error) {
             console.error('Error assigning trip:', error);
+            alert('An error occurred while assigning the trip. Please try again later.');
         }
     };
+
     const handleTripChange = (e) => {
         const { name, value } = e.target;
         setTripData({
@@ -462,7 +528,7 @@ function Dashboard() {
 
     const fetchCarCounts = async () => {
         try {
-            const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
+            const response = await fetch('http://localhost:5000/api/vehicles');
             console.log('Response Status:', response.status);
             console.log('Response Headers:', response.headers);
 
@@ -542,7 +608,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
+                const response = await fetch('http://localhost:5000/api/vehicles');
                 const result = await response.json();
                 console.log('Fetched vehicles from API:', result);
 
@@ -578,7 +644,7 @@ function Dashboard() {
     const getImageUrl = (imagePath) => {
         if (!imagePath) return '';
         if (imagePath.startsWith('uploads\\') || imagePath.startsWith('uploads/')) {
-            return `https://fleetmanager-manager.onrender.com/${imagePath.replace(/\\/g, '/')}`;
+            return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`;
         } else {
             return `data:image/png;base64,${imagePath}`;
         }
@@ -819,7 +885,7 @@ function Dashboard() {
         };
 
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/scratch`, {
+            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/scratch`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -979,7 +1045,7 @@ function Dashboard() {
     const handleConfirmRevert = async () => {
         setShowConfirmation(false); // Close the confirmation overlay
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/clear${revertType === 'previous' ? 'prev' : ''}`, {
+            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/clear${revertType === 'previous' ? 'prev' : ''}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1018,7 +1084,7 @@ function Dashboard() {
                 return;
             }
 
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles?vehicleNumber=${vehicleNumber}`);
+            const response = await fetch(`http://localhost:5000/api/vehicles?vehicleNumber=${vehicleNumber}`);
             const data = await response.json();
 
             if (response.ok) {
@@ -1050,7 +1116,7 @@ function Dashboard() {
     const formatImagePath = (path) => {
         if (!path) return '';
         if (path.startsWith('uploads\\')) {
-            return `https://fleetmanager-manager.onrender.com/${path.replace(/\\/g, '/')}`;
+            return `http://localhost:5000/${path.replace(/\\/g, '/')}`;
         }
 
         else {
@@ -1062,7 +1128,7 @@ function Dashboard() {
 
     const fetchImages = async (vehicleNumber) => {
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${vehicleNumber}/images`);
+            const response = await fetch(`http://localhost:5000/api/vehicles/${vehicleNumber}/images`);
             const data = await response.json();
 
             setvehiImages([
@@ -1092,7 +1158,7 @@ function Dashboard() {
     const getImageSrc = (image) => {
         if (!image) return '';
         if (image.startsWith('uploads\\') || image.startsWith('uploads/')) {
-            return `https://fleetmanager-manager.onrender.com/${image.replace(/\\/g, '/')}`;
+            return `http://localhost:5000/${image.replace(/\\/g, '/')}`;
         } else {
             return `data:image/png;base64,${image}`;
         }
@@ -1626,7 +1692,7 @@ function Dashboard() {
                         <div className="left">
                             <div class="add-trip">
                                 <div class="form-container">
-                                <form className="c-form-trip" onSubmit={handleTripSubmit}>
+                                    <form className="c-form-trip" onSubmit={handleTripSubmit}>
                                         <div className="header-form">
                                             <h2>ASSIGN TRIP</h2>
                                         </div>
@@ -1659,31 +1725,37 @@ function Dashboard() {
                                         </div>
                                         <div className="c-form-field-row-trip">
                                             <div className="c-form-field-column-25-trip">
-                                            <label htmlFor="tripStartLocation">Trip Start Location</label>
+                                                <label htmlFor="tripStartLocation">Trip Start Location</label>
                                                 <LocationInput
                                                     id="tripStartLocation"
                                                     onSelectAddress={(address, latLng) => {
-                                                        handleTripChange({ target: { name: 'tripStartLocation', value: address } });
-                                                        // You can also store latLng if needed
+                                                        setTripData((prev) => ({
+                                                            ...prev,
+                                                            tripStartLocation: address,
+                                                            tripStartLatLng: latLng,
+                                                        }));
                                                     }}
                                                 />
-                                                
+
                                             </div>
                                             <div className="c-form-field-column-75-trip">
-                                            <label htmlFor="tripDestination">Trip Destination</label>
+                                                <label htmlFor="tripDestination">Trip Destination</label>
                                                 <LocationInput
                                                     id="tripDestination"
                                                     onSelectAddress={(address, latLng) => {
-                                                        handleTripChange({ target: { name: 'tripDestination', value: address } });
-                                                        // You can also store latLng if needed
+                                                        setTripData((prev) => ({
+                                                            ...prev,
+                                                            tripDestination: address,
+                                                            tripDestinationLatLng: latLng,
+                                                        }));
                                                     }}
                                                 />
                                             </div>
-                                            
-                                            </div>
-                                            <div className="c-form-field-row-trip">
+
+                                        </div>
+                                        <div className="c-form-field-row-trip">
                                             <div className="c-form-field-column-trip">
-                                            <label htmlFor="tripDate">Trip Start Date</label>
+                                                <label htmlFor="tripDate">Trip Start Date</label>
                                                 <input
                                                     type="datetime-local"
                                                     name="tripDate"
@@ -1691,10 +1763,10 @@ function Dashboard() {
                                                     className="c-input-field-trip"
                                                     value={tripData.tripDate}
                                                     onChange={handleTripChange}
-                                                /> 
+                                                />
                                             </div>
                                             <div className="c-form-field-column-trip">
-                                            <label htmlFor="tripEndDate">Trip End Date</label>
+                                                <label htmlFor="tripEndDate">Trip End Date</label>
                                                 <input
                                                     type="date"
                                                     name="tripEndDate"

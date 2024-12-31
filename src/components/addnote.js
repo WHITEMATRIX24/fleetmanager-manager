@@ -27,7 +27,7 @@ const AddNote = () => {
         e.preventDefault();
         try {
             const endpoint = noteType === 'driver' ? 'drivers' : 'vehicles';
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/notes/${endpoint}`, {
+            const response = await fetch(`http://localhost:5000/api/notes/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -63,7 +63,7 @@ const Modal = ({ show, onClose, onImageSave }) => {
 
         console.log('Sending data to server:', data);
 
-        const response = await fetch('https://fleetmanager-manager.onrender.com/api/upload-image', {
+        const response = await fetch('http://localhost:5000/api/upload-image', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ const Modal = ({ show, onClose, onImageSave }) => {
 
   const handleVerify = async () => {
     try {
-      const response = await fetch('https://fleetmanager-manager.onrender.com/api/verify-vehicle', {
+      const response = await fetch('http://localhost:5000/api/verify-vehicle', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

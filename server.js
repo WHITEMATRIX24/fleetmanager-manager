@@ -472,7 +472,9 @@ app.get('/api/driverCount', async (req, res) => {
 app.post('/api/trips', async (req, res) => {
   const {
     tripStartLocation,
+    tripStartLatLng,
     tripDestination,
+    tripDestinationLatLng,
     vehicleNumber,
     driverId,
     tripDate,
@@ -484,13 +486,29 @@ app.post('/api/trips', async (req, res) => {
   } = req.body;
 
   try {
+    // Check if the vehicle exists in the database
+    const vehicle = await Vehicle.findOne({ vehicleNumber });
+    if (!vehicle) {
+      return res.status(400).json({ error: "Vehicle not found." });
+    }
+
+    // Check if the driver exists in the database
+    const driver = await Driver.findOne({ driverId });
+    if (!driver) {
+      return res.status(400).json({ error: "Driver not found." });
+    }
+
+    // Generate a unique trip number
     const tripCount = await Trip.countDocuments();
     const tripNumber = `TR${String(tripCount + 1).padStart(3, '0')}`;
 
+    // Create a new trip
     const trip = new Trip({
       tripNumber,
       tripStartLocation,
+      tripStartLatLng, // Latitude and longitude for start location
       tripDestination,
+      tripDestinationLatLng, // Latitude and longitude for destination
       vehicleNumber,
       driverId,
       tripDate,
@@ -501,18 +519,23 @@ app.post('/api/trips', async (req, res) => {
       tripRemunaration,
     });
 
+    // Save the trip to the database
     const savedTrip = await trip.save();
 
+    // Update the driver with the trip ID
     await Driver.updateOne(
-      { driverId: driverId },
+      { driverId },
       { $push: { trips: savedTrip._id } }
     );
 
+    // Respond with the saved trip
     res.status(201).send(savedTrip);
   } catch (error) {
     res.status(500).send(`Error: ${error.message}`);
   }
 });
+
+
 app.get('/api/trips', async (req, res) => {
   try {
     const trips = await Trip.find({});

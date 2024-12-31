@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Dashboard from './components/dashboard';
+import Dashboard1 from './Pages/Dashboard1';
 import EditCar from './components/editcar';
 import EditDriver from './components/editdriver';
 import SplashScreen from './components/SplashScreen';
@@ -34,7 +35,7 @@ function App() {
             ) : (
               <Routes>
                 <Route path="/" element={<LoginPage />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard1 />} />
                 <Route path="/editcar" element={<EditCar />} />
                 <Route path="/editdriver" element={<EditDriver />} />
                 <Route path="/attendence" element={<Attendence />} />

@@ -11,7 +11,7 @@ const TripPopup = ({ onClose }) => {
     useEffect(() => {
         const fetchTrips = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/trips');
+                const response = await fetch('http://localhost:5000/api/trips');
                 if (!response.ok) {
                     throw new Error('Failed to fetch trips');
                 }
@@ -36,7 +36,7 @@ const TripPopup = ({ onClose }) => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/trips/${selectedTrip._id}/extend`, {
+            const response = await fetch(`http://localhost:5000/api/trips/${selectedTrip._id}/extend`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

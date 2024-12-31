@@ -16,7 +16,7 @@ function EditCar() {
     useEffect(() => {
         const fetchCars = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/vehicles');
+                const response = await fetch('http://localhost:5000/api/vehicles');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -54,7 +54,7 @@ function EditCar() {
     const handleDeleteConfirm = async () => {
         console.log(`Deleting vehicle with ID: ${selectedCar._id}`); // Debugging line
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/vehicles/${selectedCar._id}`, {
+            const response = await fetch(`http://localhost:5000/api/vehicles/${selectedCar._id}`, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -87,7 +87,7 @@ function EditCar() {
                         <div key={car._id} className="car-tile">
                             <img
                                 src={car.vehiclePhoto.startsWith('uploads')
-                                    ? `https://fleetmanager-manager.onrender.com/${car.vehiclePhoto.replace(/\\/g, '/')}`
+                                    ? `http://localhost:5000/${car.vehiclePhoto.replace(/\\/g, '/')}`
                                     : `data:image/png;base64,${car.vehiclePhoto}`
                                 }
                                 alt={car.vehicleName}

@@ -16,7 +16,7 @@ function EditDriver() {
     useEffect(() => {
         const fetchDrivers = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/drivers');
+                const response = await fetch('http://localhost:5000/api/drivers');
                 const data = await response.json();
                 setDrivers(data);
             } catch (error) {
@@ -50,7 +50,7 @@ function EditDriver() {
         if (!selectedDriver) return;
         console.log(`Deleting driver with ID: ${selectedDriver._id}`); // Debugging line
         try {
-            const response = await fetch(`https://fleetmanager-manager.onrender.com/api/drivers/${selectedDriver._id}`, {
+            const response = await fetch(`http://localhost:5000/api/drivers/${selectedDriver._id}`, {
                 method: 'DELETE',
             });
             if (response.ok) {

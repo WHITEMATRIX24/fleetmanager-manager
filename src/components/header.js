@@ -30,23 +30,23 @@ function Header() {
     useEffect(() => {
         const fetchTripStatistics = async () => {
             try {
-                const responseTotal = await fetch('https://fleetmanager-manager.onrender.com/api/tripCount');
+                const responseTotal = await fetch('http://localhost:5000/api/tripCount');
                 const dataTotal = await responseTotal.json();
                 setTotalTrips(dataTotal.count);
 
-                const responseMonthly = await fetch('https://fleetmanager-manager.onrender.com/api/monthlyTrips');
+                const responseMonthly = await fetch('http://localhost:5000/api/monthlyTrips');
                 const dataMonthly = await responseMonthly.json();
                 setMonthlyTrips(dataMonthly.count);
 
-                const responseWeekly = await fetch('https://fleetmanager-manager.onrender.com/api/weeklyTrips');
+                const responseWeekly = await fetch('http://localhost:5000/api/weeklyTrips');
                 const dataWeekly = await responseWeekly.json();
                 setWeeklyTrips(dataWeekly.count);
 
-                const responseDaily = await fetch('https://fleetmanager-manager.onrender.com/api/dailyTrips');
+                const responseDaily = await fetch('http://localhost:5000/api/dailyTrips');
                 const dataDaily = await responseDaily.json();
                 setDailyTrips(dataDaily.count);
 
-                const responseNotifications = await fetch('https://fleetmanager-manager.onrender.com/api/dueDates');
+                const responseNotifications = await fetch('http://localhost:5000/api/dueDates');
                 const dataNotifications = await responseNotifications.json();
                 setNotifications(parseNotifications(dataNotifications));
             } catch (error) {
@@ -60,7 +60,7 @@ function Header() {
     useEffect(() => {
         const fetchManagerUsername = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/getManagerUsername');
+                const response = await fetch('http://localhost:5000/api/getManagerUsername');
                 const data = await response.json();
                 setManagerUsername(data.managerUsername);
             } catch (error) {
@@ -74,11 +74,11 @@ function Header() {
     useEffect(() => {
         const fetchSosAndCommentNotifications = async () => {
             try {
-                const sosResponse = await fetch('https://fleetmanager-manager.onrender.com/api/issues?type=sos');
+                const sosResponse = await fetch('http://localhost:5000/api/issues?type=sos');
                 const sosData = await sosResponse.json();
                 setHasSosNotifications(sosData.issues.length > 0);
 
-                const commentResponse = await fetch('https://fleetmanager-manager.onrender.com/api/issues?type=comment');
+                const commentResponse = await fetch('http://localhost:5000/api/issues?type=comment');
                 const commentData = await commentResponse.json();
                 setHasCommentNotifications(commentData.issues.length > 0);
             } catch (error) {
@@ -137,7 +137,7 @@ function Header() {
 
     const fetchTripNotifications = async () => {
         try {
-            const response = await fetch('https://fleetmanager-manager.onrender.com/api/tripNotifications');
+            const response = await fetch('http://localhost:5000/api/tripNotifications');
             const data = await response.json();
             setTripNotifications(data.notifications);
         } catch (error) {

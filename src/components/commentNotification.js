@@ -7,7 +7,7 @@ function CommentNotification({ onClose }) {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch('https://fleetmanager-manager.onrender.com/api/comments');
+                const response = await fetch('http://localhost:5000/api/comments');
                 const data = await response.json();
                 setComments(data.comments);
             } catch (error) {
@@ -20,7 +20,7 @@ function CommentNotification({ onClose }) {
 
     const handleDelete = async (commentId) => {
         try {
-            await fetch(`https://fleetmanager-manager.onrender.com/api/comments/${commentId}`, { method: 'DELETE' });
+            await fetch(`http://localhost:5000/api/comments/${commentId}`, { method: 'DELETE' });
             setComments(comments.filter(comment => comment._id !== commentId));
         } catch (error) {
             console.error('Error deleting comment:', error);

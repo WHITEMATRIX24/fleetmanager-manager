@@ -3,7 +3,15 @@ const mongoose = require('mongoose');
 const tripSchema = new mongoose.Schema({
     tripNumber: { type: String, unique: true, default: null },
     tripStartLocation: { type: String, default: null },
+    tripStartLatLng: {
+        lat: Number,
+        lng: Number,
+    },
     tripDestination: { type: String, default: null },
+    tripDestinationLatLng: {
+        lat: Number,
+        lng: Number,
+    },
     vehicleNumber: { type: String, default: null },
     driverId: { type: String, default: null },
     tripDate: { type: Date, default: null },
