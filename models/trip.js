@@ -26,7 +26,7 @@ const tripSchema = new mongoose.Schema({
     vehicleLocation: { type: String, default: null },
     tripType: { type: String, default: null },
     odometerReading: { type: Number, default: null },
-    remunerationType: { type: String, default: null },
+    remunarationType: { type: String, default: null },
     tripRemunaration: { type: Number, default: null },
     notification: { type: String, default: null },
 });

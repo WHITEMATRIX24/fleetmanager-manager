@@ -14,15 +14,21 @@ const DriverPopupForm = ({ driver, onSubmit, onClose }) => {
 
     useEffect(() => {
         if (driver) {
+            console.log("Driver object:", driver); // Check driver object
             setDriverName(driver.driverName || "");
             setDriverId(driver.driverId || "");
             setDriverPassword(driver.driverPassword || "");
-            setDriverPin(driver.driverPin || "");
+            setDriverPin(driver.driverPin || ""); // Ensure this exists in the driver object
             setMobileNumber(driver.mobileNumber || "");
             setDriverLicenceNumber(driver.driverLicenceNumber || "");
-            setDriverLicenceExpiryDate(driver.driverLicenceNumber ? new Date(driver.driverLicenceExpiryDate).toISOString().split('T')[0] : "");
+            setDriverLicenceExpiryDate(
+                driver.driverLicenceNumber
+                    ? new Date(driver.driverLicenceExpiryDate).toISOString().split('T')[0]
+                    : ""
+            );
         }
     }, [driver]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +43,7 @@ const DriverPopupForm = ({ driver, onSubmit, onClose }) => {
             driverLicenceExpiryDate,
         };
         try {
-            const response = await fetch(`http://localhost:5000/updatedriver`, {
+            const response = await fetch(`http://localhost:5000/api/updatedriver`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

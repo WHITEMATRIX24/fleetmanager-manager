@@ -102,7 +102,7 @@ const Table = () => {
     return (
         <div className="table-container">
             <div className='headinsearch'>
-                <h2>WORKSHOP MOVEMENT DETAILS</h2>
+                <h2 className="table-header-h2">WORKSHOP MOVEMENT DETAILS</h2>
                 <input
                     type="text"
                     className="search-bar"

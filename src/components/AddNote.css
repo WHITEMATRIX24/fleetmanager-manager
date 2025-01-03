@@ -3,15 +3,17 @@
     display: flex;
     flex-direction: column;
     height: 375px;
-    width: 99%;
+    /* width: 99%; */
+    /* width: 100%; */
     border-radius: 8px;
     transition: all 0.5s ease-in-out;
     overflow: hidden;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 35px;
     margin-top: 10px;
     margin-right: 10px;
     box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .add-note-container:hover {
@@ -37,7 +39,7 @@
 
 .add-radio-buttons label {
     margin-right: 20px;
-    font-size: 18px;
+    font-size: 15px;
     /* font-weight: bold; */
 }
 

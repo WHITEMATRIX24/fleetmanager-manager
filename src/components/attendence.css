@@ -2,21 +2,27 @@
 .attendance-log-container {
   padding: 10px;
   flex: 1;
+  width: 100%;
 }
 
 .attendance-log-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 150%; /* Adjust width if necessary */
-  padding: 10px 20px; /* Add padding for aesthetics */
-  box-sizing: border-box; /* Ensure padding is included in total width */
-  margin: -35% 0 10px -10%; /* Remove top margin and keep bottom margin */
+  width: 90%;
+
+  /* Adjust width if necessary */
+  padding: 10px 20px;
+  /* Add padding for aesthetics */
+  box-sizing: border-box;
+  /* Ensure padding is included in total width */
+  /* margin: -35% 0 10px -10%; */
+  /* Remove top margin and keep bottom margin */
 }
 
 
-.attendance-log-header h2{
-  margin-left: 10%;
+.attendance-log-header h2 {
+  margin-left: 0;
 }
 
 .attendance-log-filters select {
@@ -24,8 +30,10 @@
 }
 
 .attendance-log-table {
-  width: 240%; /* Increased width to 300% for more space */
-  margin: 15px 0 15px -40px; /* Moved to the right with left margin */
+  width: 100%;
+  /* Increased width to 300% for more space */
+  /* margin: 15px 0 15px -40px; */
+  /* Moved to the right with left margin */
   border-collapse: collapse;
 }
 
@@ -37,7 +45,7 @@
 }
 
 .attendance-log-table th {
-  background-color: #c1d8a5;
+  background-color: var(--input-field);
 }
 
 .attendance-log-filters {
@@ -61,31 +69,42 @@
 
 /* Container for loading and error messages */
 .loading-error-container {
-  position: fixed; /* Keep the message in a fixed position on the screen */
-  top: 20px; /* Distance from the top of the page */
-  right: 20px; /* Distance from the right edge of the page */
-  z-index: 1000; /* Ensure it stays above other content */
-  width: 250px; /* Set a width to control the size of the container */
+  position: fixed;
+  /* Keep the message in a fixed position on the screen */
+  top: 20px;
+  /* Distance from the top of the page */
+  right: 20px;
+  /* Distance from the right edge of the page */
+  z-index: 1000;
+  /* Ensure it stays above other content */
+  width: 250px;
+  /* Set a width to control the size of the container */
 }
 
 /* Styles for the loading message */
 .loading-message {
-  color: black; /* Blue color for the loading text */
-  font-size: 1.2rem; /* Slightly larger font size */
+  color: black;
+  /* Blue color for the loading text */
+  font-size: 1.2rem;
+  /* Slightly larger font size */
   font-weight: bold;
   animation: fadeIn 1s ease-in-out infinite alternate;
 }
 
 /* Styles for the error message */
 .error-message {
-  color: #ff4d4f; /* Red color for the error text */
-  font-size: 1.2rem; /* Slightly larger font size */
+  color: #ff4d4f;
+  /* Red color for the error text */
+  font-size: 1.2rem;
+  /* Slightly larger font size */
   font-weight: bold;
-  background-color: #ffe6e6; /* Light red background for better visibility */
+  background-color: #ffe6e6;
+  /* Light red background for better visibility */
   border: 1px solid #ff4d4f;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 10px; /* Add some spacing between loading and error messages */
+  margin-top: 10px;
+  /* Add some spacing between loading and error messages */
 }
 
 /* Keyframes for a subtle fade animation */
@@ -93,6 +112,7 @@
   0% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
@@ -111,10 +131,19 @@
   flex: 1;
 }
 
+.attendance-sidebar {
+  width: 5%;
+}
+
 .attendence_table {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120%;
-  margin: 10% 50%;
+  justify-content: flex-start;
+  /* Align items to the start */
+  align-items: flex-start;
+  /* Align items to the top */
+  width: 100%;
+  margin-top: 20px;
+  /* Optional: Add margin for spacing */
+  padding: 0 10px;
+  /* Optional: Add padding for aesthetics */
 }

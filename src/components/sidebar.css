@@ -45,7 +45,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--button-font-color);
+    color: rgb(175, 171, 171);
     text-decoration: none;
     display: flex;
     align-items: center;

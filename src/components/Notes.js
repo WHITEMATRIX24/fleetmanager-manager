@@ -29,7 +29,7 @@ function NotesDisplay() {
     return (
         <div className='legend'>
             <div className="notes-main">
-                <h2>NOTES</h2>
+                <h2 style={{ color: '#2C2D2D' }}>NOTES</h2>
                 {displayedNotes.map((note, index) => (
                     <div key={index} className="notes-cont">
                         <h3>{note.type === 'driver' ? `Driver ID: ${note.id}` : `Car No: ${note.id}`}</h3>

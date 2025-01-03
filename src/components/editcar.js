@@ -3,6 +3,7 @@ import './editcar.css';
 import PopupForm from './PopupForm';
 import PHeader from './pageheader';
 import PageSidebar from './Pagesidebar';
+import Sidebar from './Sidebar/Sidebar';
 
 function EditCar() {
     const [showPopup, setShowPopup] = useState(false);
@@ -10,7 +11,7 @@ function EditCar() {
     const [selectedCar, setSelectedCar] = useState(null);
     const [cars, setCars] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const carsPerPage = 6;
+    const carsPerPage = 8;
 
     // Fetch vehicles from the backend
     useEffect(() => {
@@ -78,8 +79,7 @@ function EditCar() {
 
     return (
         <div className='edit-car-main'>
-            <PageSidebar />
-            <PHeader />
+            <Sidebar />
             <div className="edit-car-content">
                 <h2 className='editcarh2'>AVAILABLE CARS</h2>
                 <div className="car-grid">

@@ -3,6 +3,7 @@ import PageHeader from './pageheader';  // Include your header
 import PageSidebar from './Pagesidebar';  // Include your sidebar
 import AttendanceLog from './attendenceLog';
 import './attendence.css';
+import Sidebar from './Sidebar/Sidebar'
 
 
 const Attendance = () => {
@@ -19,11 +20,12 @@ const Attendance = () => {
 
   return (
     <div className="attendance-page">
-      <PageHeader />
       <div className="page-body">
-        <PageSidebar />
+        <div className='attendance-sidebar'>
+          <Sidebar />
+        </div>
         <div className='attendence_table'>
-        <AttendanceLog />
+          <AttendanceLog />
         </div>
       </div>
     </div>

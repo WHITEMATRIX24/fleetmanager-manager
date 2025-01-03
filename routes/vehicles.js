@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const Vehicle = require('../models/vehicle'); // Adjust the path as needed
+const Vehicle = require('../models/vehicle');
+const WorkshopMovement = require('../models/workshopMovement'); // Adjust the path as needed
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'scratchuploads/'); // Scratch uploads directory where files will be stored
@@ -52,11 +53,24 @@ router.get('/vehicles', async (req, res) => {
 router.delete('/vehicles/:id', async (req, res) => {
     try {
         const { id } = req.params;
+
+        // Find the vehicle by ID
+        const vehicle = await Vehicle.findById(id);
+        if (!vehicle) {
+            return res.status(404).json({ message: 'Vehicle not found' });
+        }
+
+        // Delete related workshop movements
+        await WorkshopMovement.deleteMany({ vehicleNumber: vehicle.vehicleNumber });
+
+        // Delete the vehicle
         await Vehicle.findByIdAndDelete(id);
-        res.status(200).json({ message: 'Vehicle deleted successfully' });
+
+        res.status(200).json({ message: 'Vehicle and related workshop movements deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Error deleting vehicle', error });
     }
 });
+
 
 module.exports = router;

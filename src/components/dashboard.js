@@ -28,7 +28,7 @@ import { fabric } from 'fabric';
 import Modal from './Modal';
 import ScratchModal from './ScratchModal';
 import './styles.css';
-import DriverNote from './drivernote';
+import DriverNote from './DriverNote';
 import AddNote from './addnote';
 import NotesDisplay from './Notes';
 import StatusPopup from './StatusPopup';

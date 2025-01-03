@@ -54,7 +54,7 @@ const AddNote = () => {
 
     return (
         <div className="add-note-container">
-            <h2>ADD NOTE</h2>
+            <h2 style={{ color: '#2C2D2D' }}>ADD NOTE</h2>
             <form onSubmit={handleSubmit}>
                 <div className="add-radio-buttons">
                     <label>

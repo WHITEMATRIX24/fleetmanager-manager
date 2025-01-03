@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './editdriver.css';
 import DriverPopupForm from './driverpopup'; // Ensure this path is correct
 import PHeader from './pageheader'; // Ensure this path is correct
-import PageSidebar from './Pagesidebar'; // Ensure this path is correct
+import Sidebar from './Sidebar/Sidebar'; // Ensure this path is correct
 
 function EditDriver() {
     const [showPopup, setShowPopup] = useState(false);
@@ -75,8 +75,8 @@ function EditDriver() {
 
     return (
         <div className='edit-driver-main'>
-            <PageSidebar />
-            <PHeader />
+            <Sidebar />
+
             <div className="edit-driver-content">
                 <h2>DRIVERS ON BOARD</h2>
                 <div className="driver-grid">

@@ -14,6 +14,10 @@
     margin-bottom: 20px;
 }
 
+.table-header-h2 {
+    color: var(--header-color);
+}
+
 h3 {
     margin: 0;
     color: var(--text-color);
@@ -35,8 +39,8 @@ h3 {
 /* Table styles */
 .vehicle-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .vehicle-table th,
@@ -49,8 +53,8 @@ h3 {
 }
 
 .vehicle-table th {
-    background-color: var(--button-color);
-    color: var(--button-font-color);
+    background-color: var(--input-field);
+    color: var(--secondary-color);
     font-size: 13px;
 }
 
@@ -59,9 +63,13 @@ h3 {
     font-size: 14px;
 }
 
-.vehicle-table tr:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.vehicle-table tr:nth-of-type(even) {
+    background-color: #f2f2f2;
 }
+
+/* .vehicle-table tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+} */
 
 /* Specific cell styles */
 .vehicle-table td:first-child,

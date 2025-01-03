@@ -19,8 +19,9 @@
 
 body {
   margin: 0;
-  font-family: 'Gotham', sans-serif;
-  background-color: white;
+  font-family: 'Gotham',
+    sans-serif;
+  background-color: var(--background-color);
 
 
   /* Adding a solid white border */
@@ -64,7 +65,7 @@ p {
   --button-font-color: #ffffff;
   --card-bg: #ffffff;
   --button-color: #8ab14d;
-  --input-field:#efeded;
+  --input-field: #efeded;
 }
 
 /* Navy blue theme */
@@ -118,7 +119,7 @@ p {
   }
 } */
 
-@media (minwidth: 820px) and (max-width: 1024px) {
+/* @media (minwidth: 820px) and (max-width: 1024px) {
   h1 {
     font-size: 15px;
   }
@@ -139,4 +140,4 @@ p {
     font-size: 8px;
     font-weight: lighter;
   }
-}
+} */

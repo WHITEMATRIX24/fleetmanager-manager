@@ -7,10 +7,10 @@ import './Sidebar.css'
 
 function Sidebar() {
 
- const [activeItem, setActiveItem] = useState('Dashboard1');
+    const [activeItem, setActiveItem] = useState('Dashboard1');
     const sectionRefs = useRef({});
     // const sections = ['Dashboard1', 'vehicle', 'scratches', 'driver', 'tripss', 'worksho', 'notess', 'settingss'];
-    const sections = ['Dashboard1', 'vehicle','scratches','driver','tripss','worksho'];
+    const sections = ['Dashboard1', 'vehicle', 'scratches', 'driver', 'tripss', 'worksho', 'notess', 'settingss'];
     const handleItemClick = (event, item) => {
         event.preventDefault();
         setActiveItem(item);
@@ -67,35 +67,35 @@ function Sidebar() {
     }, []);
 
 
-  return (
-   <>
-   
-   <div className='sidebar-content'>
-   <div className='profile-img'>
-    </div>
+    return (
+        <>
 
-    <nav>
-                <ul>
-                    {sections.map(section => (
-                        <li key={section} className={activeItem === section ? 'active' : ''}>
-                            <a href={`#${section}`} onClick={(e) => handleItemClick(e, section)}>
-                                <i className={`fa fa-${getIcon(section)}`}></i>
-                                {/* <span className="icon-text">{getText(section)}</span> */}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-   {/* <FontAwesomeIcon icon={faHouse} style={{color:'#a5a9a0'}} />
+            <div className='sidebar-content'>
+                <div className='profile-img'>
+                </div>
+
+                <nav>
+                    <ul>
+                        {sections.map(section => (
+                            <li key={section} className={activeItem === section ? 'active' : ''}>
+                                <a href={`#${section}`} onClick={(e) => handleItemClick(e, section)}>
+                                    <i className={`fa fa-${getIcon(section)}`}></i>
+                                    {/* <span className="icon-text">{getText(section)}</span> */}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                {/* <FontAwesomeIcon icon={faHouse} style={{color:'#a5a9a0'}} />
    <FontAwesomeIcon icon={faCarSide} style={{color:'#a5a9a0'}}/>
    <FontAwesomeIcon icon={faEnvelope} style={{color:'#a5a9a0'}}/>
    <FontAwesomeIcon icon={faEnvelope} style={{color:'#a5a9a0'}}/>
    <FontAwesomeIcon icon={faEnvelope} style={{color:'#a5a9a0'}}/>
    <FontAwesomeIcon icon={faArrowRightFromBracket}style={{color:'#a5a9a0'}} /> */}
-   </div>
-   </>
+            </div>
+        </>
 
-  )
+    )
 }
 
 
@@ -108,7 +108,7 @@ const getIcon = (section) => {
         case 'tripss': return 'map-marker';
         case 'worksho': return 'wrench';
         case 'notess': return 'sticky-note';
-        // case 'settingss': return 'cog';
+        case 'settingss': return 'cog';
         // default: return 'circle';
     }
 };

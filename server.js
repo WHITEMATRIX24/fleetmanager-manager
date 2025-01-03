@@ -380,8 +380,8 @@ app.post('/api/vehicles/:vehicleNumber/clear', async (req, res) => {
   }
 });
 
-app.post('/updatedriver', async (req, res) => {
-  const { id, driverName, driverId, driverPassword, mobileNumber, driverLicenceNumber, driverLicenceExpiryDate } = req.body;
+app.post('/api/updatedriver', async (req, res) => {
+  const { id, driverName, driverId, driverPin, driverPassword, mobileNumber, driverLicenceNumber, driverLicenceExpiryDate } = req.body;
   try {
     const result = await Driver.updateOne(
       { _id: id },
@@ -389,6 +389,7 @@ app.post('/updatedriver', async (req, res) => {
         $set: {
           driverName,
           driverId,
+          driverPin,
           driverPassword,
           mobileNumber,
           driverLicenceNumber,
@@ -463,6 +464,25 @@ app.get('/api/driverCount', async (req, res) => {
   try {
     const count = await Driver.countDocuments();
     res.json({ count });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+app.get('/api/lastDriverID', async (req, res) => {
+  try {
+    const lastDriver = await Driver.findOne().sort({ _id: -1 }); // Get the most recent driver document
+    const lastDriverID = lastDriver ? lastDriver.driverId : null;
+    res.json({ lastDriverID });
+    console.log(lastDriverID)
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+app.get('/api/checkDriverID/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const exists = await Driver.exists({ driverid: id });
+    res.json({ exists: !!exists });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
   }
@@ -544,7 +564,53 @@ app.get('/api/trips', async (req, res) => {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
+app.post('/api/trips/updateTrip', async (req, res) => {
+  const {
+    id,
+    tripNumber,
+    driverId,
+    vehicleNumber,
+    tripDate,
+    tripEndDate,
+    tripStartLocation,
+    tripDestination,
+    tripType,
+    remunarationType,
+    tripRemunaration
+  } = req.body;
 
+  if (!id) {
+    return res.status(400).json({ error: 'Trip ID is required' });
+  }
+
+  try {
+    const updatedTrip = await Trip.findByIdAndUpdate(
+      id,
+      {
+        tripNumber,
+        driverId,
+        vehicleNumber,
+        tripDate,
+        tripEndDate,
+        tripStartLocation,
+        tripDestination,
+        tripType,
+        remunarationType,
+        tripRemunaration
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedTrip) {
+      return res.status(404).json({ error: 'Trip not found' });
+    }
+
+    res.status(200).json({ message: 'Trip updated successfully', updatedTrip });
+  } catch (error) {
+    console.error('Error updating trip:', error);
+    res.status(500).json({ error: 'Failed to update trip' });
+  }
+});
 
 app.post('/api/notes/:type', async (req, res) => {
   const { type } = req.params;
@@ -616,6 +682,25 @@ app.get('/api/tripCount', async (req, res) => {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
+app.get('/api/lastTripID', async (req, res) => {
+  try {
+    const lastTrip = await Trip.findOne().sort({ _id: -1 }); // Get the most recent trip document
+    const lastTripID = lastTrip ? lastTrip.tripNumber : null;
+    res.json({ lastTripID });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+app.get('/api/checkTripID/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const exists = await Trip.exists({ tripNumber: id });
+    res.json({ exists: !!exists });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+
 
 app.get('/api/monthlyTrips', async (req, res) => {
   try {
@@ -665,7 +750,36 @@ app.get('/api/dailyTrips', async (req, res) => {
 
 app.get('/api/allTrips', async (req, res) => {
   try {
-    const trips = await Trip.find({});
+    const trips = await Trip.aggregate([
+      {
+        $match: {},
+      },
+      {
+        $lookup: {
+          from: "vehicles",
+          localField: "vehicleNumber",
+          foreignField: "vehicleNumber",
+          as: "vehicleDetails",
+          pipeline: [
+            {
+              $project: {
+                vehicleName: 1,
+                vehicleNumber: 1,
+                vehicleStatus: 1,
+                vehicleType: 1,
+                vehiclePhoto: 1,
+                vehicleLocation: 1,
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: {
+          path: "$vehicleDetails",
+        },
+      },
+    ]);
     res.json(trips);
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
@@ -674,15 +788,20 @@ app.get('/api/allTrips', async (req, res) => {
 
 app.post('/api/trips/:id/extend', async (req, res) => {
   const { id } = req.params;
-  const { tripenddate } = req.body;
+  const { tripEndDate } = req.body;
 
   try {
-    await Trip.updateOne({ _id: id }, { $set: { tripenddate } });
+    const updateResult = await Trip.updateOne({ _id: id }, { $set: { tripEndDate } });
+    if (updateResult.modifiedCount === 0) {
+      return res.status(404).json({ status: "error", message: "Trip not found or no changes made" });
+    }
     res.json({ status: "ok", data: "Trip extended successfully" });
   } catch (error) {
-    res.status(500).json({ status: "error", message: error.message });
+    console.error('Error extending trip:', error);
+    res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 });
+
 
 app.post('/api/vehicles/:vehicleId/scratch', upload.none(), async (req, res) => {
   const { vehicleId } = req.params;

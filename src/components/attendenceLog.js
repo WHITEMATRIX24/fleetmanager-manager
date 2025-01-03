@@ -65,6 +65,37 @@ const AttendanceLog = () => {
     return { totalWorkingHours: `${totalHours}h ${totalMinutes}m`, status };
   };
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const [attendanceResponse, driversResponse] = await Promise.all([
+  //         axios.get('http://localhost:5000/api/attendance'),
+  //         axios.get('http://localhost:5000/api/drivers/names'),
+  //       ]);
+
+  //       const drivers = {};
+  //       driversResponse.data.forEach((driver) => {
+  //         drivers[driver.driverId] = driver.driverName;
+  //       });
+
+  //       const updatedAttendanceData = attendanceResponse.data.map((record) => {
+  //         const driverName = drivers[record.driverId] || 'N/A';
+  //         return {
+  //           ...record,
+  //           driverName,
+  //         };
+  //       });
+
+  //       setAttendanceData(updatedAttendanceData);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,20 +104,18 @@ const AttendanceLog = () => {
           axios.get('http://localhost:5000/api/drivers/names'),
         ]);
 
-        const drivers = {};
-        driversResponse.data.forEach((driver) => {
-          drivers[driver.driverId] = driver.driverName;
-        });
-
-        const updatedAttendanceData = attendanceResponse.data.map((record) => {
-          const driverName = drivers[record.driverId] || 'N/A';
+        const attendanceData = driversResponse.data.map((driver) => {
+          const record = attendanceResponse.data.find(
+            (a) => a.driverId === driver.driverId
+          );
           return {
-            ...record,
-            driverName,
+            driverId: driver.driverId,
+            driverName: driver.driverName,
+            attendanceRecords: record ? record.attendanceRecords : [],
           };
         });
 
-        setAttendanceData(updatedAttendanceData);
+        setAttendanceData(attendanceData);
         setLoading(false);
       } catch (err) {
         setError(err.message);

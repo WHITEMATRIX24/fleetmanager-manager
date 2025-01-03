@@ -12,4 +12,5 @@ router.get('/tripNotifications', async (req, res) => {
     }
 });
 
+
 module.exports = router;
