@@ -504,12 +504,12 @@ function AddScratches() {
             <div className='add-scratch'>
                 <div className='sc'>
                     <div className='add-sc-top'>
-                        <h2 style={{color:'#2C2D2D'}}>ADD SCRATCHES</h2>
+                        <h2 style={{color:'#2C2D2D',marginTop:'10px'}}>ADD SCRATCHES</h2>
                         <div className='search-box'>
                             <input
                                 type="text"
                                 placeholder="Search Vehicle Number"
-                                className="search-bar"
+                                className="search-bar-vehicle"
                                 value={vehicleNumber}
                                 onChange={handleSearchChange}
                             />

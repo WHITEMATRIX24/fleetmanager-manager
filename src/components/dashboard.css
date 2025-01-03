@@ -68,8 +68,8 @@ p {
     justify-content: space-between;
 }
 
-/* 
-.contents {
+
+/* .contents {
     margin-left: 20px;
     margin-right: 35px;
     display: flex;
@@ -1103,6 +1103,15 @@ p {
 }
 
 section {}
+
+
+@media(min-width:768px) and (max-width:1024px){
+    .tables {
+        width: 91%;
+    }
+}
+
+
 
 /* @media (min-width: 1800px) {
     .main-content {

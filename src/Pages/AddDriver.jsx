@@ -3,9 +3,10 @@ import './AddVehicle.css'
 import './AddDriver.css'
 import { ReactComponent as Identity } from '../assets/images/id-card-svgrepo-com.svg';
 import { ReactComponent as Driver } from '../assets/images/truck-driver-svgrepo-com.svg'
-import DriverNote from '../components/DriverNote';
+
 import SuccessPopup from '../components/SuccessPopup';
 import { useNavigate } from 'react-router-dom';
+import DriverNote from '../components/Drivernote';
 
 function AddDriver() {
     const [driverCount, setDriverCount] = useState(0);
@@ -246,7 +247,7 @@ function AddDriver() {
 
 
                         <div id="trip"></div>
-                        <DriverNote />
+                        <DriverNote/>
                         <button className="edit-cardd-vehicle" onClick={handleViewAttendance}>
                             <div style={{ margin: 'auto', display: 'flex' }}>
                                 <div className="iicon-container">

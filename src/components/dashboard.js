@@ -28,7 +28,7 @@ import { fabric } from 'fabric';
 import Modal from './Modal';
 import ScratchModal from './ScratchModal';
 import './styles.css';
-import DriverNote from './DriverNote';
+
 import AddNote from './addnote';
 import NotesDisplay from './Notes';
 import StatusPopup from './StatusPopup';
@@ -37,6 +37,7 @@ import NotesDisplayPlanner from './plannernote';
 import imageCompression from 'browser-image-compression';
 import LocationInput from './LocationInput';
 import Attendance from './Attendence';
+import DriverNote from './Drivernote';
 
 
 const carImages = {

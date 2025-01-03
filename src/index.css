@@ -58,6 +58,7 @@ p {
   --sq-33: #5b9e1d;
   --sq-4: #233a18;
   --sq-44: #0d1807;
+  --search-color:#A9A9A9;
   --sec-background-color: #d2e0bd;
   --header-color: #000000;
   --primary-color: rgba(42, 57, 25, 255);
@@ -66,6 +67,7 @@ p {
   --card-bg: #ffffff;
   --button-color: #8ab14d;
   --input-field: #efeded;
+ 
 }
 
 /* Navy blue theme */
@@ -90,6 +92,7 @@ p {
   --card-bg: #ffffff;
   --button-color: #4a4e55;
   --input-field: rgba(48, 54, 66, 0.5);
+
 }
 
 /* Aqua theme */

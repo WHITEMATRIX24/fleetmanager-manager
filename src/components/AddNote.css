@@ -164,7 +164,10 @@
         height: 335px;
         width: 99%;
 
-
-
+    }
+}
+@media(min-width:768px) and (max-width:1024px){
+    .add-note-container {
+        height: 375px;
     }
 }
