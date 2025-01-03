@@ -7,7 +7,7 @@ h5 {
 
 .dash-container {
   padding-top: 50px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   width: 100%;
   margin-bottom: 3rem;
   padding-right: 6rem;
@@ -19,6 +19,7 @@ h5 {
   gap: 1.5rem;
   height: 100%;
   width: 100%;
+  margin-left: 20px;
   /* padding-left: 10px; */
 }
 

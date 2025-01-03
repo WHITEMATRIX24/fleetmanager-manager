@@ -105,7 +105,7 @@ const Table = () => {
                 <h2 className="table-header-h2">WORKSHOP MOVEMENT DETAILS</h2>
                 <input
                     type="text"
-                    className="search-bar"
+                    className="search-bar-vehicle"
                     placeholder="Search by Vehicle Number"
                     value={searchTerm}
                     onChange={handleSearchChange}

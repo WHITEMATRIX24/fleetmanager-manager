@@ -231,7 +231,7 @@ function AssignTrip() {
     return (
         <div className="vehicle">
             <div className="contents">
-                <div className="left">
+                <div className="left-trip">
                     <div class="add-trip">
                         <div class="form-container">
                             <form className="c-form-car" onSubmit={handleTripSubmit}>
@@ -370,7 +370,7 @@ function AssignTrip() {
                     </div>
 
                 </div>
-                <div className="right">
+                <div className="right-trip">
                     <div>
                         <button className="ccard-button" onClick={handleViewTripClick}>
                             <div style={{ margin: 'auto', display: 'flex' }}>

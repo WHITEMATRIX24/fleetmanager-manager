@@ -40,3 +40,38 @@
     margin-bottom: 15px;
     color: var(--header-color);
 }
+.left-trip {
+    width: 90%;
+    margin-left: 10px;
+
+}
+
+.right-trip {
+    flex: 1;
+    margin: 0 10px;
+    width: 40%;
+}
+@media(min-width:820px) and (max-width:1180px){
+    .left-trip{
+        width: 50%;
+    }
+    .right-trip {
+        width: 30%;
+    }
+}
+@media(min-width:768px) and (max-width:1024px){
+    .left-trip{
+        width: 50%;
+    }
+    .right-trip {
+        width: 30%;
+    }
+}
+@media(min-width:1024px) and (max-width:1366px){
+    .left-trip{
+        width: 90%;
+    }
+    .right-trip {
+        width: 40%;
+    }
+}
