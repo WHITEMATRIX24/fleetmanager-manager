@@ -137,7 +137,7 @@
 
 }
 .gallery{
-    margin-left: 35%;
+    margin-left: 20%;
 }
 
 .cars-image {
@@ -631,7 +631,7 @@
     .conta {
         justify-content: center;
 
-        width: 80%;
+        /* width: 80%; */
         gap: 20px;
     }
 
@@ -685,12 +685,12 @@
         }    
 
         .scratch {
-            margin-left: 64px;
+            margin-left: 19px;
         }
     
 }
 
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (min-width: 1024px) and (max-width: 1366px) {
 
     .add-scratch {
         display: flex;
@@ -702,11 +702,11 @@
 
     .conta {
         justify-content: center;
-        width: 60%;
+        /* width: 60%; */
         gap: 20px;
     }
     .gallery{
-        margin-left: 60%;
+        margin-left: 18%;
     }
   
 
@@ -763,9 +763,7 @@
     .draw {
         width: 141%;
     }
-    .gallery{
-        margin-left: 36%;
-    }
+   
    
 }
 
@@ -779,12 +777,12 @@
         transition: all 0.5s ease-in-out;
     }
 
-    .conta {
+    /* .conta {
         justify-content: center;
         width: 50%;
         gap: 20px;
     }
-  
+   */
     .sc {
 
         width: 50%;
@@ -817,7 +815,7 @@
         width:520px;
     }
     .gallery{
-        margin-left: 36%;
+        margin-left: -14%;
     }
 
     .image-gallery {
