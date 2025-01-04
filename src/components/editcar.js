@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './editcar.css';
 import PopupForm from './PopupForm';
 import PHeader from './pageheader';
-import PageSidebar from './Pagesidebar';
+import PageSidebar from './PageSidebar/PageSidebar';
 import Sidebar from './Sidebar/Sidebar';
 
 function EditCar() {
@@ -79,16 +79,14 @@ function EditCar() {
 
     return (
         <div className='edit-car-main'>
-            <Sidebar />
+            <PageSidebar />
             <div className="edit-car-content">
                 <h2 className='editcarh2'>AVAILABLE CARS</h2>
                 <div className="car-grid">
                     {displayedCars.map((car) => (
                         <div key={car._id} className="car-tile">
                             <img
-                                src={car.vehiclePhoto.startsWith('uploads')
-                                    ? `http://localhost:5000/${car.vehiclePhoto.replace(/\\/g, '/')}`
-                                    : `data:image/png;base64,${car.vehiclePhoto}`
+                                src={car.vehiclePhoto
                                 }
                                 alt={car.vehicleName}
                                 className="edit-car-image"

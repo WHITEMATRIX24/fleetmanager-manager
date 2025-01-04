@@ -13,7 +13,10 @@ const vehicleSchema = new mongoose.Schema({
     odometerReading: { type: Number, default: null },
     istimaraPhoto: { type: String, default: null },
     vehicleStatus: { type: String, default: null },
-    vehicleLocation: { type: String, default: null },
+    vehicleLocation: {
+        latitude: { type: Number, default: null },
+        longitude: { type: Number, default: null },
+    },
     notesAboutVehicle: { type: String, default: null },
     rentalAgreement: { type: String, default: null },
     lastServiceDate: { type: Date, default: null },

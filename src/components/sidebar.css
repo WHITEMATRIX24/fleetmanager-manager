@@ -27,55 +27,7 @@
     height: auto;
 }
 
-nav {
-    flex: 1;
-    /* Allow nav to take up available space */
-}
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin-left: 20px;
-}
-
-nav ul li {
-    margin: 0;
-    position: relative;
-    font-size: 16px;
-}
-
-nav ul li a {
-    color: rgb(175, 171, 171);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding: 10px 10px;
-    position: relative;
-    font-size: 14px;
-    z-index: 1;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-nav ul li a i {
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-nav ul li.active a {
-    /* background: var(--sec-background-color); */
-    color: var(--secondary-color);
-    /* border-radius: 50%; */
-}
-
-nav ul li:hover a {
-    /* background: var(--sec-background-color); */
-    opacity: 0.5;
-    color: var(--secondary-color);
-    /* width: 30px;
-    height: 30px;
-    border-radius: 25px 0 0 25px;
-    transform: translateX(5px); */
-}
 
 .leafimg {
     text-align: center;

@@ -32,7 +32,7 @@ function PopupForm({ car, onClose, onSubmit }) {
             vehicleStatus,
         };
         try {
-            const response = await fetch(`http://localhost:5000/updatevehicle`, {
+            const response = await fetch(`http://localhost:5000/api/updatevehicle`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

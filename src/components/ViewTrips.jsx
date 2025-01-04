@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar/Sidebar';
+import PageSidebar from './PageSidebar/PageSidebar';
 import axios from 'axios';
 import './ViewTrip.css';
 import TripPopupForm from './TripPopupForm';
@@ -9,36 +9,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ViewTrips() {
     const [trips, setTrips] = useState([]);
-    const [loading, setLoading] = useState(true); // New state for loading
+    const [loading, setLoading] = useState(true); // Loading state
     const [selectedTrip, setSelectedTrip] = useState(null);
     const [selectedEditTrip, setSelectedEditTrip] = useState(null);
     const [extendDate, setExtendDate] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [searchQuery, setSearchQuery] = useState(''); // New state for search query
 
     useEffect(() => {
-        // Fetch all trips from the API
         axios.get('http://localhost:5000/api/allTrips')
             .then(response => {
                 setTrips(response.data);
-                setLoading(false); // Set loading to false after data is fetched
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching trips:', error);
-                setLoading(false); // Set loading to false even if there's an error
+                setLoading(false);
             });
     }, []);
 
-    const handleExtendClick = (trip) => {
-        setSelectedTrip(trip);
-        console.log(trip);
-    };
+    const handleExtendClick = (trip) => setSelectedTrip(trip);
     const handleEditClick = (trip) => {
         setSelectedEditTrip(trip);
         setShowPopup(true);
-    };
-    const handleSubmitForm = (formData) => {
-        console.log(formData);
-        handleClosePopup();
     };
     const handleClosePopup = () => {
         setSelectedTrip(null);
@@ -53,16 +46,12 @@ function ViewTrips() {
         try {
             const response = await fetch(`http://localhost:5000/api/trips/${selectedTrip._id}/extend`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tripEndDate: extendDate }),
-
             });
             if (response.ok) {
                 alert('Trip extended successfully');
                 setSelectedTrip(null);
-                console.log(extendDate);
                 setExtendDate('');
             } else {
                 console.error('Error extending trip:', response.statusText);
@@ -72,28 +61,37 @@ function ViewTrips() {
         }
     };
 
-    const formatLocation = (start, end) => {
-        const formattedStart = start.split(',')[0];
-        const formattedEnd = end.split(',')[0];
-        return `${formattedStart} to \n ${formattedEnd}`;
-    };
-
+    const formatLocation = (start, end) => `${start.split(',')[0]} to \n ${end.split(',')[0]}`;
     const formatDates = (startDate, endDate) => {
         const formattedStart = new Date(startDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
         const formattedEnd = new Date(endDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
         return `${formattedStart} - \n ${formattedEnd}`;
     };
 
+    const filteredTrips = trips.filter(trip =>
+        trip.vehicleNumber.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className='view-trip-main'>
-            <Sidebar />
+            <PageSidebar />
             <div className="view-trip-content">
-                <h2 className='view-trip-h2'>ALL TRIPS</h2>
+                <div className="view-trip-header">
+                    <h2 className='view-trip-h2'>ALL TRIPS</h2>
+                    <div className="trip-searchbar-container">
+                        <input
+                            type="text"
+                            className="trip-searchbar"
+                            placeholder="Filter by Vehicle Number"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                </div>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
                     <div className="view-trip-table">
-
                         <table>
                             <thead>
                                 <tr>
@@ -110,7 +108,7 @@ function ViewTrips() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {trips.map((trip) => (
+                                {filteredTrips.map((trip) => (
                                     <tr key={trip._id}>
                                         <td>{trip.tripNumber}</td>
                                         <td>{trip.driverId}</td>
@@ -121,30 +119,25 @@ function ViewTrips() {
                                         <td>{trip.remunarationType}</td>
                                         <td>{trip.tripRemunaration}</td>
                                         <td>
-                                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                                <button onClick={() => handleExtendClick(trip)}>
-                                                    <FontAwesomeIcon icon={faArrowRight} />
-                                                </button>
-                                            </div>
+                                            <button onClick={() => handleExtendClick(trip)}>
+                                                <FontAwesomeIcon icon={faArrowRight} />
+                                            </button>
                                         </td>
                                         <td>
-                                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                                <button onClick={() => handleEditClick(trip)}>
-                                                    <FontAwesomeIcon icon={faEdit} />
-                                                </button>
-                                            </div>
+                                            <button onClick={() => handleEditClick(trip)}>
+                                                <FontAwesomeIcon icon={faEdit} />
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-
                     </div>
                 )}
                 {showPopup && (
                     <TripPopupForm
                         trip={selectedEditTrip}
-                        onSubmit={handleSubmitForm}
+                        onSubmit={() => { }}
                         onClose={handleClosePopup}
                     />
                 )}
@@ -152,39 +145,18 @@ function ViewTrips() {
                     <div className="popup-form-overlay-veh" onClick={() => setSelectedTrip(null)}>
                         <div className="popup-form-container-veh" onClick={(e) => e.stopPropagation()}>
                             <h2>Extend Trip</h2>
-                            <form className="popup-form-veh">
-                                <div className="popup-form-field-row">
-                                    <div className="popup-form-field-column">
-                                        <label>Extend Trip Upto:</label>
-                                        <input
-                                            type="date"
-                                            className="popup-input-field"
-                                            style={{ width: "80%" }}
-                                            value={extendDate}
-                                            onChange={(e) => setExtendDate(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="popup-buttons">
-                                    <button
-                                        className="popup-submit-button"
-                                        type="button"
-                                        onClick={handleSubmit}
-                                    >
-                                        Submit
-                                    </button>
-                                    <button
-                                        className="popup-submit-button"
-                                        type="button"
-                                        onClick={() => setSelectedTrip(null)}
-                                    >
-                                        Close
-                                    </button>
-                                </div>
+                            <form>
+                                <label>Extend Trip Upto:</label>
+                                <input
+                                    type="date"
+                                    value={extendDate}
+                                    onChange={(e) => setExtendDate(e.target.value)}
+                                />
+                                <button type="button" onClick={handleSubmit}>Submit</button>
+                                <button type="button" onClick={() => setSelectedTrip(null)}>Close</button>
                             </form>
                         </div>
                     </div>
-
                 )}
             </div>
         </div>

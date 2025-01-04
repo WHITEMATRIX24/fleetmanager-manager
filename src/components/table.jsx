@@ -197,6 +197,10 @@ const Table = ({ showWorkshopDetailsPopup, showAddWorkshopVisitPopup }) => {
         };
         fetchData();
     }, []);
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -248,8 +252,8 @@ const Table = ({ showWorkshopDetailsPopup, showAddWorkshopVisitPopup }) => {
                     {filteredData.map((item, index) => (
                         <tr key={index}>
                             <td>{item.vehicleNumber}</td>
-                            <td>{item.LastService}</td>
-                            <td>{item.TyreChange ? item.TyreChange : 'N/A'}</td>
+                            <td>{formatDate(item.LastService)}</td>
+                            <td>{item.TyreChange ? formatDate(item.TyreChange) : 'N/A'}</td>
                             <td>{item.workshopVisits}</td>
                             <td>
                                 <button className="action-button" onClick={() => handleShowDetails(item.vehicleNumber)}>

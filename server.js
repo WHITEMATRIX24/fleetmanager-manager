@@ -6,7 +6,12 @@ const http = require('http');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
-const upload = multer({ dest: './uploads' });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+const {
+  uploadTos3Bucket,
+  deleteFromS3bucket,
+} = require("./utils/s3functionProvider");
 
 // Middleware
 app.use(express.json());
@@ -34,6 +39,7 @@ const workshopMovementRoutes = require('./routes/workshopMovements');
 const managerRoutes = require('./routes/managers');
 const issueRoutes = require('./routes/issues');
 const attendanceRoutes = require('./routes/attendenceRoutes');  // Corrected import
+const tripRoutes = require("./routes/trips");
 
 // Use routes
 app.use('/api', vehicleRoutes);
@@ -42,6 +48,7 @@ app.use('/api', workshopMovementRoutes);
 app.use('/api', managerRoutes);
 app.use('/api', attendanceRoutes);
 app.use('/api', issueRoutes);
+app.use("/api", tripRoutes);
 
 
 
@@ -56,15 +63,15 @@ const Manager = require('./models/manager');
 
 
 // Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Append the current timestamp to the file name
-  },
-});
-const uploads = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads/');
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)); // Append the current timestamp to the file name
+//   },
+// });
+// const uploads = multer({ storage: storage });
 app.post('/api/login', async (req, res) => {
   console.log('Login attempt:', req.body);
   const { username, password } = req.body;
@@ -248,7 +255,7 @@ app.post('/api/delete-scratch', async (req, res) => {
 
 
 // Route handlers
-app.post('/updatevehicle', async (req, res) => {
+app.post('api/updatevehicle', async (req, res) => {
   const { id, vehicleName, vehicleNumber, insuranceDueDate, istimaraDueDate, vehicleType, vehicleStatus } = req.body;
   try {
     await Vehicle.updateOne({ _id: id }, {
@@ -409,8 +416,18 @@ app.post('/api/updatedriver', async (req, res) => {
 });
 
 
-app.post('/api/vehicles', async (req, res) => {
+app.post('/api/vehicles', upload.single('vehiclephoto'), async (req, res) => {
   try {
+    const file = req.file;
+    console.log(file);
+    const fileName = req.body.imagename;
+    console.log(fileName);
+
+    if (!file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const imageUrl = await uploadTos3Bucket(file, fileName);
     const vehicle = new Vehicle({
       vehicleName: req.body.vehiclename,
       vehicleNumber: req.body.vehiclenumber,
@@ -418,7 +435,7 @@ app.post('/api/vehicles', async (req, res) => {
       istimaraDueDate: req.body.isthimaradue,
       vehicleType: req.body.vehicletype,
       odometerReading: req.body.odometerreading,
-      vehiclePhoto: req.body.vehiclephoto, // This now stores the base64 string
+      vehiclePhoto: imageUrl, // This now stores the base64 string
     });
     const result = await vehicle.save();
 
@@ -440,6 +457,7 @@ app.post('/api/vehicles', async (req, res) => {
     res.status(500).send(`Error: ${e.message}`);
   }
 });
+
 
 
 app.post('/api/drivers', async (req, res) => {

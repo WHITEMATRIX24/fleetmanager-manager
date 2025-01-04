@@ -21,6 +21,7 @@ function AddVehicle() {
         vehicletype: '',
         odometerreading: '',
         vehiclephoto: null,
+        fileName: '',
     });
     const carImages = {
 
@@ -73,6 +74,7 @@ function AddVehicle() {
             const validImageTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
             if (validImageTypes.includes(file.type)) {
                 setVehicleData((prevState) => ({ ...prevState, vehiclephoto: file }));
+                console.log(file);
                 setFileName(file.name);
             } else {
                 setPopupMessage("Invalid file type. Please upload a JPG or PNG image.");
@@ -101,45 +103,62 @@ function AddVehicle() {
         e.preventDefault();
 
         if (!vehicleData.vehiclephoto) {
-            setPopupMessage("Please upload an image.");
-            setShowPopup(true);
+            alert("Please upload an image.");
             return;
         }
 
         try {
-            const options = { maxSizeMB: 0.1, maxWidthOrHeight: 300, useWebWorker: true };
-            let compressedFile = await imageCompression(vehicleData.vehiclephoto, options);
+            // Prepare FormData object
+            const formData = new FormData();
+            formData.append('vehiclename', vehicleData.vehiclename);
+            formData.append('vehiclenumber', vehicleData.vehiclenumber);
+            formData.append('insurancedue', vehicleData.insurancedue);
+            formData.append('isthimaradue', vehicleData.isthimaradue);
+            formData.append('vehicletype', vehicleData.vehicletype);
+            formData.append('odometerreading', vehicleData.odometerreading);
+            formData.append('vehiclephoto', vehicleData.vehiclephoto);
+            formData.append('imagename', fileName) // Append the file directly
 
-            while (compressedFile.size > 70 * 1024) {
-                options.maxSizeMB /= 2;
-                compressedFile = await imageCompression(compressedFile, options);
+            const images = carImages[vehicleData.vehicletype.toLowerCase()];
+            if (images) {
+                formData.append('scratchLSV', images[0] || '');
+                formData.append('scratchRSV', images[1] || '');
+                formData.append('scratchFV', images[2] || '');
+                formData.append('scratchBV', images[3] || '');
+                formData.append('scratchTV', images[4]);
             }
 
-            const base64Image = (await toBase64(compressedFile)).replace(/^data:image\/[a-zA-Z]+;base64,/, '');
-            const formData = { ...vehicleData, vehiclephoto: base64Image, ...carImages[vehicleData.vehicletype.toLowerCase()] };
-
+            console.log('Sending request...');
             const response = await fetch('http://localhost:5000/api/vehicles', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: formData, // No need for headers; FormData sets them automatically
             });
 
             if (response.ok) {
+                console.log('Vehicle added successfully!');
                 setPopupMessage('Vehicle added successfully!');
                 setShowSucessPopup(true);
                 setVehicleData({
-                    vehiclename: '', vehiclenumber: '', insurancedue: '', isthimaradue: '',
-                    vehicletype: '', odometerreading: '', vehiclephoto: null,
+                    vehiclename: '',
+                    vehiclenumber: '',
+                    insurancedue: '',
+                    isthimaradue: '',
+                    vehicletype: '',
+                    odometerreading: '',
+                    vehiclephoto: null,
+                    fileName: '',
                 });
             } else {
                 const errorText = await response.text();
-                throw new Error(errorText);
+                console.error(`Error adding vehicle: ${errorText}`);
+                alert(`Error adding vehicle: ${errorText}`);
             }
         } catch (error) {
-            setPopupMessage(`Error: ${error.message}`);
-            setShowPopup(true);
+            console.error('Error:', error);
+            alert(`Error: ${error.message}`);
         }
     };
+
     const handleEditCarDetailsClick = () => {
         navigate('/editcar');
     };
@@ -282,40 +301,40 @@ function AddVehicle() {
                                 </div> */}
 
                     <button className="edit-cardd-vehicle" onClick={handleEditCarDetailsClick}>
-                        <div style={{ margin: 'auto', display: 'flex' }}>
-                            <div className="iicon-container">
-                                <Edited className='iicon' />
-                            </div>
-                            <div className="text-container">
-                                <span className="count">EDIT   </span>
-                                <span className="label">Vehicle Details</span>
-                            </div>
+
+                        <div className="iicon-container">
+                            <Edited className='iicon' />
                         </div>
+                        <div className="text-container">
+                            <span className="count">EDIT   </span>
+                            <span className="label">Vehicle Details</span>
+                        </div>
+
                     </button>
 
 
                     <button className="edit-cardd-vehicle" onClick={handleClick}>
-                        <div style={{ margin: '50px', display: 'flex' }}>
-                            <div className="iicon-container">
-                                < ScratchIcon className="iicon" />
-                            </div>
-                            <div className="text-container">
-                                <span className="count">ADD</span>
-                                <span className="label">Scratches</span>
-                            </div>
+
+                        <div className="iicon-container">
+                            < ScratchIcon className="iicon" />
                         </div>
+                        <div className="text-container">
+                            <span className="count">ADD</span>
+                            <span className="label">Scratches</span>
+                        </div>
+
                     </button>
                     <div>
                         <button id='scratch' className="edit-cardd-vehicle" onClick={() => setShowPopup(true)}>
-                            <div style={{ margin: 'auto', display: 'flex' }}>
-                                <div className="iicon-container">
-                                    <CarLocation />
-                                </div>
-                                <div className="text-container">
-                                    <span className="count">CHECK</span>
-                                    <span className="label">Vehicle Status</span>
-                                </div>
+
+                            <div className="iicon-container">
+                                <CarLocation />
                             </div>
+                            <div className="text-container">
+                                <span className="count">CHECK</span>
+                                <span className="label">Vehicle Status</span>
+                            </div>
+
                         </button>
                         {showPopup && <StatusPopup onClose={() => setShowPopup(false)} />}
                     </div>

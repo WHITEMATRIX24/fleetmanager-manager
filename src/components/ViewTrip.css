@@ -17,13 +17,42 @@
     z-index: 1;
 }
 
+.view-trip-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Header styling */
 .view-trip-h2 {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
     padding-top: 10px;
+    padding-left: 20px;
     color: var(--header-color);
+}
+
+.trip-searchbar-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.trip-searchbar {
+    width: 300px;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.trip-searchbar:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
 }
 
 /* Table container */
@@ -135,6 +164,8 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
 
 /* .popup-buttons button:first-child {
     background: #28a745;
