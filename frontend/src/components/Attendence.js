@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import PageHeader from './pageheader';  // Include your header
-import PageSidebar from './Pagesidebar';  // Include your sidebar
-import AttendanceLog from './attendenceLog';
-import './attendence.css';
-import Sidebar from './Sidebar/Sidebar'
-
+import React, { useState } from "react";
+import PageHeader from "./pageheader"; // Include your header
+import AttendanceLog from "./attendenceLog";
+import "./attendence.css";
+import PageSidebar from "./PageSidebar/PageSidebar";
 
 const Attendance = () => {
-  const [selectedYear, setSelectedYear] = useState('2019');
-  const [selectedMonth, setSelectedMonth] = useState('Mar');
+  const [selectedYear, setSelectedYear] = useState("2019");
+  const [selectedMonth, setSelectedMonth] = useState("Mar");
 
   const handleYearChange = (event) => {
     setSelectedYear(event.target.value);
@@ -21,10 +19,10 @@ const Attendance = () => {
   return (
     <div className="attendance-page">
       <div className="page-body">
-        <div className='attendance-sidebar'>
-          <Sidebar />
+        <div className="attendance-sidebar">
+          <PageSidebar />
         </div>
-        <div className='attendence_table'>
+        <div className="attendence_table">
           <AttendanceLog />
         </div>
       </div>
@@ -33,7 +31,3 @@ const Attendance = () => {
 };
 
 export default Attendance;
-
-
-
-
