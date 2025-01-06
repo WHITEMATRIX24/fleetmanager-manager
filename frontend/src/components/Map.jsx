@@ -19,10 +19,17 @@ const Map = ({ pos1, pos2, currentLoc }) => {
       setPosition1([pos1.lat, pos1.lng]);
       setPosition2([pos2.lat, pos2.lng]);
     }
-    if (currentLoc) {
+  }, [pos1, pos2]);
+
+  useEffect(() => {
+    if (
+      currentLoc &&
+      currentLoc.latitude != null &&
+      currentLoc.longitude != null
+    ) {
       setCurrentLocation([currentLoc.latitude, currentLoc.longitude]);
     }
-  }, [pos1, pos2]);
+  }, [currentLoc]);
 
   return (
     <MapContainer
