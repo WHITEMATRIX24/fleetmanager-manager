@@ -1,38 +1,43 @@
-import React from 'react'
-import './Dashboard1.css'
-import Sidebar from '../components/Sidebar/Sidebar'
-import AddVehicle from './AddVehicle'
-import AddScratches from './Scratches/Scratches'
-import AddDriver from './AddDriver'
-import AssignTrip from './AssignTrip'
-import WorkshopMovement from './WorkshopMovement'
-import ReviewNote from './ReviewNote'
-import Settings from '../components/settings'
-import DashboardPage from './Dash_overview'
-
+import React, { useState } from "react";
+import "./Dashboard1.css";
+import Sidebar from "../components/Sidebar/Sidebar";
+import AddVehicle from "./AddVehicle";
+import AddScratches from "./Scratches/Scratches";
+import AddDriver from "./AddDriver";
+import AssignTrip from "./AssignTrip";
+import WorkshopMovement from "./WorkshopMovement";
+import ReviewNote from "./ReviewNote";
+import Settings from "../components/settings";
+import DashboardPage from "./Dash_overview";
 
 function Dashboard1() {
+  const [vehicleNumberToPass, setVehicleNumberToPass] = useState("");
+
   return (
     <>
-      <div className='container'>
-        <div className=""><Sidebar /></div>
+      <div className="container">
+        <div className="">
+          <Sidebar />
+        </div>
         <div className="">
           <section id="Dashboard1">
             <div>
-              <DashboardPage />
+              <DashboardPage
+                vehicleNumberPassFunction={setVehicleNumberToPass}
+              />
             </div>
           </section>
-          <section id='vehicle'>
+          <section id="vehicle">
             <AddVehicle />
           </section>
-          <section id='scratches'>
+          <section id="scratches">
             <AddScratches />
           </section>
-          <section id='driver'>
+          <section id="driver">
             <AddDriver />
           </section>
           <section id="tripss">
-            <AssignTrip />
+            <AssignTrip vehicleNo={vehicleNumberToPass} />
           </section>
           <section id="worksho">
             <WorkshopMovement />
@@ -41,14 +46,14 @@ function Dashboard1() {
             <ReviewNote />
           </section>
           <section id="settingss">
-            <div className='settings-div'>
+            <div className="settings-div">
               <Settings />
             </div>
           </section>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Dashboard1
+export default Dashboard1;
