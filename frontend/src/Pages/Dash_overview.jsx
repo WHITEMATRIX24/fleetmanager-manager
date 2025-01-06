@@ -31,7 +31,9 @@ const DashboardPage = ({ vehicleNumberPassFunction }) => {
   // getAllTrips Api handler
   const getAllTripsApiHandler = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/allTrips`);
+      const response = await axios.get(
+        `http://13.50.175.179:5000/api/allTrips`
+      );
       if (response.status === 200) {
         activeTripsSortHandler(response.data);
         setAllTrips(response.data);
@@ -56,7 +58,9 @@ const DashboardPage = ({ vehicleNumberPassFunction }) => {
   // get all vehicles data api
   const getAllVehiclesDataApiHandler = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/vehicles");
+      const response = await axios.get(
+        "http://13.50.175.179:5000/api/vehicles"
+      );
       if (response.status === 200) {
         filterGarageVehiclesData(response.data);
       }
@@ -78,10 +82,10 @@ const DashboardPage = ({ vehicleNumberPassFunction }) => {
     try {
       const [numberOfTripsRes, weeklyTripsRes, monthlyTripsRes, dailyTripsRes] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/tripCount"),
-          axios.get("http://localhost:5000/api/weeklyTrips"),
-          axios.get("http://localhost:5000/api/monthlyTrips"),
-          axios.get("http://localhost:5000/api/dailyTrips"),
+          axios.get("http://13.50.175.179:5000/api/tripCount"),
+          axios.get("http://13.50.175.179:5000/api/weeklyTrips"),
+          axios.get("http://13.50.175.179:5000/api/monthlyTrips"),
+          axios.get("http://13.50.175.179:5000/api/dailyTrips"),
         ]);
 
       setStatisticData((prevValue) => {
@@ -123,7 +127,7 @@ const DashboardPage = ({ vehicleNumberPassFunction }) => {
   const fetchTripNotifications = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tripNotifications"
+        "http://13.50.175.179:5000/api/tripNotifications"
       );
       const data = await response.json();
       setTripNotifications(data.notifications);
@@ -182,12 +186,12 @@ const DashboardPage = ({ vehicleNumberPassFunction }) => {
     try {
       const [sosResponse, commentResponse, tripNotifiaction] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/issues?type=sos"),
-          axios.get("http://localhost:5000/api/issues?type=comment"),
-          axios.get("http://localhost:5000/api/tripNotifications"),
+          axios.get("http://13.50.175.179:5000/api/issues?type=sos"),
+          axios.get("http://13.50.175.179:5000/api/issues?type=comment"),
+          axios.get("http://13.50.175.179:5000/api/tripNotifications"),
         ]);
       const responseNotifications = await fetch(
-        "http://localhost:5000/api/dueDates"
+        "http://13.50.175.179:5000/api/dueDates"
       );
       const dataNotifications = await responseNotifications.json();
       setNotifications(parseNotifications(dataNotifications));

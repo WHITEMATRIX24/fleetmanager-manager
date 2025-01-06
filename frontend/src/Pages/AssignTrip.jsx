@@ -51,7 +51,7 @@ function AssignTrip({ vehicleNo }) {
   }, []);
   const fetchCarCounts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/vehicles");
+      const response = await fetch("http://13.50.175.179:5000/api/vehicles");
       console.log("Response Status:", response.status);
       console.log("Response Headers:", response.headers);
 
@@ -103,7 +103,7 @@ function AssignTrip({ vehicleNo }) {
   };
   const fetchLastTripID = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/lastTripID");
+      const response = await fetch("http://13.50.175.179:5000/api/lastTripID");
       const data = await response.json();
       setLastTripID(data.lastTripID);
     } catch (error) {
@@ -113,7 +113,7 @@ function AssignTrip({ vehicleNo }) {
   useEffect(() => {
     const fetchTripCount = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/tripCount");
+        const response = await fetch("http://13.50.175.179:5000/api/tripCount");
         const data = await response.json();
         setTripCount(data.count);
       } catch (error) {
@@ -138,7 +138,7 @@ function AssignTrip({ vehicleNo }) {
       let exists = true;
       while (exists) {
         const response = await fetch(
-          `http://localhost:5000/api/checkTripID/${uniqueTripID}`
+          `http://13.50.175.179:5000/api/checkTripID/${uniqueTripID}`
         );
         if (!response.ok) {
           throw new Error(
@@ -184,7 +184,7 @@ function AssignTrip({ vehicleNo }) {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/trips", {
+      const response = await fetch("http://13.50.175.179:5000/api/trips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,43 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import './ScratchModal.css';
+import React, { useState, useEffect } from "react";
+import "./ScratchModal.css";
 
 const ScratchModal = ({ show, vehicleNumber, onClose }) => {
   const [scratchImages, setScratchImages] = useState([]);
-  const [vehicleName, setVehicleName] = useState('');
+  const [vehicleName, setVehicleName] = useState("");
   const [imageToDelete, setImageToDelete] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     const fetchScratchImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/fetch-scratch', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ vehicleNumber }),
-        });
+        const response = await fetch(
+          "http://13.50.175.179:5000/api/fetch-scratch",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ vehicleNumber }),
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to fetch scratch images');
+          throw new Error("Failed to fetch scratch images");
         }
 
         const data = await response.json();
-        console.log('Fetched Scratch Images:', data);
+        console.log("Fetched Scratch Images:", data);
         setVehicleName(data.vehicleName);
 
         // Create an array of image objects with view and base64 data
         const imageObjects = [
-          { view: 'LSV', images: Array.isArray(data.scratchLsvData.base64) ? data.scratchLsvData.base64 : [] },
-          { view: 'RSV', images: Array.isArray(data.scratchRsvData.base64) ? data.scratchRsvData.base64 : [] },
-          { view: 'FV', images: Array.isArray(data.scratchFvData.base64) ? data.scratchFvData.base64 : [] },
-          { view: 'TV', images: Array.isArray(data.scratchTvData.base64) ? data.scratchTvData.base64 : [] },
-          { view: 'BV', images: Array.isArray(data.scratchBvData.base64) ? data.scratchBvData.base64 : [] },
-        ].flatMap(({ view, images }) => images.map(base64 => ({ view, base64 })));
+          {
+            view: "LSV",
+            images: Array.isArray(data.scratchLsvData.base64)
+              ? data.scratchLsvData.base64
+              : [],
+          },
+          {
+            view: "RSV",
+            images: Array.isArray(data.scratchRsvData.base64)
+              ? data.scratchRsvData.base64
+              : [],
+          },
+          {
+            view: "FV",
+            images: Array.isArray(data.scratchFvData.base64)
+              ? data.scratchFvData.base64
+              : [],
+          },
+          {
+            view: "TV",
+            images: Array.isArray(data.scratchTvData.base64)
+              ? data.scratchTvData.base64
+              : [],
+          },
+          {
+            view: "BV",
+            images: Array.isArray(data.scratchBvData.base64)
+              ? data.scratchBvData.base64
+              : [],
+          },
+        ].flatMap(({ view, images }) =>
+          images.map((base64) => ({ view, base64 }))
+        );
 
         setScratchImages(imageObjects);
       } catch (error) {
-        console.error('Error fetching scratch images:', error);
+        console.error("Error fetching scratch images:", error);
       }
     };
 
@@ -53,23 +83,28 @@ const ScratchModal = ({ show, vehicleNumber, onClose }) => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/delete-scratch', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ vehicleNumber, image: imageToDelete }),
-      });
+      const response = await fetch(
+        "http://13.50.175.179:5000/api/delete-scratch",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ vehicleNumber, image: imageToDelete }),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to delete image');
+        throw new Error("Failed to delete image");
       }
 
-      setScratchImages(prevImages => prevImages.filter(img => img.base64 !== imageToDelete.base64));
+      setScratchImages((prevImages) =>
+        prevImages.filter((img) => img.base64 !== imageToDelete.base64)
+      );
       setShowConfirm(false);
       setImageToDelete(null);
     } catch (error) {
-      console.error('Error deleting image:', error);
+      console.error("Error deleting image:", error);
     }
   };
 
@@ -94,12 +129,20 @@ const ScratchModal = ({ show, vehicleNumber, onClose }) => {
           {scratchImages.length > 0 ? (
             scratchImages.map((image, index) => (
               <div key={index} className="saved-image-container">
-                <p>{`View: ${image.view}`}  </p>
+                <p>{`View: ${image.view}`} </p>
                 <div className="image-wrapper">
-                  <button onClick={() => handleDeleteClick(image)} className="delete-scratch-button">X</button>
-                  <img src={`data:image/jpeg;base64,${image.base64}`} alt={`Saved ${index}`} className="saved-image" />
+                  <button
+                    onClick={() => handleDeleteClick(image)}
+                    className="delete-scratch-button"
+                  >
+                    X
+                  </button>
+                  <img
+                    src={`data:image/jpeg;base64,${image.base64}`}
+                    alt={`Saved ${index}`}
+                    className="saved-image"
+                  />
                 </div>
-
               </div>
             ))
           ) : (

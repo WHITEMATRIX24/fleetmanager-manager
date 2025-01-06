@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './attendence.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import "./attendence.css";
+import axios from "axios";
 
 const AttendanceLog = () => {
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState("");
   const [attendanceData, setAttendanceData] = useState([]);
   const [filteredData, setFilteredData] = useState([]); // Start with an empty array
   const [loading, setLoading] = useState(true);
@@ -34,33 +34,37 @@ const AttendanceLog = () => {
   };
 
   const calculateTotalWorkingHoursAndStatus = (checkInTime, checkOutTime) => {
-    if (!checkInTime) return { totalWorkingHours: 'N/A', status: 'On Leave' };
-    if (!checkOutTime) return { totalWorkingHours: 'N/A', status: 'Regular' };
+    if (!checkInTime) return { totalWorkingHours: "N/A", status: "On Leave" };
+    if (!checkOutTime) return { totalWorkingHours: "N/A", status: "Regular" };
 
     const convertTo24HourFormat = (time) => {
-      const [timePart, modifier] = time.split(' ');
-      let [hours, minutes] = timePart.split(':').map(Number);
+      const [timePart, modifier] = time.split(" ");
+      let [hours, minutes] = timePart.split(":").map(Number);
 
-      if (modifier === 'PM' && hours !== 12) {
+      if (modifier === "PM" && hours !== 12) {
         hours += 12;
-      } else if (modifier === 'AM' && hours === 12) {
+      } else if (modifier === "AM" && hours === 12) {
         hours = 0;
       }
 
       return { hours, minutes };
     };
 
-    const { hours: checkInHours, minutes: checkInMinutes } = convertTo24HourFormat(checkInTime);
-    const { hours: checkOutHours, minutes: checkOutMinutes } = convertTo24HourFormat(checkOutTime);
+    const { hours: checkInHours, minutes: checkInMinutes } =
+      convertTo24HourFormat(checkInTime);
+    const { hours: checkOutHours, minutes: checkOutMinutes } =
+      convertTo24HourFormat(checkOutTime);
 
     const checkInDate = new Date(1970, 0, 1, checkInHours, checkInMinutes);
     const checkOutDate = new Date(1970, 0, 1, checkOutHours, checkOutMinutes);
 
     const totalMilliseconds = checkOutDate - checkInDate;
     const totalHours = Math.floor(totalMilliseconds / (1000 * 60 * 60));
-    const totalMinutes = Math.floor((totalMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const totalMinutes = Math.floor(
+      (totalMilliseconds % (1000 * 60 * 60)) / (1000 * 60)
+    );
 
-    const status = totalHours >= 12 ? 'Overtime' : 'Regular';
+    const status = totalHours >= 12 ? "Overtime" : "Regular";
 
     return { totalWorkingHours: `${totalHours}h ${totalMinutes}m`, status };
   };
@@ -69,8 +73,8 @@ const AttendanceLog = () => {
   //   const fetchData = async () => {
   //     try {
   //       const [attendanceResponse, driversResponse] = await Promise.all([
-  //         axios.get('http://localhost:5000/api/attendance'),
-  //         axios.get('http://localhost:5000/api/drivers/names'),
+  //         axios.get('http://13.50.175.179:5000/api/attendance'),
+  //         axios.get('http://13.50.175.179:5000/api/drivers/names'),
   //       ]);
 
   //       const drivers = {};
@@ -100,8 +104,8 @@ const AttendanceLog = () => {
     const fetchData = async () => {
       try {
         const [attendanceResponse, driversResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/attendance'),
-          axios.get('http://localhost:5000/api/drivers/names'),
+          axios.get("http://13.50.175.179:5000/api/attendance"),
+          axios.get("http://13.50.175.179:5000/api/drivers/names"),
         ]);
 
         const attendanceData = driversResponse.data.map((driver) => {
@@ -126,8 +130,10 @@ const AttendanceLog = () => {
     fetchData();
   }, []);
 
-  const today = new Date().toISOString().split('T')[0];
-  const sortedFilteredData = filteredData.sort((a, b) => a.driverId - b.driverId);
+  const today = new Date().toISOString().split("T")[0];
+  const sortedFilteredData = filteredData.sort(
+    (a, b) => a.driverId - b.driverId
+  );
 
   return (
     <div className="attendance-log-container">
@@ -164,15 +170,18 @@ const AttendanceLog = () => {
             sortedFilteredData.map((record) => {
               const attendance = record.attendanceOnDate;
               const { totalWorkingHours, status } = attendance
-                ? calculateTotalWorkingHoursAndStatus(attendance.checkInTime, attendance.checkOutTime)
-                : { totalWorkingHours: 'N/A', status: 'On Leave' };
+                ? calculateTotalWorkingHoursAndStatus(
+                    attendance.checkInTime,
+                    attendance.checkOutTime
+                  )
+                : { totalWorkingHours: "N/A", status: "On Leave" };
 
               return (
                 <tr key={record.driverId}>
                   <td>{record.driverId}</td>
                   <td>{record.driverName}</td>
-                  <td>{attendance ? attendance.checkInTime : 'N/A'}</td>
-                  <td>{attendance ? attendance.checkOutTime : 'N/A'}</td>
+                  <td>{attendance ? attendance.checkInTime : "N/A"}</td>
+                  <td>{attendance ? attendance.checkOutTime : "N/A"}</td>
                   <td>{totalWorkingHours}</td>
                   <td>{status}</td>
                 </tr>
@@ -180,7 +189,10 @@ const AttendanceLog = () => {
             })
           ) : (
             <tr>
-              <td colSpan="6">No attendance records found for the selected date. Please try selecting a different date.</td>
+              <td colSpan="6">
+                No attendance records found for the selected date. Please try
+                selecting a different date.
+              </td>
             </tr>
           )}
         </tbody>
