@@ -131,6 +131,7 @@ function AddDriver() {
     return (
         <>
             <div className="vehicle">
+                <div id="driver"></div>
                 <div className="contents">
                     <div className="left">
                         <div class="add-car">

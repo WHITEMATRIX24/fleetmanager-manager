@@ -96,7 +96,7 @@
     display: flex;
     height: auto;
     width: 72%;
-    
+
 }
 
 .draw-board {
@@ -136,7 +136,8 @@
     margin-left: 10px;
 
 }
-.gallery{
+
+.gallery {
     margin-left: 20%;
 }
 
@@ -372,7 +373,8 @@
     margin-top: 5px;
     margin-left: 10px;
 }
-.buttons{
+
+.buttons {
     width: 100%;
 }
 
@@ -668,28 +670,30 @@
         width: 142%;
 
     }
-    
-        .draw {
-            width: 93%;
-        }  
-        .scratch button {
-            background-color: var(--button-color);
-            color: white;
-            padding: 5px 5px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 10px;
-            margin-left: 10px;
-            align-self: center;
-        }    
 
-        .scratch {
-            margin-left: 19px;
-        }
-    
+    .draw {
+        width: 93%;
+    }
+
+    .scratch button {
+        background-color: var(--button-color);
+        color: white;
+        padding: 5px 5px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 10px;
+        margin-left: 10px;
+        align-self: center;
+    }
+
+    .scratch {
+        margin-left: 19px;
+    }
+
 }
-@media (min-width: 1024px) and (max-width: 1366px)and (orientation: portrait)   {
+
+@media (min-width: 1024px) and (max-width: 1366px)and (orientation: portrait) {
 
     .add-scratch {
         display: flex;
@@ -704,10 +708,11 @@
         /* width: 60%; */
         gap: 20px;
     }
-    .gallery{
+
+    .gallery {
         margin-left: 18%;
     }
-  
+
 
     .sc {
         display: flex;
@@ -726,7 +731,7 @@
         display: flex;
         gap: 200px;
         width: 200%;
-        
+
     }
 
     .draw-board {
@@ -759,11 +764,13 @@
         margin-left: 10px;
         align-self: center;
     }
+
     .draw {
         width: 141%;
     }
-   
+
 }
+
 @media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
 
     .add-scratch {
@@ -779,10 +786,11 @@
         /* width: 60%; */
         gap: 20px;
     }
-    .gallery{
+
+    .gallery {
         margin-left: 18%;
     }
-  
+
 
     .sc {
         display: flex;
@@ -800,8 +808,8 @@
     .sc .add-sc-top {
         display: flex;
         gap: 200px;
-        width: 200%;
-        
+        width: 166%;
+
     }
 
     .draw-board {
@@ -820,7 +828,7 @@
     .tools-board {
 
         height: 100px;
-        width: 200%;
+        width: 166%;
     }
 
     .scratch button {
@@ -834,13 +842,14 @@
         margin-left: 10px;
         align-self: center;
     }
+
     .draw {
-        width: 141%;
+        width: 100%;
     }
-   
+
 }
 
-@media (min-width: 820px) and (max-width: 1180px)and (orientation: portrait)  {
+@media (min-width: 820px) and (max-width: 1180px)and (orientation: portrait) {
 
     .add-scratch {
         display: flex;
@@ -881,14 +890,15 @@
     .draw {
         /* width: 118%; */
         width: 140%;
-        
     }
+
     .draw-board {
         height: 500px;
         /* width: 513px */
-        width:520px;
+        width: 520px;
     }
-    .gallery{
+
+    .gallery {
         margin-left: -14%;
     }
 
@@ -964,6 +974,7 @@
 
     }
 }
+
 @media (min-width: 820px) and (max-width: 1180px) and (orientation: landscape) {
     .add-scratch {
         display: flex;

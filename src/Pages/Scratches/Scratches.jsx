@@ -501,6 +501,7 @@ function AddScratches() {
     };
     return (
         <div className='bod'>
+            <div id="scratches"></div>
             <div className='add-scratch'>
                 <div className='sc'>
                     <div className='add-sc-top'>
@@ -638,7 +639,7 @@ function AddScratches() {
                     </div>
                 </div>
             </div>
-            <div id="driver"></div>
+
             <div className='dia'>
                 {showConfirmation && (
                     <div className="overlay">
