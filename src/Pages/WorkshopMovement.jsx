@@ -8,6 +8,7 @@ function WorkshopMovement() {
     const [workshopDetailsPopup, setWorkshopDetailsPopup] = useState(false);
     const [workshopDetails, setWorkshopDetails] = useState([]);
     const [selectedVehicle, setSelectedVehicle] = useState('');
+    const [data, setData] = useState([]);
     // Function to open the "Add Workshop Visit" popup
     const showAddWorkshopVisitPopup = () => setShowPopup(true);
 
@@ -24,8 +25,27 @@ function WorkshopMovement() {
     // Function to close the "Workshop Details" popup
     const closeWorkshopDetailsPopup = () => setWorkshopDetailsPopup(false);
 
-
-
+    const handleAddWorkshopVisit = async (formData) => {
+                try {
+                    console.log('Submitting form data:', formData); // Log form data
+                    const response = await fetch('http://localhost:5000/api/workshop-movements', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData),
+                    });
+        
+                    if (response.ok) {
+                        const newVisit = await response.json();
+                        setData(prevData => [...prevData, newVisit]);
+                        setShowPopup(false);
+                        window.location.reload();
+                    } else {
+                        throw new Error('Failed to add workshop visit');
+                    }
+                } catch (error) {
+                    console.error('Error adding workshop visit:', error);
+                }
+            };
     return (
         <>
             <section id="worksho">
@@ -39,12 +59,12 @@ function WorkshopMovement() {
                     </div>
 
 
-
                     {/* Conditionally render the popups */}
                     {showPopup && (
                         <TablePopup
                             onClose={closeAddWorkshopVisitPopup}
                             isShow={showPopup}
+                            onSubmit={handleAddWorkshopVisit}
                         />
                     )}
                     {workshopDetailsPopup && (
