@@ -95,7 +95,7 @@
 .draw {
     display: flex;
     height: auto;
-    width: 60%;
+    width: 72%;
     
 }
 
@@ -618,7 +618,7 @@
     /* Remove default margin */
 }
 
-@media (max-width: 1200px) {
+@media(min-width:768px) and (max-width:1024px) {
 
     .add-scratch {
         display: flex;
@@ -689,8 +689,7 @@
         }
     
 }
-
-@media (min-width: 1024px) and (max-width: 1366px) {
+@media (min-width: 1024px) and (max-width: 1366px)and (orientation: portrait)   {
 
     .add-scratch {
         display: flex;
@@ -764,10 +763,84 @@
         width: 141%;
     }
    
+}
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+
+    .add-scratch {
+        display: flex;
+        max-height: 874px;
+        width: 102%;
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .conta {
+        justify-content: center;
+        /* width: 60%; */
+        gap: 20px;
+    }
+    .gallery{
+        margin-left: 18%;
+    }
+  
+
+    .sc {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 60%;
+        padding: 10px;
+        border-radius: 20px;
+        margin-left: 10px;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .sc .add-sc-top {
+        display: flex;
+        gap: 200px;
+        width: 200%;
+        
+    }
+
+    .draw-board {
+        height: 500px;
+        width: 731px
+    }
+
+    .scratch {
+        margin-left: 85px;
+    }
+
+    .image-gallery {
+        margin-left: 120px;
+    }
+
+    .tools-board {
+
+        height: 100px;
+        width: 200%;
+    }
+
+    .scratch button {
+        background-color: var(--button-color);
+        color: white;
+        padding: 5px 5px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 10px;
+        align-self: center;
+    }
+    .draw {
+        width: 141%;
+    }
    
 }
 
-@media (min-width: 820px) and (max-width: 1024px) {
+@media (min-width: 820px) and (max-width: 1180px)and (orientation: portrait)  {
 
     .add-scratch {
         display: flex;
@@ -888,5 +961,110 @@
 
         font-size: 10px;
 
+    }
+}
+@media (min-width: 820px) and (max-width: 1180px) and (orientation: landscape) {
+    .add-scratch {
+        display: flex;
+        max-height: 874px;
+        width: 102%;
+        border-radius: 8px;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .sc {
+        width: 50%;
+        padding: 10px;
+        border-radius: 20px;
+        margin-left: 10px;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .sc .add-sc-top {
+        display: flex;
+        gap: 100px;
+        width: 200%;
+    }
+
+    .scratch {
+        margin-left: 43px;
+    }
+
+    .draw {
+        width: 140%;
+    }
+
+    .draw-board {
+        height: 500px;
+        width: 520px;
+    }
+
+    .gallery {
+        margin-left: -14%;
+    }
+
+    .image-gallery {
+        margin-left: 158px;
+    }
+
+    .tools-board {
+        height: 100px;
+        width: 200%;
+    }
+
+    .clear-canvas {
+        margin-right: -10px;
+    }
+
+    .option #color-picker {
+        width: 20px;
+    }
+
+    .undo-btn {
+        margin-left: 5px;
+        padding: 8px 10px;
+    }
+
+    .redo-btn {
+        padding: 8px 10px;
+    }
+
+    .zoom-in {
+        padding: 8px 10px;
+    }
+
+    .zoom-out {
+        padding: 8px 10px;
+    }
+
+    .row .dropdown {
+        width: 140px;
+    }
+
+    .buttons-below {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .save-img,
+    .scratch-gallery {
+        flex: 1 1 35%;
+        box-sizing: border-box;
+    }
+
+    .sc h2 {
+        font-size: 13px;
+    }
+
+    .scratch button {
+        font-size: 10px;
+        padding: 5px 5px;
+    }
+
+    .draw-board h3 {
+        font-size: 10px;
     }
 }
