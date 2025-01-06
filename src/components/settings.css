@@ -4,10 +4,10 @@
     padding: 20px;
 }
 
-.left-section,
-.right-section {
+.left-section-settings {
     flex: 1;
     margin: 10px;
+    width: 100%;
 }
 
 h2 {
@@ -81,4 +81,19 @@ h2 {
 
 .profile-button svg {
     margin-right: 10px;
+}
+
+.settings-manager-div {
+    display: flex;
+    justify-content: space-between;
+    /* Align button to the right */
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.settings-passwordchange {
+    background-color: transparent;
+    border: none;
+    color: var(--button-color);
 }

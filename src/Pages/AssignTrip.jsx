@@ -379,7 +379,7 @@ function AssignTrip() {
 
                             </div>
                             <div className="text-container">
-                                <span className="count">EXTEND</span>
+                                <span className="count">EDIT</span>
                                 <span className="label">Trips</span>
                             </div>
 

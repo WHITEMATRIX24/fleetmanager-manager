@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 // Database connection
-mongoose.connect("mongodb+srv://anulisba:aCZHjI8NyQLOHV2d@fleetmanager.mdvsoan.mongodb.net/?retryWrites=true&w=majority&appName=fleetmanager", {
+mongoose.connect("mongodb+srv://whitematrix2024:sY81YznUq6b8EPic@cluster0.ydytt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -420,7 +420,7 @@ app.post('/api/vehicles', upload.single('vehiclephoto'), async (req, res) => {
   try {
     const file = req.file;
     console.log(file);
-    const fileName = req.body.imagename;
+    const fileName = req.body.vehiclenumber;
     console.log(fileName);
 
     if (!file) {
