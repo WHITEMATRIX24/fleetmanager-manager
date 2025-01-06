@@ -7,7 +7,7 @@ import Map from "../components/Map";
 import SosNotification from "../components/sosNotification";
 import Notification from "../components/Notofication";
 
-const DashboardPage = () => {
+const DashboardPage = ({ vehicleNumberPassFunction }) => {
   const [allTrips, setAllTrips] = useState([]);
   const [activeTrips, setActiveTrips] = useState([]);
   const [tripDetailData, setTripDetailData] = useState(null);
@@ -143,24 +143,36 @@ const DashboardPage = () => {
 
     const formatDate = (isoString) => {
       const date = new Date(isoString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       });
     };
 
-    data.vehicles.forEach(vehicle => {
+    data.vehicles.forEach((vehicle) => {
       if (vehicle.insuranceDueDate) {
-        notifications.push(`Insurance due date of car ${vehicle.vehicleNumber} is on ${formatDate(vehicle.insuranceDueDate)}`);
+        notifications.push(
+          `Insurance due date of car ${
+            vehicle.vehicleNumber
+          } is on ${formatDate(vehicle.insuranceDueDate)}`
+        );
       }
       if (vehicle.istimaraDueDate) {
-        notifications.push(`Istimara due date of car ${vehicle.vehicleNumber} is on ${formatDate(vehicle.istimaraDueDate)}`);
+        notifications.push(
+          `Istimara due date of car ${vehicle.vehicleNumber} is on ${formatDate(
+            vehicle.istimaraDueDate
+          )}`
+        );
       }
     });
 
-    data.drivers.forEach(driver => {
-      notifications.push(`Licence expiry date of driver with ID ${driver.driverId} is on ${formatDate(driver.driverLicenceExpiryDate)}`);
+    data.drivers.forEach((driver) => {
+      notifications.push(
+        `Licence expiry date of driver with ID ${
+          driver.driverId
+        } is on ${formatDate(driver.driverLicenceExpiryDate)}`
+      );
     });
 
     return notifications;
@@ -174,7 +186,9 @@ const DashboardPage = () => {
           axios.get("http://localhost:5000/api/issues?type=comment"),
           axios.get("http://localhost:5000/api/tripNotifications"),
         ]);
-      const responseNotifications = await fetch('http://localhost:5000/api/dueDates');
+      const responseNotifications = await fetch(
+        "http://localhost:5000/api/dueDates"
+      );
       const dataNotifications = await responseNotifications.json();
       setNotifications(parseNotifications(dataNotifications));
       console.log(sosResponse, commentResponse);
@@ -199,6 +213,14 @@ const DashboardPage = () => {
     newNotifications.splice(index, 1);
     setNotifications(newNotifications);
   };
+
+  // asign trip btn handler
+  const handleAssignTrip = (vehicleNo) => {
+    vehicleNumberPassFunction(vehicleNo);
+    const section = document.getElementById("tripss");
+    section.scrollIntoView({ behavior: "smooth" });
+  };
+
   //////////////////////////////////////////////////////
   // search handler
   const handleSearch = () => {
@@ -223,7 +245,7 @@ const DashboardPage = () => {
     statisticDataApiHandler();
     fetchNotifications();
   }, []);
-
+  console.log(activeTrips);
   return (
     <div className="dash-container">
       <div className="dash-grid-row">
@@ -253,10 +275,7 @@ const DashboardPage = () => {
                   </div>
                   <div className="dash-activetrip-list-secondrow">
                     <div className="dash-activetrips-tile-imagecontainer">
-                      <img
-                        src={trip.vehicleDetails.vehiclePhoto}
-                        alt="car"
-                      />
+                      <img src={trip.vehicleDetails.vehiclePhoto} alt="car" />
                     </div>
                     <div className="dash-activetrips-tile-vehicledetails">
                       <h6>{trip.vehicleDetails.vehicleName}</h6>
@@ -377,9 +396,14 @@ const DashboardPage = () => {
                 <span className="notification-dot red"></span>
               )}
             </div>
-            <div className="notification-icon" onClick={() => setShowPopup(true)}>
+            <div
+              className="notification-icon"
+              onClick={() => setShowPopup(true)}
+            >
               <i className="fas fa-exclamation-circle"></i>
-              {notifications.length > 0 && <span className="notification-dot"></span>}
+              {notifications.length > 0 && (
+                <span className="notification-dot"></span>
+              )}
             </div>
           </div>
           <div className="dash-upcomingtrips-container">
@@ -389,7 +413,11 @@ const DashboardPage = () => {
                 <p>No Garage Vehicles</p>
               ) : (
                 inGarageVehicles.map((vehicle) => (
-                  <div className="dash-activetrip-tile" key={vehicle._id}>
+                  <div
+                    className="dash-activetrip-tile"
+                    key={vehicle._id}
+                    onClick={() => handleAssignTrip(vehicle.vehicleNumber)}
+                  >
                     <div
                       className="dash-activetrip-list-firstrow"
                       style={{ justifyContent: "end" }}
@@ -400,10 +428,7 @@ const DashboardPage = () => {
                     </div>
                     <div className="dash-activetrip-list-secondrow">
                       <div className="dash-activetrips-tile-imagecontainer">
-                        <img
-                          src={vehicle.vehiclePhoto}
-                          alt="car"
-                        />
+                        <img src={vehicle.vehiclePhoto} alt="car" />
                       </div>
                       <div className="dash-activetrips-tile-vehicledetails">
                         <h6>{vehicle.vehicleNumber}</h6>
