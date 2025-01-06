@@ -234,30 +234,30 @@ function AddDriver() {
                     </div>
                     <div className="right">
                         <button className="edit-cardd-vehicle" onClick={handleEditDriverDetailsClick}>
-                            <div style={{ margin: 'auto', display: 'flex' }}>
-                                <div className="iicon-container">
-                                    <Identity className="iicon" />
-                                </div>
-                                <div className="text-container">
-                                    <span className="count">EDIT</span>
-                                    <span className="label">Drivers Details</span>
-                                </div>
+
+                            <div className="iicon-container">
+                                <Identity className="iicon" />
                             </div>
+                            <div className="text-container">
+                                <span className="count">EDIT</span>
+                                <span className="label">Drivers Details</span>
+                            </div>
+
                         </button>
 
 
                         <div id="trip"></div>
-                        <DriverNote/>
+                        <DriverNote />
                         <button className="edit-cardd-vehicle" onClick={handleViewAttendance}>
-                            <div style={{ margin: 'auto', display: 'flex' }}>
-                                <div className="iicon-container">
-                                    < Driver className="iicon" />
-                                </div>
-                                <div className="text-container">
-                                    <span className="count"> 4</span>
-                                    <span className="label">View Attendance</span>
-                                </div>
+
+                            <div className="iicon-container">
+                                < Driver className="iicon" />
                             </div>
+                            <div className="text-container">
+                                <span className="count"> 4</span>
+                                <span className="label">View Attendance</span>
+                            </div>
+
                         </button>
 
 

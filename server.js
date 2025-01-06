@@ -255,7 +255,7 @@ app.post('/api/delete-scratch', async (req, res) => {
 
 
 // Route handlers
-app.post('api/updatevehicle', async (req, res) => {
+app.post('/api/updatevehicle', async (req, res) => {
   const { id, vehicleName, vehicleNumber, insuranceDueDate, istimaraDueDate, vehicleType, vehicleStatus } = req.body;
   try {
     await Vehicle.updateOne({ _id: id }, {

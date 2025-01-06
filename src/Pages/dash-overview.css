@@ -3,6 +3,7 @@ h4,
 h5 {
   margin: 0px;
 }
+
 /* //////////////////////////// */
 
 .dash-container {
@@ -12,6 +13,7 @@ h5 {
   margin-bottom: 3rem;
   padding-right: 6rem;
 }
+
 .dash-grid-row {
   display: grid;
   grid-template-rows: 1;
@@ -29,6 +31,7 @@ h5 {
   flex-direction: column;
   gap: 2rem;
 }
+
 .dash-search-container {
   display: flex;
   flex-direction: column;
@@ -37,11 +40,13 @@ h5 {
   padding: 2.5rem 1rem;
   border-radius: 15px;
 }
+
 .dash-search-container h3 {
   font-size: 1.5rem;
   font-weight: bold;
   color: black;
 }
+
 .dash-search-container input {
   padding: 10px;
   border: none;
@@ -49,6 +54,7 @@ h5 {
   border-radius: 6px;
   font-size: 16px;
 }
+
 .dash-activetrips-container {
   height: 50%;
   overflow-y: scroll;
@@ -56,6 +62,7 @@ h5 {
   flex-direction: column;
   gap: 1rem;
 }
+
 .dash-activetrips-container::-webkit-scrollbar {
   display: none;
 }
@@ -68,49 +75,59 @@ h5 {
   padding: 5px 1rem;
   cursor: pointer;
 }
+
 .dash-activetrip-list-firstrow {
   display: flex;
   gap: 10px;
   align-items: center;
 }
+
 .dash-activetrip-tile-status {
   padding: 10px;
   border-radius: 10px;
   color: white;
-  background-color: rgba(127, 169, 127, 0.838);
+  background-color: var(--button-color);
 }
+
 .dash-activetrip-list-secondrow {
   display: flex;
   gap: 10px;
 }
+
 .dash-activetrips-tile-imagecontainer {
   width: 7rem;
   max-height: 5rem;
   /* background-color: rgba(75, 114, 75, 0.205); */
 }
+
 .dash-activetrips-tile-imagecontainer img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
 .dash-activetrips-tile-vehicledetails {
   display: flex;
   flex-direction: column;
   gap: 7px;
   width: 100%;
 }
+
 .dash-activetrips-tile-dashed-border {
   border-bottom: 1px dashed;
 }
+
 .dash-activetrip-list-thirdrow {
   display: flex;
   justify-content: space-between;
 }
+
 .dash-activetrip-tile-startdate-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
 .dash-activetrip-tile-enddate-container {
   display: flex;
   flex-direction: column;
@@ -126,6 +143,7 @@ h5 {
   gap: 2rem;
   position: relative;
 }
+
 .dash-map-container {
   display: flex;
   flex-direction: column;
@@ -135,19 +153,23 @@ h5 {
   padding: 1rem;
   border-radius: 10px;
 }
+
 .dash-map-container h6 {
   font-size: 1rem;
   font-weight: bold;
 }
+
 .dash-map {
   width: 100%;
   height: 100%;
 }
+
 .dash-activetrips-details-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .dash-activetrips-detail-tile-firstrow {
   display: flex;
   justify-content: end;
@@ -155,19 +177,23 @@ h5 {
   gap: 1rem;
   padding-right: 2rem;
 }
+
 .dash-activetrip-list-forthrow {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
 }
+
 .dash-activetrip-list-fifthrow {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
+
 .dash-activetrip-list-fifthrow h6 {
   font-size: 0.9rem;
 }
+
 .dash-activetrips-details-container button {
   width: 50%;
   padding: 10px;
@@ -188,6 +214,7 @@ h5 {
   background-color: rgba(128, 128, 128, 0.089);
   padding: 1rem;
 }
+
 .dash-recentactivity {
   display: flex;
   flex-direction: column;
@@ -195,15 +222,19 @@ h5 {
   height: 12rem;
   overflow-y: scroll;
 }
+
 .dash-recentactivity::-webkit-scrollbar {
   display: none;
 }
+
 .dash-recentactivity h6 {
   font-size: 1rem;
 }
+
 .dash-recentactivity p {
   margin: 0px;
 }
+
 .dash-newTrip-btn {
   display: flex;
   gap: 1rem;
@@ -216,15 +247,18 @@ h5 {
   border-radius: 10px;
   padding: 10px;
 }
+
 .dash-newTrip-btn div {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: start;
 }
+
 .dash-newTrip-btn h6 {
   font-size: 0.8rem;
 }
+
 .dash-newTrip-btn p {
   color: white;
   margin: 0px;
@@ -235,9 +269,11 @@ h5 {
   flex-direction: column;
   gap: 0.7rem;
 }
+
 .dash-upcomingtrips-container h6 {
   font-size: 0.8rem;
 }
+
 .upcomingTripsList {
   display: flex;
   flex-direction: column;
@@ -245,22 +281,27 @@ h5 {
   height: 17rem;
   overflow-y: scroll;
 }
+
 .upcomingTripsList::-webkit-scrollbar {
   display: none;
 }
+
 .dash-fleetstatistic {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .statistic-card-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .dash-fleetstatistic h6 {
   font-size: 0.9rem;
 }
+
 .fleet-statistic-card {
   display: flex;
   align-items: center;
@@ -270,6 +311,7 @@ h5 {
   flex: 1;
   border-left: 5px solid var(--secondary-color);
 }
+
 .fleet-statistic-card-icon-container {
   width: 20%;
   height: 50px;
@@ -277,15 +319,18 @@ h5 {
   align-items: center;
   justify-content: center;
 }
+
 .fleet-statistic-card-veerticaldivider {
   height: 40px;
   width: 1px;
   background-color: var(--secondary-color);
   margin-right: 10px;
 }
+
 .statistic-card-lablel {
   font-size: 0.9rem;
 }
+
 .statistic-card-value {
   font-weight: bold;
 }
@@ -295,21 +340,26 @@ h5 {
   .dash-container {
     padding-right: 3rem;
   }
+
   .dash-grid-row {
     grid-template-columns: 50% 50%;
   }
+
   .dash-col-3 {
     grid-column: span 2;
   }
+
   .upcomingTripsList {
     flex-direction: row;
     height: fit-content;
     overflow-x: scroll;
   }
+
   .statistic-card-container {
     flex-direction: row;
     flex-wrap: wrap;
   }
+
   .fleet-statistic-card {
     width: 40%;
   }
@@ -320,20 +370,25 @@ h5 {
   .dash-container {
     padding-right: 1rem;
   }
+
   .dash-grid-row {
     grid-template-columns: 100%;
   }
+
   .dash-col-3 {
     grid-column: 1;
   }
+
   .upcomingTripsList {
     flex-direction: column;
     height: 17rem;
     overflow-y: scroll;
   }
+
   .statistic-card-container {
     flex-direction: column;
   }
+
   .fleet-statistic-card {
     width: 100%;
   }

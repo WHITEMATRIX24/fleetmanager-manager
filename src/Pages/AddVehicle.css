@@ -393,6 +393,7 @@
     margin-left: 10px;
 
 }
+
 .left-vehicle {
     width: 90%;
     margin-left: 10px;
@@ -404,18 +405,22 @@
     margin: 0 10px;
     width: 40%;
 }
-@media(min-width:768px) and (max-width:1024px){
-    .left-vehicle{
+
+@media(min-width:768px) and (max-width:1024px) {
+    .left-vehicle {
         width: 53%;
     }
+
     .right-vehicle {
         width: 30%;
     }
 }
-@media(min-width:1024px) and (max-width:1366px){
-    .left-vehicle{
+
+@media(min-width:1024px) and (max-width:1366px) {
+    .left-vehicle {
         width: 61%;
     }
+
     .right-vehicle {
         width: 40%;
     }

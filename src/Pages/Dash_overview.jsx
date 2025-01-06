@@ -254,7 +254,7 @@ const DashboardPage = () => {
                   <div className="dash-activetrip-list-secondrow">
                     <div className="dash-activetrips-tile-imagecontainer">
                       <img
-                        src={`data:image/png;base64,${trip.vehicleDetails.vehiclePhoto}`}
+                        src={trip.vehicleDetails.vehiclePhoto}
                         alt="car"
                       />
                     </div>
@@ -307,7 +307,7 @@ const DashboardPage = () => {
               <div className="dash-activetrip-list-secondrow">
                 <div className="dash-activetrips-tile-imagecontainer">
                   <img
-                    src={`data:image/png;base64,${tripDetailData.vehicleDetails.vehiclePhoto}`}
+                    src={tripDetailData.vehicleDetails.vehiclePhoto}
                     alt="car"
                   />
                 </div>
@@ -401,7 +401,7 @@ const DashboardPage = () => {
                     <div className="dash-activetrip-list-secondrow">
                       <div className="dash-activetrips-tile-imagecontainer">
                         <img
-                          src={`data:image/png;base64,${vehicle.vehiclePhoto}`}
+                          src={vehicle.vehiclePhoto}
                           alt="car"
                         />
                       </div>

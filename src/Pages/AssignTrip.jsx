@@ -373,54 +373,54 @@ function AssignTrip() {
                 <div className="right-trip">
                     <div>
                         <button className="ccard-button" onClick={handleViewTripClick}>
-                            <div style={{ margin: 'auto', display: 'flex' }}>
-                                <div className="iicon-container">
-                                    <Identity className="iicon" />
 
-                                </div>
-                                <div className="text-container">
-                                    <span className="count">EXTEND</span>
-                                    <span className="label">Trips</span>
-                                </div>
+                            <div className="iicon-container">
+                                <Identity className="iicon" />
+
                             </div>
+                            <div className="text-container">
+                                <span className="count">EXTEND</span>
+                                <span className="label">Trips</span>
+                            </div>
+
                         </button>
 
                         {showTripPopup && <TripPopup onClose={() => setShowTripPopup(false)} />}
                     </div>
 
                     <button className="ccard-button">
-                        <div style={{ margin: 'auto', display: 'flex' }}>
-                            <div className="iicon-container">
-                                <CarFav className='iicon' />
-                            </div>
-                            <div className="text-container">
-                                <span className="count">{carCounts.onTrip}</span>
-                                <span className="label">Cars on Trip</span>
-                            </div>
+
+                        <div className="iicon-container">
+                            <CarFav className='iicon' />
                         </div>
+                        <div className="text-container">
+                            <span className="count">{carCounts.onTrip}</span>
+                            <span className="label">Cars on Trip</span>
+                        </div>
+
                     </button>
 
                     <button className="ccard-button">
-                        <div style={{ margin: 'auto', display: 'flex' }}>
-                            <div className="iicon-container">
-                                <GarageIcon className='iicon' />
-                            </div>
-                            <div id="workshop" className="text-container">
-                                <span className="count">{carCounts.inYard}</span>
-                                <span className="label">Cars in Yard</span>
-                            </div>
+
+                        <div className="iicon-container">
+                            <GarageIcon className='iicon' />
                         </div>
+                        <div id="workshop" className="text-container">
+                            <span className="count">{carCounts.inYard}</span>
+                            <span className="label">Cars in Yard</span>
+                        </div>
+
                     </button>
                     <button className="ccard-button">
-                        <div style={{ margin: '35px', display: 'flex' }}>
-                            <div className="iicon-container">
-                                <ServiceIcon />
-                            </div>
-                            <div className="text-container">
-                                <span className="count">{carCounts.inWorkshop}</span>
-                                <span className="label">Cars in Workshop</span>
-                            </div>
+
+                        <div className="iicon-container">
+                            <ServiceIcon />
                         </div>
+                        <div className="text-container">
+                            <span className="count">{carCounts.inWorkshop}</span>
+                            <span className="label">Cars in Workshop</span>
+                        </div>
+
                     </button>
                 </div>
             </div>

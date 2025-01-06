@@ -21,7 +21,6 @@ function AddVehicle() {
         vehicletype: '',
         odometerreading: '',
         vehiclephoto: null,
-        fileName: '',
     });
     const carImages = {
 
@@ -74,7 +73,6 @@ function AddVehicle() {
             const validImageTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
             if (validImageTypes.includes(file.type)) {
                 setVehicleData((prevState) => ({ ...prevState, vehiclephoto: file }));
-                console.log(file);
                 setFileName(file.name);
             } else {
                 setPopupMessage("Invalid file type. Please upload a JPG or PNG image.");
@@ -172,7 +170,7 @@ function AddVehicle() {
     return (
         <div className="vehicle">
             <div className="contents">
-                <div className="left">
+                <div className="left-vehicle">
                     <div className="add-car">
                         <div className="form-container">
                             <form className="c-form-car" onSubmit={handleVehicleSubmit}>
@@ -287,7 +285,7 @@ function AddVehicle() {
                         </div>
                     </div>
                 </div>
-                <div className="right">
+                <div className="right-vehicle">
                     {/* <div className="image-section">
                                     <div className="cardss">
                                         <div className="trip-images" style={{ backgroundImage: `url(${carImage})` }}><div className='oveerlay'></div>
