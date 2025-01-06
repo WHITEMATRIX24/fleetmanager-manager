@@ -27,7 +27,9 @@ function AddDriver() {
   useEffect(() => {
     const fetchDriverCount = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/driverCount");
+        const response = await fetch(
+          "http://13.50.175.179:5000/api/driverCount"
+        );
         const data = await response.json();
         setDriverCount(data.count);
         console.log(driverCount);
@@ -39,7 +41,9 @@ function AddDriver() {
   }, []);
   const fetchLastDriverID = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/lastDriverID");
+      const response = await fetch(
+        "http://13.50.175.179:5000/api/lastDriverID"
+      );
       const data = await response.json();
       setLastDriverID(data.lastDriverID);
       console.log(lastDriverID);
@@ -58,7 +62,7 @@ function AddDriver() {
       let exists = true;
       while (exists) {
         const response = await fetch(
-          `http://localhost:5000/api/checkDriverID/${uniqueID}`
+          `http://13.50.175.179:5000/api/checkDriverID/${uniqueID}`
         );
         const data = await response.json();
         if (data.exists) {
@@ -98,7 +102,7 @@ function AddDriver() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/drivers", {
+      const response = await fetch("http://13.50.175.179:5000/api/drivers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
